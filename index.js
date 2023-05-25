@@ -1,18 +1,30 @@
 import { Navigation } from "react-native-navigation";
-import HomeScreen from '@/pages/homeScreen'
+import WelcomeScreen from '@/pages/welcomeScreen'
+import LoginScreen from '@/pages/loginScreen'
 
-Navigation.registerComponent('HomeScreen', () => HomeScreen);
+Navigation.registerComponent('WelcomeScreen', () => WelcomeScreen);
+Navigation.registerComponent('LoginScreen', () => LoginScreen);
 
 Navigation.events().registerAppLaunchedListener(() => {
    Navigation.setRoot({
      root: {
        stack: {
          children: [
-           {
-             component: {
-               name: 'HomeScreen'
-             }
-           }
+          {
+            component: {
+              name: 'LoginScreen'
+            }
+          },
+          {
+            component: {
+              name: 'WelcomeScreen',
+              options: {
+              topBar: {
+                visible: false
+              }
+              }
+            }
+          }
          ]
        }
      }

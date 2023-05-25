@@ -6,7 +6,7 @@ function HomeScreen() {
     useEffect(()=>{
         setTimeout(() => {
             SplashScreen.hide();
-        }, 6000);
+        }, 2500);
     },[])
     return (
         <Text>我是home</Text>
