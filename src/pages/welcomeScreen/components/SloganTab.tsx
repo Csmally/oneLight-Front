@@ -16,7 +16,7 @@ function SloganTab() {
                         options: {
                             topBar: {
                                 title: {
-                                    text: 'Modal'
+                                    text: 'oneLight'
                                 },
                                 noBorder: true,
                                 scrollEdgeAppearance: {
