@@ -4,14 +4,17 @@ import { StyleSheet } from "react-native"
 import { Navigation } from "react-native-navigation";
 import { FunctionComponent } from "react";
 
-const LoginScreen: FunctionComponent = (props) => {
+type LoginScreenProps = {
+    componentId: string
+}
+const LoginScreen: FunctionComponent<LoginScreenProps> = ({ componentId }) => {
     const onChangeText = () => { }
     const loginHandle = () => {
         console.log('9898登录')
     }
     const createCount = () => {
         console.log('9898创建账号')
-        Navigation.push(props.componentId, {
+        Navigation.push(componentId, {
             component: {
                 name: 'SignUpScreen',
                 options: {
@@ -87,20 +90,6 @@ const LoginScreen: FunctionComponent = (props) => {
                 </Text>
             </Text>
         </View>
-        // <TabController items={[{ label: 'First' }, { label: 'Second' }, { label: 'Third' }]}>
-        //     <TabController.TabBar enableShadows />
-        //     <View flex>
-        //         <TabController.TabPage index={0}>
-        //             <Text>我是第一页</Text>
-        //         </TabController.TabPage>
-        //         <TabController.TabPage index={1} lazy>
-        //             <Text>我是第二页</Text>
-        //         </TabController.TabPage>
-        //         <TabController.TabPage index={2} lazy>
-        //             <Text>我是第三页</Text>
-        //         </TabController.TabPage>
-        //     </View>
-        // </TabController>
     )
 }
 
