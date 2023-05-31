@@ -1,22 +1,16 @@
 import { StyleSheet, View } from 'react-native';
 import { BlurView } from "@react-native-community/blur";
 import PageCounter from './components/PageCounter';
-import { useMemo, useState, useEffect } from 'react';
+import { useMemo, useState, useEffect, FunctionComponent } from 'react';
 import OpacitySwiper from './components/OpacitySwiper';
 import SloganTab from './components/SloganTab';
-import SplashScreen from 'react-native-splash-screen'
 
 const imgUrls = [
     'https://tuchuangs.com/imgs/2023/04/23/945f7dee14fb39f4.jpeg',
     'https://tuchuangs.com/imgs/2023/04/23/d12921d23883b1d7.jpeg',
     'https://tuchuangs.com/imgs/2023/04/23/1bc98cb602be8e78.jpeg'
 ]
-function WelcomeScreen(): JSX.Element {
-    useEffect(()=>{
-        setTimeout(() => {
-            SplashScreen.hide();
-        }, 2500);
-    },[])
+const WelcomeScreen: FunctionComponent = () => {
     const [activeIndex, setActiveIndex] = useState(0)
     // const [tabFlag, setTabFlag] = useState('loginMethodsTab')
 

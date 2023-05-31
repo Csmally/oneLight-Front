@@ -1,8 +1,8 @@
-import { useEffect } from 'react'
+import { FunctionComponent, useEffect } from 'react'
 import { Text } from 'react-native'
 import SplashScreen from 'react-native-splash-screen'
 
-function HomeScreen() {
+const HomeScreen: FunctionComponent = () => {
     useEffect(()=>{
         setTimeout(() => {
             SplashScreen.hide();

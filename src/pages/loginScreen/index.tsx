@@ -1,14 +1,10 @@
-import { Image, Text, View, TextField, Button, Colors, Assets, TabController } from "react-native-ui-lib";
+import { Image, Text, View, TextField, Button, Colors, Assets } from "react-native-ui-lib";
 import { getFontSize, getViewSize } from '@/utils/sizeTool'
 import { StyleSheet } from "react-native"
-import { gestureHandlerRootHOC } from "react-native-gesture-handler";
-import { useEffect } from "react";
 import { Navigation } from "react-native-navigation";
+import { FunctionComponent } from "react";
 
-function LoginScreen(props: any) {
-    useEffect(() => {
-        console.log('9898props', props)
-    }, [])
+const LoginScreen: FunctionComponent = (props) => {
     const onChangeText = () => { }
     const loginHandle = () => {
         console.log('9898登录')
@@ -17,7 +13,7 @@ function LoginScreen(props: any) {
         console.log('9898创建账号')
         Navigation.push(props.componentId, {
             component: {
-                name: 'CreateCountScreen',
+                name: 'SignUpScreen',
                 options: {
                     topBar: {
                         rightButtons: [
@@ -150,4 +146,4 @@ const styles = StyleSheet.create({
         marginVertical: getViewSize(15)
     }
 })
-export default gestureHandlerRootHOC(LoginScreen)
+export default LoginScreen

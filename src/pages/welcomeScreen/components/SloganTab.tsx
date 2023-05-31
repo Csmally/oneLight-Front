@@ -1,8 +1,9 @@
 import { getViewSize, getFontSize } from '@/utils/sizeTool';
+import { FunctionComponent } from 'react';
 import { StyleSheet, View, Text, TouchableOpacity } from 'react-native';
 import { Navigation } from "react-native-navigation";
 
-function SloganTab() {
+const SloganTab: FunctionComponent = () => {
     const joinUs = () => {
         console.log('加入我们！！！')
     }

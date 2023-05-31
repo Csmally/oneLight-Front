@@ -1,13 +1,13 @@
 import { StyleSheet, View } from "react-native"
 import { getViewSize } from '@/utils/sizeTool'
 import Animated, { useSharedValue, useAnimatedStyle, withTiming, Easing } from 'react-native-reanimated';
-import React, { useEffect } from "react";
+import React, { FunctionComponent, useEffect } from "react";
 
 type DoterProps = {
     selfIndex: number,
     activeIndex: number
 }
-function Doter({ selfIndex, activeIndex }: DoterProps) {
+const Doter: FunctionComponent<DoterProps> = ({ selfIndex, activeIndex }) => {
     const animatedWidth = useSharedValue(getViewSize(16));
     const animatedHeight = useSharedValue(getViewSize(6));
     const animatedColor = useSharedValue('#999999')

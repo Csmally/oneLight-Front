@@ -1,90 +1,34 @@
+require('react-native-ui-lib/config').setConfig({ appScheme: 'default' });
+import SplashScreen from 'react-native-splash-screen';
+import { loadSysStyle, screensRegister, setAppRouter, navigationEventListen } from '@/utils/loadAppTools';
 import { Navigation } from "react-native-navigation";
-import WelcomeScreen from '@/pages/welcomeScreen'
-import LoginScreen from '@/pages/loginScreen'
-require('react-native-ui-lib/config').setConfig({appScheme: 'default'});
-import {Colors, Typography, Spacings, Assets, Text} from 'react-native-ui-lib';
 
-Colors.loadSchemes({
-  light: {
-    screenBG: 'transparent',
-    textLinkColor: '#4597f7',
-    textColor: Colors.grey10,
-    moonOrSun: Colors.yellow30,
-    mountainForeground: Colors.green30,
-    mountainBackground: Colors.green50,
-    $backgroundSuccess: Colors.green40,
-  },
-  dark: {
-    screenBG: Colors.grey10,
-    textLinkColor: '#4597f7',
-    textColor: Colors.white,
-    moonOrSun: Colors.grey80,
-    mountainForeground: Colors.violet10,
-    mountainBackground: Colors.violet20,
-    $backgroundSuccess: Colors.green40,
-  }
-});
-
-Typography.loadTypographies({
-  heading: {fontSize: 36, fontWeight: '600'},
-  subheading: {fontSize: 28, fontWeight: '500'},
-  body: {fontSize: 18, fontWeight: '400'}
-});
-
-Spacings.loadSpacings({
-  page: 20,
-  card: 12,
-  gridGutter: 16
-});
-
-Assets.loadAssetsGroup('icons',{
-  logo: require('@/static/appLogo.png'),
-  alipay: require('@/static/alipay.png'),
-  wechat: require('@/static/wechat.png'),
-})
-
-const navigationButtonEventListener = Navigation.events().registerNavigationButtonPressedListener(({ buttonId, componentId }) => {
-  if(buttonId==='closeModal'){
-    Navigation.dismissModal(componentId);
-  }
-});
-
-const CreateCountScreen = () => {
-  return (
-    <Text>注册账号</Text>
-  )
+function getLoginStatus() {
+  return new Promise((res, rej) => {
+      setTimeout(() => {
+          res(false)
+      }, 2000);
+  })
 }
-Navigation.registerComponent('WelcomeScreen', () => WelcomeScreen);
-Navigation.registerComponent('LoginScreen', () => LoginScreen);
-Navigation.registerComponent('CreateCountScreen', () => CreateCountScreen);
 
-Navigation.events().registerAppLaunchedListener(() => {
-   Navigation.setRoot({
-     root: {
-       stack: {
-         children: [
-          {
-            component: {
-              name: 'CreateCountScreen'
-            }
-          },
-          {
-            component: {
-              name: 'LoginScreen'
-            }
-          },
-          {
-            component: {
-              name: 'WelcomeScreen',
-              options: {
-                topBar: {
-                  visible: false
-                }
-              }
-            }
-          }
-         ]
-       }
-     }
-  });
-});
+const appLoader = async () => {
+  //加载app系统默认主题、默认样式、根样式等
+  loadSysStyle()
+
+  //监听导航Navigation事件
+  navigationEventListen()
+
+  //注册屏幕组件
+  screensRegister()
+
+  //获取登录态&初始化登录态
+  let isLogin = await getLoginStatus()
+
+  //设置app路由
+  setAppRouter()
+
+  //关闭启动屏
+  SplashScreen.hide()
+}
+appLoader()
+
