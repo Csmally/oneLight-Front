@@ -17,11 +17,38 @@ type Rout = {
     }
 }
 
+//设置导航默认样式
+export const setDefaultNavigationStyle = () => {
+    Navigation.setDefaultOptions({
+        topBar: {
+            background: {
+                color: {
+                    light: '#F7F8F9',
+                    dark: Colors.grey10
+                },
+            },
+            visible: true,
+            animate: true,
+            animateLeftButtons: true,
+            animateRightButtons: true,
+            backButton: { popStackOnPress: true },
+            noBorder: true,
+            scrollEdgeAppearance: {
+                active: false,
+                noBorder: true
+            },
+            title: {
+                text: 'oneLight'  //默认title
+            },
+        }
+    });
+}
+
 //加载app系统默认主题、默认样式、根样式等
 export const loadSysStyle = () => {
     Colors.loadSchemes({
         light: {
-            screenBG: 'transparent',
+            screenBG: '#F7F8F9',
             textLinkColor: '#4597f7',
             textColor: Colors.grey10,
             moonOrSun: Colors.yellow30,

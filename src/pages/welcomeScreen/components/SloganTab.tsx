@@ -12,31 +12,7 @@ const SloganTab: FunctionComponent = () => {
             stack: {
                 children: [{
                     component: {
-                        name: 'LoginScreen',
-                        options: {
-                            hardwareBackButton: {
-                                dismissModalOnPress: false
-                            },
-                            modal: {
-                                swipeToDismiss: false
-                            },
-                            topBar: {
-                                title: {
-                                    text: 'oneLight'
-                                },
-                                noBorder: true,
-                                scrollEdgeAppearance: {
-                                    active: false,
-                                    noBorder: true,
-                                },
-                                rightButtons: [
-                                    {
-                                        id: 'closeModal',
-                                        text: '取消'
-                                    }
-                                ]
-                            }
-                        }
+                        name: 'LoginScreen'
                     }
                 }]
             }

@@ -1,7 +1,6 @@
 require('react-native-ui-lib/config').setConfig({ appScheme: 'default' });
 import SplashScreen from 'react-native-splash-screen';
-import { loadSysStyle, screensRegister, setAppRouter, navigationEventListen } from '@/utils/loadAppTools';
-import { Navigation } from "react-native-navigation";
+import { loadSysStyle, screensRegister, setAppRouter, navigationEventListen, setDefaultNavigationStyle } from '@/utils/loadAppTools';
 
 function getLoginStatus() {
   return new Promise((res, rej) => {
@@ -21,8 +20,10 @@ const appLoader = async () => {
   //注册屏幕组件
   screensRegister()
 
+  //设置导航默认样式
+  setDefaultNavigationStyle()
   //获取登录态&初始化登录态
-  let isLogin = await getLoginStatus()
+  let isLogin = getLoginStatus()
 
   //设置app路由
   setAppRouter()
