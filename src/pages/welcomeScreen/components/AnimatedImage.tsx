@@ -1,4 +1,4 @@
-import React, { FunctionComponent, useEffect } from "react"
+import React, { useEffect } from "react"
 import { StyleSheet } from "react-native"
 import Animated, { useSharedValue, useAnimatedStyle, withTiming, Easing } from 'react-native-reanimated';
 
@@ -7,7 +7,7 @@ type AnimatedImageProps = {
     selfIndex: number,
     activeIndex: number
 }
-const AnimatedImage: FunctionComponent<AnimatedImageProps> = ({ uri, selfIndex, activeIndex }) => {
+const AnimatedImage: React.FC<AnimatedImageProps> = ({ uri, selfIndex, activeIndex }) => {
     const animatedOpacity = useSharedValue(0);
     const animatedStyles = useAnimatedStyle(() => {
         return {

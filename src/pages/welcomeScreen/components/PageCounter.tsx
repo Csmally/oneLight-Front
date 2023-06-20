@@ -1,12 +1,11 @@
 import { StyleSheet, View } from "react-native";
 import Doter from "./Doter";
-import { FunctionComponent } from "react";
 
 type PageCounterProps = {
     total: number,
     activeIndex: number
 }
-const PageCounter: FunctionComponent<PageCounterProps> = ({ total, activeIndex }) => {
+const PageCounter: React.FC<PageCounterProps> = ({ total, activeIndex }) => {
     return (
         <View style={styles.container}>
             {

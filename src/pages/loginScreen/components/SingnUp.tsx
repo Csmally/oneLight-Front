@@ -1,4 +1,3 @@
-import { FunctionComponent } from "react";
 import { Avatar } from "react-native-ui-lib";
 import { getFontSize, getViewSize } from '@/utils/sizeTool';
 import Animated, { FadeInRight, FadeOutRight } from "react-native-reanimated";
@@ -8,7 +7,7 @@ type SignUpTabProps = {
     changeLoginTab: (tabName: string) => void
 }
 
-const SignUpWidget: FunctionComponent<SignUpTabProps> = ({ changeLoginTab }) => {
+const SignUpWidget: React.FC<SignUpTabProps> = ({ changeLoginTab }) => {
     console.log('9898注册页')
     return (
         <Animated.View entering={FadeInRight.duration(500)} exiting={FadeOutRight.duration(500)} style={styles.container}>

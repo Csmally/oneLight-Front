@@ -1,7 +1,6 @@
-import { FunctionComponent } from 'react'
 import { Text } from 'react-native'
 
-const SignUpScreen: FunctionComponent = () => {
+const SignUpScreen: React.FC = () => {
     return (
         <Text>注册账号</Text>
     )

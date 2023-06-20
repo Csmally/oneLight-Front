@@ -1,14 +1,14 @@
 import { Image, Text, View, Assets, Button, TextField } from "react-native-ui-lib";
 import { getFontSize, getViewSize } from '@/utils/sizeTool'
 import { StyleSheet } from "react-native"
-import { FunctionComponent, useState } from "react";
+import { useState } from "react";
 import Animated, { FadeIn, FadeOut, Layout } from "react-native-reanimated";
 import CodeSender from "./components/CodeSender";
 
 type LoginScreenProps = {
     componentId: string
 }
-const LoginScreen: FunctionComponent<LoginScreenProps> = ({ componentId }) => {
+const LoginScreen: React.FC<LoginScreenProps> = ({ componentId }) => {
     const [isShowPassCode, setIShowPassCode] = useState(false)
     const [account, setAccount] = useState('')
     const [passCode, setPassCode] = useState('')

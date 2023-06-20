@@ -1,7 +1,7 @@
 import { StyleSheet, View } from 'react-native';
 import { BlurView } from "@react-native-community/blur";
 import PageCounter from './components/PageCounter';
-import { useMemo, useState, useEffect, FunctionComponent } from 'react';
+import { useMemo, useState } from 'react';
 import OpacitySwiper from './components/OpacitySwiper';
 import SloganTab from './components/SloganTab';
 
@@ -10,7 +10,7 @@ const imgUrls = [
     'https://tuchuangs.com/imgs/2023/04/23/d12921d23883b1d7.jpeg',
     'https://tuchuangs.com/imgs/2023/04/23/1bc98cb602be8e78.jpeg'
 ]
-const WelcomeScreen: FunctionComponent = () => {
+const WelcomeScreen: React.FC = () => {
     const [activeIndex, setActiveIndex] = useState(0)
     // const [tabFlag, setTabFlag] = useState('loginMethodsTab')
 

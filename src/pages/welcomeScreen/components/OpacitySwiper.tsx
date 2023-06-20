@@ -1,4 +1,4 @@
-import { FunctionComponent, useEffect, useState } from "react"
+import { useEffect, useState } from "react"
 import { StyleSheet, View } from "react-native"
 import AnimatedImage from "./AnimatedImage"
 
@@ -6,7 +6,7 @@ type OpacitySwiperProps = {
     onIndexChanged: (index: number) => void,
     imgUrls: string[]
 }
-const OpacitySwiper: FunctionComponent<OpacitySwiperProps> = ({ onIndexChanged, imgUrls }) => {
+const OpacitySwiper: React.FC<OpacitySwiperProps> = ({ onIndexChanged, imgUrls }) => {
     const [activeIndex, setActiveIndex] = useState(0)
     useEffect(() => {
         let timer = setTimeout(() => {

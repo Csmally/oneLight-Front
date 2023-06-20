@@ -1,4 +1,3 @@
-import { FunctionComponent, useState } from "react";
 import { Image, Text, View, TextField, Button, Colors, Assets } from "react-native-ui-lib";
 import { getFontSize, getViewSize } from '@/utils/sizeTool';
 import Animated, { FadeInLeft, FadeOutLeft } from "react-native-reanimated";
@@ -7,7 +6,7 @@ import { StyleSheet } from "react-native";
 type SignInTabProps = {
     changeLoginTab: (tabName: string) => void
 }
-const SignInWidget: FunctionComponent<SignInTabProps> = ({ changeLoginTab }) => {
+const SignInWidget: React.FC<SignInTabProps> = ({ changeLoginTab }) => {
     console.log('9898登录页')
     const onChangeText = () => { }
     const loginHandle = () => {}

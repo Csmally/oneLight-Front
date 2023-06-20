@@ -1,10 +1,25 @@
-import { Text } from "react-native-ui-lib"
-import { FunctionComponent } from "react"
+import { Text, View } from "react-native-ui-lib"
+import Icon from 'react-native-vector-icons/FontAwesome5'
+import { getFontSize, getViewSize } from '@/utils/sizeTool'
+import { StyleSheet } from "react-native"
 
-const CodeSender: FunctionComponent = () => {
+const CodeSender: React.FC = () => {
     return (
-        <Text>获取验证码</Text>
+        <View style={styles.container}>
+            <Text style={styles.strText}>获取验证码</Text>
+            <Icon name="paper-plane" size={getViewSize(22)}/>
+        </View>
     )
 }
 
+const styles = StyleSheet.create({
+    container: {
+        flexDirection: 'row',
+        alignItems: 'center'
+    },
+    strText: {
+        fontSize: getFontSize(18),
+        marginRight: getViewSize(6)
+    }
+})
 export default CodeSender
