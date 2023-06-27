@@ -1,4 +1,4 @@
-import { Image, Text, View, Assets, Button, TextField } from "react-native-ui-lib";
+import { Image, Text, View, Assets, Button, TextField, Colors } from "react-native-ui-lib";
 import { getFontSize, getViewSize } from '@/utils/sizeTool'
 import { StyleSheet } from "react-native"
 import { useState } from "react";
@@ -13,8 +13,7 @@ const LoginScreen: React.FC<LoginScreenProps> = ({ componentId }) => {
     const [account, setAccount] = useState('')
     const [passCode, setPassCode] = useState('')
     const loginHandle = () => {
-        setIShowPassCode(!isShowPassCode)
-        setPassCode('')
+        console.log('9898登录啦')
     }
     const validateMobileNum = (val: string) => {
         const reg = /^1[3,4,5,6,7,8,9][0-9]{9}$/;
@@ -114,7 +113,7 @@ const styles = StyleSheet.create({
     textContainer: {
         paddingBottom: getViewSize(8),
         borderBottomWidth: getViewSize(1),
-        borderBottomColor: '#a8a8a8'
+        borderBottomColor: Colors.$outlineDisabled
     },
     textInput: {
         fontSize: getFontSize(20)
