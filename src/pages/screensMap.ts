@@ -1,16 +1,11 @@
 import WelcomeScreen from './welcomeScreen'
 import LoginScreen from './loginScreen'
-import SignUpScreen from './signUpScreen'
-import HomeScreen from './homeScreen'
+import Toast from './toast'
 
 export default [
     {
-        path: 'HomeScreen',
-        component: HomeScreen
-    },
-    {
-        path: 'SignUpScreen',
-        component: SignUpScreen
+        path: 'toast',
+        component: Toast
     },
     {
         path: 'LoginScreen',
