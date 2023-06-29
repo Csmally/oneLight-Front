@@ -4,6 +4,7 @@ import { StyleSheet } from "react-native"
 import { useState } from "react";
 import Animated, { FadeIn, FadeOut, Layout } from "react-native-reanimated";
 import CodeSender from "./components/CodeSender";
+import { Toast } from "@/utils/coverTips"
 
 type LoginScreenProps = {
     componentId: string
@@ -14,6 +15,7 @@ const LoginScreen: React.FC<LoginScreenProps> = ({ componentId }) => {
     const [passCode, setPassCode] = useState('')
     const loginHandle = () => {
         console.log('9898登录啦')
+        Toast.show({text:'我是test'})
     }
     const validateMobileNum = (val: string) => {
         const reg = /^1[3,4,5,6,7,8,9][0-9]{9}$/;
@@ -111,15 +113,15 @@ const styles = StyleSheet.create({
         fontWeight: '400'
     },
     textContainer: {
-        paddingBottom: getViewSize(8),
+        paddingBottom: getViewSize(6),
         borderBottomWidth: getViewSize(1),
         borderBottomColor: Colors.$outlineDisabled
     },
     textInput: {
-        fontSize: getFontSize(20)
+        fontSize: getFontSize(18)
     },
     placeholder: {
-        fontSize: getFontSize(20),
+        fontSize: getFontSize(18),
     },
     loginMethods: {
         display: 'flex',

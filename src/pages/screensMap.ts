@@ -1,10 +1,10 @@
 import WelcomeScreen from './welcomeScreen'
 import LoginScreen from './loginScreen'
-import Toast from './toast'
+import Toast from '@/components/toast'
 
 export default [
     {
-        path: 'toast',
+        path: 'Toast',
         component: Toast
     },
     {

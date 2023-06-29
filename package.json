@@ -12,6 +12,8 @@
   },
   "dependencies": {
     "@react-native-community/blur": "^4.3.2",
+    "mobx": "^6.9.0",
+    "mobx-react-lite": "^3.4.3",
     "react": "18.2.0",
     "react-native": "0.71.8",
     "react-native-gesture-handler": "^2.10.1",

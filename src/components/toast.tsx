@@ -4,20 +4,22 @@ import { StyleSheet } from "react-native"
 import { View, Text } from "react-native-ui-lib"
 import { Navigation } from 'react-native-navigation'
 
-const Toast: React.FC = () => {
+const Toast: React.FC<ToastProps> = ({ text, textColor = "#FFFFFF", backgroundColor = "#000000", shadowColor = "#000000", duration = 2000, componentId = '' }) => {
     let timerRef = useRef<any>()
     useEffect(() => {
         timerRef.current = setTimeout(() => {
-            Navigation.dismissAllOverlays()
-        }, 2500);
+            Navigation.dismissOverlay(componentId)
+        }, duration);
+        console.log('9898清除之前',timerRef.current)
         return () => {
+            console.log('9898清除之后',timerRef.current)
             clearTimeout(timerRef.current)
         }
     }, [])
     return (
         <View style={styles.container}>
-            <View style={styles.content}>
-                <Text color={'#FFFFFF'} center>我是toast我是toast我是toast我是toast我是toast</Text>
+            <View style={[styles.content, { backgroundColor, shadowColor }]}>
+                <Text color={textColor} center>{text}</Text>
             </View>
         </View>
     )
@@ -29,18 +31,15 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         pointerEvents: 'none',
-
-        elevation: 5, // 设置阴影的程度-安卓
-        shadowColor: '#000000',
-        shadowOffset: { width: 0, height: 2 },
-        shadowOpacity: 0.25,
-        shadowRadius: 4,
     },
     content: {
         maxWidth: getViewSize(150),
-        backgroundColor: '#000000',
         padding: getViewSize(10),
         borderRadius: getViewSize(8),
+        elevation: 5, // 设置阴影的程度-安卓
+        shadowOffset: { width: 0, height: 2 },
+        shadowOpacity: 0.6,
+        shadowRadius: 3,
     }
 })
 

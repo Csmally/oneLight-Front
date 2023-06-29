@@ -12,7 +12,7 @@ module.exports = {
       },
     ],
     [
-      'react-native-reanimated/plugin', {
+      'react-native-reanimated/plugin', {   //react-native-reanimated插件必须放在插件列表最后
         relativeSourceLocation: true,
       },
     ]
