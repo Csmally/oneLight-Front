@@ -1,5 +1,7 @@
-import LoadingStore from './modules/loading'
+import Loading from './modules/loading'
+import Toast from './modules/toast'
 
-export const Store = {
-    LoadingStore
+export {
+    Loading,
+    Toast
 }

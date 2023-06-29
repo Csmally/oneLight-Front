@@ -3,16 +3,17 @@ import { useEffect, useRef } from "react"
 import { StyleSheet } from "react-native"
 import { View, Text } from "react-native-ui-lib"
 import { Navigation } from 'react-native-navigation'
+import { Toast } from "@/store"
 
-const Toast: React.FC<ToastProps> = ({ text, textColor = "#FFFFFF", backgroundColor = "#000000", shadowColor = "#000000", duration = 2000, componentId = '' }) => {
+const ToastScreen: React.FC<ToastProps> = ({ text, textColor = "#FFFFFF", backgroundColor = "#000000", shadowColor = "#000000", duration = 5000, componentId = '' }) => {
     let timerRef = useRef<any>()
     useEffect(() => {
+        Toast.setCurrentToastId(componentId)
         timerRef.current = setTimeout(() => {
             Navigation.dismissOverlay(componentId)
         }, duration);
-        console.log('9898清除之前',timerRef.current)
         return () => {
-            console.log('9898清除之后',timerRef.current)
+            Toast.close()
             clearTimeout(timerRef.current)
         }
     }, [])
@@ -43,4 +44,4 @@ const styles = StyleSheet.create({
     }
 })
 
-export default Toast
+export default ToastScreen

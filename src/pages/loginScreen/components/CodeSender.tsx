@@ -4,7 +4,7 @@ import Icon from 'react-native-vector-icons/FontAwesome5'
 import { getFontSize, getViewSize } from '@/utils/sizeTool'
 import { StyleSheet } from "react-native"
 import { useEffect, useRef, useState } from "react"
-import { Toast } from "@/utils/coverTips"
+import { Toast } from "@/store"
 
 const CodeSender: React.FC = () => {
     const [status, setStatus] = useState(true)
@@ -14,7 +14,7 @@ const CodeSender: React.FC = () => {
     const reGetCode = () => {
         if (!status) {
             console.log('9898等一会，太频繁啦')
-            Toast.show({text: '操作过于频繁'})
+            Toast.show({text:'操作过于频繁'})
         }
     }
     const sendCode = () => {
