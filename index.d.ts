@@ -4,5 +4,5 @@ interface ToastProps {
     textColor?: string,
     backgroundColor?: string,
     shadowColor?: string,
-    componentId?: undefined | string
+    componentId?: string
 }

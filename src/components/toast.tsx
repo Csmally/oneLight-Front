@@ -4,27 +4,33 @@ import { StyleSheet } from "react-native"
 import { View, Text } from "react-native-ui-lib"
 import { Navigation } from 'react-native-navigation'
 import { Toast } from "@/store"
+import { observer } from "mobx-react-lite"
 
-const ToastScreen: React.FC<ToastProps> = ({ text, textColor = "#FFFFFF", backgroundColor = "#000000", shadowColor = "#000000", duration = 5000, componentId = '' }) => {
+const ToastScreen: React.FC<ToastProps> = observer(({ componentId = '' }) => {
     let timerRef = useRef<any>()
-    useEffect(() => {
-        Toast.setCurrentToastId(componentId)
+    if(timerRef.current){
+        clearTimeout(timerRef.current)
         timerRef.current = setTimeout(() => {
             Navigation.dismissOverlay(componentId)
-        }, duration);
+        }, Toast.duration);
+    }
+    useEffect(() => {
+        timerRef.current = setTimeout(() => {
+            Navigation.dismissOverlay(componentId)
+        }, Toast.duration);
         return () => {
             Toast.close()
             clearTimeout(timerRef.current)
         }
-    }, [])
+    },[])
     return (
         <View style={styles.container}>
-            <View style={[styles.content, { backgroundColor, shadowColor }]}>
-                <Text color={textColor} center>{text}</Text>
+            <View style={[styles.content, { backgroundColor: Toast.backgroundColor, shadowColor: Toast.shadowColor }]}>
+                <Text color={Toast.textColor} center>{Toast.text}</Text>
             </View>
         </View>
     )
-}
+})
 
 const styles = StyleSheet.create({
     container: {

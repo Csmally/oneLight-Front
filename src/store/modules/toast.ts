@@ -3,20 +3,30 @@ import { Navigation } from "react-native-navigation"
 
 class ToastStore {
     status = false
-    currentToastId = ''
+    text = ''
+    duration = 2000
+    textColor = '#FFFFFF'
+    backgroundColor = '#000000'
+    shadowColor = '#000000'
+
     constructor() {
         makeAutoObservable(this)
     }
 
     show(parmas: ToastProps) {
-        if(this.status) {
-            Navigation.dismissOverlay(this.currentToastId)
+        const { text, duration = 2000, textColor = '#FFFFFF', backgroundColor = '#000000', shadowColor = '#000000' } = parmas
+        this.text = text
+        this.duration = duration
+        this.textColor = textColor
+        this.backgroundColor = backgroundColor
+        this.shadowColor = shadowColor
+        if (this.status) {
+            return
         }
         this.status = true
         Navigation.showOverlay({
             component: {
                 name: 'Toast',
-                passProps: parmas,
                 options: {
                     layout: {
                         componentBackgroundColor: 'transparent',
@@ -30,9 +40,11 @@ class ToastStore {
     }
     close() {
         this.status = false
-    }
-    setCurrentToastId(componentId: string) {
-        this.currentToastId = componentId
+        this.text = ''
+        this.duration = 2000
+        this.textColor = '#FFFFFF'
+        this.backgroundColor = '#000000'
+        this.shadowColor = '#000000'
     }
 }
 

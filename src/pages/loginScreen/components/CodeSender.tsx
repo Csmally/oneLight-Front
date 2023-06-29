@@ -13,7 +13,6 @@ const CodeSender: React.FC = () => {
     const timerRef = useRef<any>(null)
     const reGetCode = () => {
         if (!status) {
-            console.log('9898等一会，太频繁啦')
             Toast.show({text:'操作过于频繁'})
         }
     }
@@ -44,11 +43,11 @@ const CodeSender: React.FC = () => {
             {status ?
                 <TouchableOpacity style={styles.container} onPress={sendCode}>
                     <Text style={styles.strText}>获取验证码</Text>
-                    <Icon name="paper-plane" size={getViewSize(15)} />
+                    <Icon name="paper-plane" size={getViewSize(18)} />
                 </TouchableOpacity> :
                 <TouchableOpacity style={styles.container} onPress={reGetCode}>
                     <Text style={[styles.strText, styles.disabledColor]}>重新获取({second}秒)</Text>
-                    <Icon name="clock" size={getViewSize(15)} color={Colors.$textDisabled} />
+                    <Icon name="clock" size={getViewSize(18)} color={Colors.$textDisabled} />
                 </TouchableOpacity>}
         </>
     )
