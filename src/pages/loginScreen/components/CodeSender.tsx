@@ -1,8 +1,8 @@
 import React from "react"
-import { Text, TouchableOpacity, Colors } from "react-native-ui-lib"
+import { Text, Colors, View } from "react-native-ui-lib"
 import Icon from 'react-native-vector-icons/FontAwesome5'
 import { getFontSize, getViewSize } from '@/utils/sizeTool'
-import { StyleSheet } from "react-native"
+import { StyleSheet, ActivityIndicator, TouchableWithoutFeedback } from "react-native"
 import { useEffect, useRef, useState } from "react"
 import { Toast } from "@/store"
 
@@ -13,7 +13,7 @@ const CodeSender: React.FC = () => {
     const timerRef = useRef<any>(null)
     const reGetCode = () => {
         if (!status) {
-            Toast.show({text:'操作过于频繁'})
+            Toast.show({ text: '操作过于频繁' })
         }
     }
     const sendCode = () => {
@@ -39,17 +39,19 @@ const CodeSender: React.FC = () => {
         secondRef.current = second
     })
     return (
-        <>
-            {status ?
-                <TouchableOpacity style={styles.container} onPress={sendCode}>
+        status ?
+            <TouchableWithoutFeedback onPress={sendCode}>
+                <View style={styles.container}>
                     <Text style={styles.strText}>获取验证码</Text>
                     <Icon name="paper-plane" size={getViewSize(18)} />
-                </TouchableOpacity> :
-                <TouchableOpacity style={styles.container} onPress={reGetCode}>
+                </View>
+            </TouchableWithoutFeedback> :
+            <TouchableWithoutFeedback onPress={reGetCode}>
+                <View style={styles.container}>
                     <Text style={[styles.strText, styles.disabledColor]}>重新获取({second}秒)</Text>
-                    <Icon name="clock" size={getViewSize(18)} color={Colors.$textDisabled} />
-                </TouchableOpacity>}
-        </>
+                    <ActivityIndicator />
+                </View>
+            </TouchableWithoutFeedback>
     )
 }
 
