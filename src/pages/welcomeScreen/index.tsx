@@ -1,9 +1,10 @@
 import { StyleSheet, View } from 'react-native';
 import { BlurView } from "@react-native-community/blur";
 import PageCounter from './components/PageCounter';
-import { useMemo, useState } from 'react';
+import { useMemo, useState, useEffect } from 'react';
 import OpacitySwiper from './components/OpacitySwiper';
 import SloganTab from './components/SloganTab';
+import SplashScreen from 'react-native-splash-screen'
 
 const imgUrls = [
     'https://tuchuangs.com/imgs/2023/04/23/945f7dee14fb39f4.jpeg',
@@ -12,7 +13,11 @@ const imgUrls = [
 ]
 const WelcomeScreen: React.FC = () => {
     const [activeIndex, setActiveIndex] = useState(0)
-    // const [tabFlag, setTabFlag] = useState('loginMethodsTab')
+    useEffect(() => {
+        setTimeout(() => {
+            SplashScreen.hide();
+        }, 2500);
+    }, [])
 
     const onIndexChanged = (index: number) => {
         setActiveIndex(index)
@@ -30,7 +35,7 @@ const WelcomeScreen: React.FC = () => {
                     reducedTransparencyFallbackColor="white"
                 />
                 <PageCounter total={imgUrls.length} activeIndex={activeIndex} />
-                <SloganTab/>
+                <SloganTab />
             </View >
         </View>
     )

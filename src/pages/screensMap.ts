@@ -1,6 +1,7 @@
+import Toast from '@/components/toast'
 import WelcomeScreen from './welcomeScreen'
 import LoginScreen from './loginScreen'
-import Toast from '@/components/toast'
+import HomeScreen from './homeScreen'
 
 export default [
     {
@@ -19,5 +20,9 @@ export default [
                 visible: false
             }
         }
+    },
+    {
+        path: 'HomeScreen',
+        component: HomeScreen
     },
 ]

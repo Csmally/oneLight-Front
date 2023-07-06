@@ -1,19 +1,13 @@
-import screensMap from '@/pages/screensMap'
+import Screens from '@/pages/screensMap'
 import { Navigation } from 'react-native-navigation'
 import { Colors, Typography, Spacings, Assets } from 'react-native-ui-lib';
+import Storage from '@/storage';
 
-
-type RootStack = {
-    root: {
-        stack: {
-            children: Rout[]
-        }
-    }
-}
-type Rout = {
-    component: {
-        name: string,
-        options?: any
+//初始化storage数据
+export const initStorageData = () => {
+    const loginStatus = Storage.getBoolean('loginStatus')
+    if (!loginStatus) {
+        Storage.set('loginStatus', false)
     }
 }
 
@@ -103,28 +97,100 @@ export const navigationEventListen = () => {
 
 //注册屏幕组件
 export const screensRegister = () => {
-    screensMap.forEach(screenInfo => {
+    Screens.forEach(screenInfo => {
         Navigation.registerComponent(screenInfo.path, () => screenInfo.component);
     })
 }
 
 //设置app路由
-export const setAppRouter = () => {
-    let isLogin = false
-    let router: RootStack = { root: { stack: { children: [] } } }
-    if (isLogin) {
-
-    } else {
-        screensMap.forEach(screenInfo => {
-            router.root.stack.children.push({
-                component: {
-                    name: screenInfo.path,
-                    options: screenInfo.options ? screenInfo.options : null
-                }
-            })
-        })
+export const setAppRouter = (isInitApp?: boolean) => {
+    const loginStatus = Storage.getBoolean('loginStatus')
+    const welcomeRoot = {
+        root: {
+            stack: {
+                children: [{
+                    component: {
+                        name: 'WelcomeScreen',
+                        options: {
+                            topBar: {
+                                visible: false
+                            }
+                        }
+                    }
+                }]
+            }
+        }
     }
-    Navigation.events().registerAppLaunchedListener(() => {
-        Navigation.setRoot(router)
-    });
+    const bottomRoot = {
+        root: {
+            bottomTabs: {
+                id: 'BOTTOM_TABS_LAYOUT',
+                translucent: true,
+                children: [
+                    {
+                        stack: {
+                            id: 'HOME_TAB',
+                            children: [{
+                                component: {
+                                    id: 'HOME_SCREEN',
+                                    name: 'HomeScreen',
+                                    options: {
+                                        topBar: {
+                                            visible: false
+                                        }
+                                    }
+                                },
+                            }],
+                            options: {
+                                bottomTab: {
+                                    text: '首页',
+                                    icon: require('@/static/alipay.png'),
+                                    selectedIcon: require('@/static/wechat.png'),
+                                    iconWidth: 10,
+                                    iconHeight: 10
+                                }
+                            }
+                        }
+                    },
+                    {
+                        stack: {
+                            id: 'PROFILE_TAB',
+                            children: [{
+                                component: {
+                                    id: 'PROFILE_SCREEN',
+                                    name: 'HomeScreen'
+                                }
+                            }],
+                            options: {
+                                bottomTab: {
+                                    text: '尾页',
+                                    icon: require('@/static/alipay.png'),
+                                    selectedIcon: require('@/static/wechat.png'),
+                                    iconWidth: 10,
+                                    iconHeight: 10
+                                }
+                            }
+                        }
+                    }
+                ]
+            }
+        }
+    }
+    if (isInitApp === true) {
+        Navigation.events().registerAppLaunchedListener(() => {
+            Navigation.setRoot(loginStatus ? bottomRoot : welcomeRoot)
+        });
+    } else {
+        Navigation.setRoot(loginStatus ? bottomRoot : welcomeRoot)
+    }
+
+    Navigation.setRoot({
+        root: {
+            bottomTabs: {
+                options: {
+                    
+                }
+            }
+        }
+    })
 }
