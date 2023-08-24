@@ -1,7 +1,7 @@
-import Loading from './modules/loading'
-import Toast from './modules/toast'
+import LoadingStore from './modules/loading'
+import ToastStore from './modules/toast'
 
 export {
-    Loading,
-    Toast
+    LoadingStore,
+    ToastStore
 }

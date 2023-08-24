@@ -1,7 +1,16 @@
 require('react-native-ui-lib/config').setConfig({ appScheme: 'default' });
-import { loadSysStyle, screensRegister, setAppRouter, navigationEventListen, setDefaultNavigationStyle } from '@/utils/loadAppTools';
+import { loadSysStyle, screensRegister, setAppRouter, navigationEventListen, setDefaultNavigationStyle, initStorageData } from '@/utils/loadAppTools';
+import { ToastStore } from '@/store';
 
 const appLoader = async () => {
+  Toast = {
+    show: (params) => {
+      ToastStore.show(params)
+    }
+  }
+  //初始化storage数据
+  initStorageData()
+  
   //加载app系统默认主题、默认样式、根样式等
   loadSysStyle()
 

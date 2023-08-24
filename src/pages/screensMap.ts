@@ -1,12 +1,14 @@
-import Toast from '@/components/toast'
+import ToastScreen from '@/components/toast'
 import WelcomeScreen from './welcomeScreen'
 import LoginScreen from './loginScreen'
 import HomeScreen from './homeScreen'
+import MineScreen from './mineScreen'
+import ChatScreen from './chatScreen'
 
 export default [
     {
-        path: 'Toast',
-        component: Toast
+        path: 'ToastScreen',
+        component: ToastScreen
     },
     {
         path: 'LoginScreen',
@@ -24,5 +26,13 @@ export default [
     {
         path: 'HomeScreen',
         component: HomeScreen
+    },
+    {
+        path: 'MineScreen',
+        component: MineScreen
+    },
+    {
+        path: 'ChatScreen',
+        component: ChatScreen
     },
 ]

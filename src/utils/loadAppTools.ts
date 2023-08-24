@@ -1,26 +1,32 @@
 import Screens from '@/pages/screensMap'
-import { Navigation } from 'react-native-navigation'
+import { LayoutRoot, Navigation } from 'react-native-navigation'
 import { Colors, Typography, Spacings, Assets } from 'react-native-ui-lib';
 import Storage from '@/storage';
+import { Dimensions } from 'react-native';
 
 //初始化storage数据
 export const initStorageData = () => {
     const loginStatus = Storage.getBoolean('loginStatus')
+    // 获取屏幕尺寸
+    const screenWidth = Dimensions.get('screen').width;
+    const screenHeight = Dimensions.get('screen').height;
     if (!loginStatus) {
         Storage.set('loginStatus', false)
     }
+    Storage.set('screenWidth', screenWidth)
+    Storage.set('screenHeight', screenHeight)
 }
 
 //设置导航默认样式
 export const setDefaultNavigationStyle = () => {
     Navigation.setDefaultOptions({
         topBar: {
-            background: {
-                color: {
-                    light: '#F7F8F9',
-                    dark: Colors.grey10
-                },
-            },
+            // background: {
+            //     color: {
+            //         light: '#F7F8F9',
+            //         dark: Colors.grey10
+            //     },
+            // },
             visible: true,
             animate: true,
             animateLeftButtons: true,
@@ -77,6 +83,9 @@ export const loadSysStyle = () => {
         logo: require('@/static/appLogo.png'),
         alipay: require('@/static/alipay.png'),
         wechat: require('@/static/wechat.png'),
+        mobile: require('@/static/mobilePhone.png'),
+        home: require('@/static/home.png'),
+        homeSelect: require('@/static/homeSelect.png')
     })
 }
 
@@ -121,18 +130,14 @@ export const setAppRouter = (isInitApp?: boolean) => {
             }
         }
     }
-    const bottomRoot = {
+    const bottomRoot: LayoutRoot = {
         root: {
             bottomTabs: {
-                id: 'BOTTOM_TABS_LAYOUT',
-                translucent: true,
                 children: [
                     {
                         stack: {
-                            id: 'HOME_TAB',
                             children: [{
                                 component: {
-                                    id: 'HOME_SCREEN',
                                     name: 'HomeScreen',
                                     options: {
                                         topBar: {
@@ -144,53 +149,104 @@ export const setAppRouter = (isInitApp?: boolean) => {
                             options: {
                                 bottomTab: {
                                     text: '首页',
-                                    icon: require('@/static/alipay.png'),
-                                    selectedIcon: require('@/static/wechat.png'),
-                                    iconWidth: 10,
-                                    iconHeight: 10
+                                    icon: Assets.icons.home,
+                                    selectedIcon: Assets.icons.homeSelect
                                 }
                             }
                         }
                     },
                     {
                         stack: {
-                            id: 'PROFILE_TAB',
                             children: [{
                                 component: {
-                                    id: 'PROFILE_SCREEN',
-                                    name: 'HomeScreen'
-                                }
+                                    name: 'ChatScreen',
+                                    options: {
+                                        topBar: {
+                                            visible: true
+                                        }
+                                    }
+                                },
                             }],
                             options: {
                                 bottomTab: {
-                                    text: '尾页',
-                                    icon: require('@/static/alipay.png'),
-                                    selectedIcon: require('@/static/wechat.png'),
-                                    iconWidth: 10,
-                                    iconHeight: 10
+                                    text: '聊天室',
+                                    icon: Assets.icons.home,
+                                    selectedIcon: Assets.icons.homeSelect
+                                }
+                            }
+                        }
+                    },
+                    {
+                        stack: {
+                            children: [{
+                                component: {
+                                    name: 'MineScreen',
+                                    options: {
+                                        topBar: {
+                                            visible: false
+                                        }
+                                    }
+                                },
+                            }],
+                            options: {
+                                bottomTab: {
+                                    text: '我的',
+                                    icon: Assets.icons.home,
+                                    selectedIcon: Assets.icons.homeSelect
                                 }
                             }
                         }
                     }
-                ]
+                ],
+                options: {
+                    bottomTabs: {
+                        currentTabIndex: 0,
+                        translucent: true,
+                        drawBehind: true,
+                        tabsAttachMode: 'together'
+                    },
+                    bottomTab: {
+                        textColor: '#959595',
+                        selectedTextColor: '#000000',
+                        fontSize: 12
+                    }
+                }
             }
         }
     }
+
+    if (3 > 5) {
+        Navigation.setRoot({
+            root: {
+                bottomTabs: {
+                    options: {
+                        bottomTabs: {
+                            translucent: true,
+                            drawBehind: true,
+                            backgroundColor: 'red'
+                        },
+                        bottomTab: {
+
+                        }
+                    }
+                }
+            }
+        })
+    }
+
+
     if (isInitApp === true) {
         Navigation.events().registerAppLaunchedListener(() => {
             Navigation.setRoot(loginStatus ? bottomRoot : welcomeRoot)
+            // Navigation.setRoot({
+            //     root: {
+            //         bottomTabs: {
+
+            //         }
+            //     }
+            // })
         });
     } else {
         Navigation.setRoot(loginStatus ? bottomRoot : welcomeRoot)
     }
-
-    Navigation.setRoot({
-        root: {
-            bottomTabs: {
-                options: {
-                    
-                }
-            }
-        }
-    })
 }

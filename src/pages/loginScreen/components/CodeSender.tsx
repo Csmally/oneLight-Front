@@ -4,7 +4,6 @@ import Icon from 'react-native-vector-icons/FontAwesome5'
 import { getFontSize, getViewSize } from '@/utils/sizeTool'
 import { StyleSheet, ActivityIndicator, TouchableWithoutFeedback } from "react-native"
 import { useEffect, useRef, useState } from "react"
-import { Toast } from "@/store"
 
 const CodeSender: React.FC = () => {
     const [status, setStatus] = useState(true)

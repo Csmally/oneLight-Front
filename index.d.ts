@@ -21,3 +21,8 @@ interface StackRoot {
         }
     }
 }
+
+interface ToastTool {
+    show: (params: ToastProps) => void;
+}
+declare var Toast: ToastTool;
