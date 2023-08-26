@@ -1,36 +1,38 @@
-import { getViewSize } from "@/utils/sizeTool"
-import { useEffect, useRef } from "react"
-import { StyleSheet } from "react-native"
-import { View, Text } from "react-native-ui-lib"
-import { Navigation } from 'react-native-navigation'
-import { ToastStore } from "@/store"
-import { observer } from "mobx-react-lite"
+import { getViewSize } from "@/utils/sizeTool";
+import { useEffect, useRef } from "react";
+import { StyleSheet } from "react-native";
+import { View, Text } from "react-native-ui-lib";
+import { Navigation } from 'react-native-navigation';
+import { ToastStore } from "@/store";
+import { observer } from "mobx-react-lite";
+import React from "react";
 
 const ToastScreen: React.FC<ToastProps> = observer(({ componentId = '' }) => {
-    let timerRef = useRef<any>()
+    const timerRef = useRef<any>();
     if (timerRef.current) {
-        clearTimeout(timerRef.current)
+        clearTimeout(timerRef.current);
         timerRef.current = setTimeout(() => {
-            Navigation.dismissOverlay(componentId)
+            Navigation.dismissOverlay(componentId);
         }, ToastStore.duration);
     }
     useEffect(() => {
+        console.log('9898');
         timerRef.current = setTimeout(() => {
-            Navigation.dismissOverlay(componentId)
+            Navigation.dismissOverlay(componentId);
         }, ToastStore.duration);
         return () => {
-            ToastStore.close()
-            clearTimeout(timerRef.current)
-        }
-    }, [])
+            ToastStore.close();
+            clearTimeout(timerRef.current);
+        };
+    }, []);
     return (
         <View style={styles.container}>
             <View style={[styles.content, { backgroundColor: ToastStore.backgroundColor, shadowColor: ToastStore.shadowColor }]}>
                 <Text color={ToastStore.textColor} center>{ToastStore.text}</Text>
             </View>
         </View>
-    )
-})
+    );
+});
 
 const styles = StyleSheet.create({
     container: {
@@ -48,6 +50,6 @@ const styles = StyleSheet.create({
         shadowOpacity: 0.6,
         shadowRadius: 3,
     }
-})
+});
 
-export default ToastScreen
+export default ToastScreen;
