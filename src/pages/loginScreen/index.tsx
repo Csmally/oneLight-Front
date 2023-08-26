@@ -17,7 +17,6 @@ const LoginScreen: React.FC<LoginScreenProps> = ({ componentId }) => {
     const loginHandle = () => {
         console.log('9898登录啦')
         Storage.set('loginStatus', true)
-        screensRegister()
         setAppRouter()
     }
     const validateMobileNum = (val: string) => {

@@ -214,37 +214,9 @@ export const setAppRouter = (isInitApp?: boolean) => {
             }
         }
     }
-
-    if (3 > 5) {
-        Navigation.setRoot({
-            root: {
-                bottomTabs: {
-                    options: {
-                        bottomTabs: {
-                            translucent: true,
-                            drawBehind: true,
-                            backgroundColor: 'red'
-                        },
-                        bottomTab: {
-
-                        }
-                    }
-                }
-            }
-        })
-    }
-
-
     if (isInitApp === true) {
         Navigation.events().registerAppLaunchedListener(() => {
             Navigation.setRoot(loginStatus ? bottomRoot : welcomeRoot)
-            // Navigation.setRoot({
-            //     root: {
-            //         bottomTabs: {
-
-            //         }
-            //     }
-            // })
         });
     } else {
         Navigation.setRoot(loginStatus ? bottomRoot : welcomeRoot)

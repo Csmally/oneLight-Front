@@ -37,7 +37,7 @@ const styles = StyleSheet.create({
     },
     aa: {
         height: 100,
-        backgroundColor: 'black'
+        backgroundColor: 'pink'
     },
     bb: {
         height: 100,
