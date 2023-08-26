@@ -1,14 +1,14 @@
-import { makeAutoObservable } from "mobx"
+import { makeAutoObservable } from "mobx";
 
 class LoadingStore {
-    status = false
+    status = false;
     constructor() {
-        makeAutoObservable(this)
+        makeAutoObservable(this);
     }
 
     updateStatus(status: boolean) {
-        this.status = status
+        this.status = status;
     }
 }
 
-export default new LoadingStore()
+export default new LoadingStore();

@@ -8,6 +8,7 @@ import { observer } from "mobx-react-lite";
 import React from "react";
 
 const ToastScreen: React.FC<ToastProps> = observer(({ componentId = '' }) => {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const timerRef = useRef<any>();
     if (timerRef.current) {
         clearTimeout(timerRef.current);

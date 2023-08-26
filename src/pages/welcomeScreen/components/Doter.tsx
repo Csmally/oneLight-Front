@@ -1,5 +1,5 @@
-import { StyleSheet, View } from "react-native"
-import { getViewSize } from '@/utils/sizeTool'
+import { StyleSheet } from "react-native";
+import { getViewSize } from '@/utils/sizeTool';
 import Animated, { useSharedValue, useAnimatedStyle, withTiming, Easing } from 'react-native-reanimated';
 import React, { useEffect } from "react";
 
@@ -10,7 +10,7 @@ type DoterProps = {
 const Doter: React.FC<DoterProps> = ({ selfIndex, activeIndex }) => {
     const animatedWidth = useSharedValue(getViewSize(16));
     const animatedHeight = useSharedValue(getViewSize(6));
-    const animatedColor = useSharedValue('#999999')
+    const animatedColor = useSharedValue('#999999');
     const animatedStyles = useAnimatedStyle(() => {
         return {
             width: withTiming(animatedWidth.value, {
@@ -25,37 +25,37 @@ const Doter: React.FC<DoterProps> = ({ selfIndex, activeIndex }) => {
                 duration: 500,
                 easing: Easing.linear
             }),
-        }
+        };
     });
     useEffect(() => {
         if (selfIndex === activeIndex) {
-            animatedWidth.value = getViewSize(6)
-            animatedHeight.value = getViewSize(16)
-            animatedColor.value = '#000000'
+            animatedWidth.value = getViewSize(6);
+            animatedHeight.value = getViewSize(16);
+            animatedColor.value = '#000000';
         } else {
-            animatedWidth.value = getViewSize(16)
-            animatedHeight.value = getViewSize(6)
-            animatedColor.value = '#999999'
+            animatedWidth.value = getViewSize(16);
+            animatedHeight.value = getViewSize(6);
+            animatedColor.value = '#999999';
         }
-    }, [activeIndex])
+    }, [activeIndex]);
     return (
         <Animated.View style={[styles.dotRadius, animatedStyles]} />
-    )
-}
+    );
+};
 
 const styles = StyleSheet.create({
     dotRadius: {
         borderRadius: getViewSize(3),
         marginHorizontal: getViewSize(3)
     }
-})
+});
 
 const equalProps = (prevProps: DoterProps, nextProps: DoterProps) => {
     if (prevProps.activeIndex === nextProps.selfIndex || nextProps.activeIndex === nextProps.selfIndex) {
-        return false
+        return false;
     } else {
-        return true
+        return true;
     }
-}
+};
 
-export default React.memo(Doter, equalProps)
+export default React.memo(Doter, equalProps);

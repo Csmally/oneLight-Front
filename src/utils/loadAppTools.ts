@@ -1,21 +1,21 @@
-import Screens from '@/pages/screensMap'
-import { LayoutRoot, Navigation } from 'react-native-navigation'
+import Screens from '@/pages/screensMap';
+import { LayoutRoot, Navigation } from 'react-native-navigation';
 import { Colors, Typography, Spacings, Assets } from 'react-native-ui-lib';
 import Storage from '@/storage';
 import { Dimensions } from 'react-native';
 
 //初始化storage数据
 export const initStorageData = () => {
-    const loginStatus = Storage.getBoolean('loginStatus')
+    const loginStatus = Storage.getBoolean('loginStatus');
     // 获取屏幕尺寸
     const screenWidth = Dimensions.get('screen').width;
     const screenHeight = Dimensions.get('screen').height;
     if (!loginStatus) {
-        Storage.set('loginStatus', false)
+        Storage.set('loginStatus', false);
     }
-    Storage.set('screenWidth', screenWidth)
-    Storage.set('screenHeight', screenHeight)
-}
+    Storage.set('screenWidth', screenWidth);
+    Storage.set('screenHeight', screenHeight);
+};
 
 //设置导航默认样式
 export const setDefaultNavigationStyle = () => {
@@ -42,7 +42,7 @@ export const setDefaultNavigationStyle = () => {
             },
         }
     });
-}
+};
 
 //加载app系统默认主题、默认样式、根样式等
 export const loadSysStyle = () => {
@@ -86,8 +86,8 @@ export const loadSysStyle = () => {
         mobile: require('@/static/mobilePhone.png'),
         home: require('@/static/home.png'),
         homeSelect: require('@/static/homeSelect.png')
-    })
-}
+    });
+};
 
 //监听导航Navigation事件
 export const navigationEventListen = () => {
@@ -99,21 +99,21 @@ export const navigationEventListen = () => {
     });
     //监听命令事件
     Navigation.events().registerCommandListener((name, params) => {
-        console.log('9898name', name)
-        console.log('9898params', params)
+        console.log('9898name', name);
+        console.log('9898params', params);
     });
-}
+};
 
 //注册屏幕组件
 export const screensRegister = () => {
     Screens.forEach(screenInfo => {
         Navigation.registerComponent(screenInfo.path, () => screenInfo.component);
-    })
-}
+    });
+};
 
 //设置app路由
 export const setAppRouter = (isInitApp?: boolean) => {
-    const loginStatus = Storage.getBoolean('loginStatus')
+    const loginStatus = Storage.getBoolean('loginStatus');
     const welcomeRoot = {
         root: {
             stack: {
@@ -129,7 +129,7 @@ export const setAppRouter = (isInitApp?: boolean) => {
                 }]
             }
         }
-    }
+    };
     const bottomRoot: LayoutRoot = {
         root: {
             bottomTabs: {
@@ -213,12 +213,12 @@ export const setAppRouter = (isInitApp?: boolean) => {
                 }
             }
         }
-    }
+    };
     if (isInitApp === true) {
         Navigation.events().registerAppLaunchedListener(() => {
-            Navigation.setRoot(loginStatus ? bottomRoot : welcomeRoot)
+            Navigation.setRoot(loginStatus ? bottomRoot : welcomeRoot);
         });
     } else {
-        Navigation.setRoot(loginStatus ? bottomRoot : welcomeRoot)
+        Navigation.setRoot(loginStatus ? bottomRoot : welcomeRoot);
     }
-}
+};

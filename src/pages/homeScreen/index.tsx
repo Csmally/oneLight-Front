@@ -1,16 +1,14 @@
-import Storage from '@/storage'
-import { useEffect } from 'react'
-import { ScrollView, StyleSheet } from 'react-native'
-import { Navigation } from 'react-native-navigation'
-import SplashScreen from 'react-native-splash-screen'
-import { Text, View } from 'react-native-ui-lib'
+import React, { useEffect } from 'react';
+import { ScrollView, StyleSheet } from 'react-native';
+import SplashScreen from 'react-native-splash-screen';
+import { Text, View } from 'react-native-ui-lib';
 
 const HomeScreen: React.FC = () => {
     useEffect(() => {
         setTimeout(() => {
             SplashScreen.hide();
         }, 2500);
-    }, [])
+    }, []);
     return (
         <ScrollView style={styles.box} bounces={false} contentInsetAdjustmentBehavior='never'>
             <View style={styles.aa}></View>
@@ -25,8 +23,8 @@ const HomeScreen: React.FC = () => {
             <View style={styles.dd}></View>
             <Text>我是结尾</Text>
         </ScrollView>
-    )
-}
+    );
+};
 
 const styles = StyleSheet.create({
     box: {
@@ -51,5 +49,6 @@ const styles = StyleSheet.create({
         height: 100,
         backgroundColor: 'green'
     }
-})
-export default HomeScreen
+});
+
+export default HomeScreen;

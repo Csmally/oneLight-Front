@@ -1,5 +1,5 @@
-import React, { useEffect } from "react"
-import { StyleSheet } from "react-native"
+import React, { useEffect } from "react";
+import { StyleSheet } from "react-native";
 import Animated, { useSharedValue, useAnimatedStyle, withTiming, Easing } from 'react-native-reanimated';
 
 type AnimatedImageProps = {
@@ -15,15 +15,15 @@ const AnimatedImage: React.FC<AnimatedImageProps> = ({ uri, selfIndex, activeInd
                 duration: 1200,
                 easing: Easing.linear
             })
-        }
+        };
     });
     useEffect(() => {
         if (selfIndex === activeIndex) {
-            animatedOpacity.value = 1
+            animatedOpacity.value = 1;
         } else {
-            animatedOpacity.value = 0
+            animatedOpacity.value = 0;
         }
-    }, [activeIndex])
+    }, [activeIndex]);
     return (
         <Animated.Image
             source={{ uri }}
@@ -31,8 +31,8 @@ const AnimatedImage: React.FC<AnimatedImageProps> = ({ uri, selfIndex, activeInd
                 styles.container,
                 animatedStyles
             ]} />
-    )
-}
+    );
+};
 
 const styles = StyleSheet.create({
     container: {
@@ -42,14 +42,14 @@ const styles = StyleSheet.create({
         bottom: 0,
         left: 0
     }
-})
+});
 
 //true不更新，false更新
 const equalProps = (prevProps: AnimatedImageProps, nextProps: AnimatedImageProps) => {
     if (prevProps.activeIndex === nextProps.selfIndex || nextProps.activeIndex === nextProps.selfIndex) {
-        return false
+        return false;
     } else {
-        return true
+        return true;
     }
-}
-export default React.memo(AnimatedImage, equalProps)
+};
+export default React.memo(AnimatedImage, equalProps);

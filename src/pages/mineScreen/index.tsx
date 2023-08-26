@@ -1,13 +1,14 @@
-import { ScrollView, StyleSheet } from 'react-native'
-import { Text, View } from 'react-native-ui-lib'
+import React from 'react';
+import { StyleSheet } from 'react-native';
+import { Text, View } from 'react-native-ui-lib';
 
 const MineScreen: React.FC = () => {
     return (
         <View style={styles.test}>
             <Text>我的页</Text>
         </View>
-    )
-}
+    );
+};
 
 const styles = StyleSheet.create({
     test: {
@@ -22,5 +23,6 @@ const styles = StyleSheet.create({
         height: 100,
         backgroundColor: 'green'
     }
-})
-export default MineScreen
+});
+
+export default MineScreen;

@@ -1,3 +1,4 @@
+import React from "react";
 import { StyleSheet, View } from "react-native";
 import Doter from "./Doter";
 
@@ -12,12 +13,12 @@ const PageCounter: React.FC<PageCounterProps> = ({ total, activeIndex }) => {
                 new Array(total).fill(undefined).map((item, index) => {
                     return (
                         <Doter key={index} selfIndex={index} activeIndex={activeIndex}/>
-                    )
+                    );
                 })
             }
         </View>
-    )
-}
+    );
+};
 
 const styles = StyleSheet.create({
     container: {
@@ -27,5 +28,6 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center'
     }
-})
-export default PageCounter
+});
+
+export default PageCounter;

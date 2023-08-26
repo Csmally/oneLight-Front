@@ -1,9 +1,9 @@
-import ToastScreen from '@/components/toast'
-import WelcomeScreen from './welcomeScreen'
-import LoginScreen from './loginScreen'
-import HomeScreen from './homeScreen'
-import MineScreen from './mineScreen'
-import ChatScreen from './chatScreen'
+import ToastScreen from '@/components/toast';
+import WelcomeScreen from './welcomeScreen';
+import LoginScreen from './loginScreen';
+import HomeScreen from './homeScreen';
+import MineScreen from './mineScreen';
+import ChatScreen from './chatScreen';
 
 export default [
     {
@@ -35,4 +35,4 @@ export default [
         path: 'ChatScreen',
         component: ChatScreen
     },
-]
+];

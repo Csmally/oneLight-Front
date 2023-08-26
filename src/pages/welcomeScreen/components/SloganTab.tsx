@@ -1,11 +1,12 @@
+import React from 'react';
 import { getViewSize, getFontSize } from '@/utils/sizeTool';
 import { StyleSheet, View, Text, TouchableOpacity } from 'react-native';
 import { Navigation } from "react-native-navigation";
 
 const SloganTab: React.FC = () => {
     const joinUs = () => {
-        console.log('加入我们！！！')
-    }
+        console.log('加入我们！！！');
+    };
     const loginHandler = () => {
         Navigation.showModal({
             stack: {
@@ -16,7 +17,7 @@ const SloganTab: React.FC = () => {
                 }]
             }
         });
-    }
+    };
     return (
         <View style={styles.container}>
             <View>
@@ -34,8 +35,8 @@ const SloganTab: React.FC = () => {
                 <Text style={styles.loginText}>注册/登录</Text>
             </TouchableOpacity>
         </View>
-    )
-}
+    );
+};
 
 const styles = StyleSheet.create({
     container: {
@@ -86,6 +87,6 @@ const styles = StyleSheet.create({
         fontSize: getFontSize(16),
         fontWeight: 'bold'
     },
-})
+});
 
-export default SloganTab
+export default SloganTab;

@@ -1,32 +1,32 @@
 import { Image, Text, View, Assets, Button, TextField, Colors } from "react-native-ui-lib";
-import { getFontSize, getViewSize } from '@/utils/sizeTool'
-import { StyleSheet } from "react-native"
-import { useState } from "react";
+import { getFontSize, getViewSize } from '@/utils/sizeTool';
+import { StyleSheet } from "react-native";
+import React, { useState } from "react";
 import Animated, { FadeIn, FadeOut, Layout } from "react-native-reanimated";
 import CodeSender from "./components/CodeSender";
 import Storage from "@/storage";
-import { screensRegister, setAppRouter } from "@/utils/loadAppTools";
+import { setAppRouter } from "@/utils/loadAppTools";
 
 type LoginScreenProps = {
     componentId: string
 }
-const LoginScreen: React.FC<LoginScreenProps> = ({ componentId }) => {
-    const [isShowPassCode, setIShowPassCode] = useState(false)
-    const [account, setAccount] = useState('')
-    const [passCode, setPassCode] = useState('')
+const LoginScreen: React.FC<LoginScreenProps> = () => {
+    const [isShowPassCode, setIShowPassCode] = useState(false);
+    const [account, setAccount] = useState('');
+    const [passCode, setPassCode] = useState('');
     const loginHandle = () => {
-        console.log('9898登录啦')
-        Storage.set('loginStatus', true)
-        setAppRouter()
-    }
+        console.log('9898登录啦');
+        Storage.set('loginStatus', true);
+        setAppRouter();
+    };
     const validateMobileNum = (val: string) => {
         const reg = /^1[3,4,5,6,7,8,9][0-9]{9}$/;
-        const isMobileNum = reg.test(val)
+        const isMobileNum = reg.test(val);
         if (isShowPassCode !== isMobileNum) {
-            setIShowPassCode(isMobileNum)
+            setIShowPassCode(isMobileNum);
         }
         return reg.test(val);
-    }
+    };
     return (
         <Animated.View
             style={styles.container}
@@ -96,8 +96,8 @@ const LoginScreen: React.FC<LoginScreenProps> = ({ componentId }) => {
                 </Animated.View>
             </View>
         </Animated.View>
-    )
-}
+    );
+};
 
 const styles = StyleSheet.create({
     container: {
@@ -140,5 +140,6 @@ const styles = StyleSheet.create({
     loginBtn: {
         width: getViewSize(200)
     }
-})
-export default LoginScreen
+});
+
+export default LoginScreen;

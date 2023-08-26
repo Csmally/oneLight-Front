@@ -1,3 +1,3 @@
 import commonEnum from "./commonEnum";
 
-export { commonEnum }
+export { commonEnum };

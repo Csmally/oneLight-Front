@@ -1,32 +1,32 @@
-import React from "react"
-import { Text, Colors, View } from "react-native-ui-lib"
-import Icon from 'react-native-vector-icons/FontAwesome5'
-import { getFontSize, getViewSize } from '@/utils/sizeTool'
-import { StyleSheet, ActivityIndicator, TouchableWithoutFeedback } from "react-native"
-import { useEffect, useRef, useState } from "react"
+import React, { useEffect, useRef, useState } from "react";
+import { Text, Colors, View } from "react-native-ui-lib";
+import Icon from 'react-native-vector-icons/FontAwesome5';
+import { getFontSize, getViewSize } from '@/utils/sizeTool';
+import { StyleSheet, ActivityIndicator, TouchableWithoutFeedback } from "react-native";
 
 const CodeSender: React.FC = () => {
-    const [status, setStatus] = useState(true)
-    const [second, setSecond] = useState(30)
-    const secondRef = useRef(30)
-    const timerRef = useRef<any>(null)
+    const [status, setStatus] = useState(true);
+    const [second, setSecond] = useState(30);
+    const secondRef = useRef(30);
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const timerRef = useRef<any>(null);
     const reGetCode = () => {
         if (!status) {
-            Toast.show({ text: '操作过于频繁' })
+            Toast.show({ text: '操作过于频繁' });
         }
-    }
+    };
     const sendCode = () => {
-        setStatus(false)
+        setStatus(false);
         interval(() => {
-            setSecond(second => second - 1)
-        }, 1000)
-    }
+            setSecond(second => second - 1);
+        }, 1000);
+    };
     const interval = (fn: () => void, time: number) => {
         if (secondRef.current === 0) {
-            setStatus(true)
-            setSecond(30)
-            clearTimeout(timerRef.current)
-            return
+            setStatus(true);
+            setSecond(30);
+            clearTimeout(timerRef.current);
+            return;
         }
         timerRef.current = setTimeout(() => {
             fn();
@@ -35,8 +35,8 @@ const CodeSender: React.FC = () => {
     };
 
     useEffect(() => {
-        secondRef.current = second
-    })
+        secondRef.current = second;
+    });
     return (
         status ?
             <TouchableWithoutFeedback onPress={sendCode}>
@@ -51,8 +51,8 @@ const CodeSender: React.FC = () => {
                     <ActivityIndicator />
                 </View>
             </TouchableWithoutFeedback>
-    )
-}
+    );
+};
 
 const styles = StyleSheet.create({
     container: {
@@ -66,5 +66,6 @@ const styles = StyleSheet.create({
     disabledColor: {
         color: Colors.$textDisabled
     }
-})
-export default CodeSender
+});
+
+export default CodeSender;
