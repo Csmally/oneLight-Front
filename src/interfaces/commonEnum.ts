@@ -8,4 +8,4 @@ enum BASE_SCREEN_SIZE {
     BASE_WIN_HEIGHT = 667
 }
 
-export default { BASE_SCREEN_SIZE };
+export { BASE_SCREEN_SIZE };
