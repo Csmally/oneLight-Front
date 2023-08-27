@@ -80,12 +80,18 @@ export const loadSysStyle = () => {
     });
 
     Assets.loadAssetsGroup('icons', {
-        logo: require('@/static/appLogo.png'),
-        alipay: require('@/static/alipay.png'),
-        wechat: require('@/static/wechat.png'),
-        mobile: require('@/static/mobilePhone.png'),
-        home: require('@/static/home.png'),
-        homeSelect: require('@/static/homeSelect.png')
+        logo: require('@/static/icons/appLogo.png'),
+        alipay: require('@/static/icons/alipay.png'),
+        wechat: require('@/static/icons/wechat.png'),
+        mobile: require('@/static/icons/mobilePhone.png'),
+    });
+    Assets.loadAssetsGroup('bottomBarIcons', {
+        home: require('@/static/bottomBarIcons/home.png'),
+        homeSelect: require('@/static/bottomBarIcons/homeSelect.png'),
+        mine: require('@/static/bottomBarIcons/mine.png'),
+        mineSelect: require('@/static/bottomBarIcons/mineSelect.png'),
+        market: require('@/static/bottomBarIcons/market.png'),
+        marketSelect: require('@/static/bottomBarIcons/marketSelect.png'),
     });
 };
 
@@ -149,8 +155,8 @@ export const setAppRouter = (isInitApp?: boolean) => {
                             options: {
                                 bottomTab: {
                                     text: '首页',
-                                    icon: Assets.icons.home,
-                                    selectedIcon: Assets.icons.homeSelect
+                                    icon: Assets.bottomBarIcons.home,
+                                    selectedIcon: Assets.bottomBarIcons.homeSelect
                                 }
                             }
                         }
@@ -169,9 +175,9 @@ export const setAppRouter = (isInitApp?: boolean) => {
                             }],
                             options: {
                                 bottomTab: {
-                                    text: '聊天室',
-                                    icon: Assets.icons.home,
-                                    selectedIcon: Assets.icons.homeSelect
+                                    text: '集市',
+                                    icon: Assets.bottomBarIcons.market,
+                                    selectedIcon: Assets.bottomBarIcons.marketSelect
                                 }
                             }
                         }
@@ -191,8 +197,8 @@ export const setAppRouter = (isInitApp?: boolean) => {
                             options: {
                                 bottomTab: {
                                     text: '我的',
-                                    icon: Assets.icons.home,
-                                    selectedIcon: Assets.icons.homeSelect
+                                    icon: Assets.bottomBarIcons.mine,
+                                    selectedIcon: Assets.bottomBarIcons.mineSelect
                                 }
                             }
                         }
