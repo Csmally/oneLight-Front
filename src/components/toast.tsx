@@ -17,7 +17,6 @@ const ToastScreen: React.FC<ToastProps> = observer(({ componentId = '' }) => {
         }, ToastStore.duration);
     }
     useEffect(() => {
-        console.log('9898');
         timerRef.current = setTimeout(() => {
             Navigation.dismissOverlay(componentId);
         }, ToastStore.duration);

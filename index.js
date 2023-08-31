@@ -1,5 +1,6 @@
 require('react-native-ui-lib/config').setConfig({ appScheme: 'default' });
-import { loadSysStyle, screensRegister, setAppRouter, navigationEventListen, setDefaultNavigationStyle, initStorageData } from '@/utils/loadAppTools';
+import { loadSysStyle, screensRegister, navigationEventListen, setDefaultNavigationStyle, initStorageData } from '@/utils/loadAppTools';
+import { setAppRouter } from '@/utils/setRouterTools';
 import { ToastStore } from '@/store';
 
 const appLoader = async () => {

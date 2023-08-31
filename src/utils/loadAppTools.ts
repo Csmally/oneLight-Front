@@ -1,20 +1,22 @@
 import Screens from '@/pages/screensMap';
-import { LayoutRoot, Navigation } from 'react-native-navigation';
+import { Navigation } from 'react-native-navigation';
 import { Colors, Typography, Spacings, Assets } from 'react-native-ui-lib';
 import Storage from '@/storage';
-import { Dimensions } from 'react-native';
+import { Dimensions, Platform } from 'react-native';
+import { CONST_VALUE } from '@/interfaces/commonEnum';
 
 //初始化storage数据
 export const initStorageData = () => {
-    const loginStatus = Storage.getBoolean('loginStatus');
+    const loginStatus = Storage.getBoolean(CONST_VALUE.LOGIN_STATUS);
     // 获取屏幕尺寸
     const screenWidth = Dimensions.get('screen').width;
     const screenHeight = Dimensions.get('screen').height;
+    console.log(`9898屏幕高度${Platform.OS}`,screenHeight);
     if (!loginStatus) {
-        Storage.set('loginStatus', false);
+        Storage.set(CONST_VALUE.LOGIN_STATUS, false);
     }
-    Storage.set('screenWidth', screenWidth);
-    Storage.set('screenHeight', screenHeight);
+    Storage.set(CONST_VALUE.SCREEN_WIDTH, screenWidth);
+    Storage.set(CONST_VALUE.SCREEN_HEIGHT, screenHeight);
 };
 
 //设置导航默认样式
@@ -115,116 +117,4 @@ export const screensRegister = () => {
     Screens.forEach(screenInfo => {
         Navigation.registerComponent(screenInfo.path, () => screenInfo.component);
     });
-};
-
-//设置app路由
-export const setAppRouter = (isInitApp?: boolean) => {
-    const loginStatus = Storage.getBoolean('loginStatus');
-    const welcomeRoot = {
-        root: {
-            stack: {
-                children: [{
-                    component: {
-                        name: 'WelcomeScreen',
-                        options: {
-                            topBar: {
-                                visible: false
-                            }
-                        }
-                    }
-                }]
-            }
-        }
-    };
-    const bottomRoot: LayoutRoot = {
-        root: {
-            bottomTabs: {
-                children: [
-                    {
-                        stack: {
-                            children: [{
-                                component: {
-                                    name: 'HomeScreen',
-                                    options: {
-                                        topBar: {
-                                            visible: false
-                                        }
-                                    }
-                                },
-                            }],
-                            options: {
-                                bottomTab: {
-                                    text: '首页',
-                                    icon: Assets.bottomBarIcons.home,
-                                    selectedIcon: Assets.bottomBarIcons.homeSelect
-                                }
-                            }
-                        }
-                    },
-                    {
-                        stack: {
-                            children: [{
-                                component: {
-                                    name: 'ChatScreen',
-                                    options: {
-                                        topBar: {
-                                            visible: true
-                                        }
-                                    }
-                                },
-                            }],
-                            options: {
-                                bottomTab: {
-                                    text: '集市',
-                                    icon: Assets.bottomBarIcons.market,
-                                    selectedIcon: Assets.bottomBarIcons.marketSelect
-                                }
-                            }
-                        }
-                    },
-                    {
-                        stack: {
-                            children: [{
-                                component: {
-                                    name: 'MineScreen',
-                                    options: {
-                                        topBar: {
-                                            visible: false
-                                        }
-                                    }
-                                },
-                            }],
-                            options: {
-                                bottomTab: {
-                                    text: '我的',
-                                    icon: Assets.bottomBarIcons.mine,
-                                    selectedIcon: Assets.bottomBarIcons.mineSelect
-                                }
-                            }
-                        }
-                    }
-                ],
-                options: {
-                    bottomTabs: {
-                        currentTabIndex: 0,
-                        translucent: true,
-                        drawBehind: true,
-                        tabsAttachMode: 'together'
-                    },
-                    bottomTab: {
-                        textColor: '#959595',
-                        selectedTextColor: '#000000',
-                        fontSize: 12
-                    }
-                }
-            }
-        }
-    };
-    if (isInitApp === true) {
-        Navigation.events().registerAppLaunchedListener(() => {
-            Navigation.setRoot(loginStatus ? bottomRoot : welcomeRoot);
-        });
-    } else {
-        Navigation.setRoot(loginStatus ? bottomRoot : welcomeRoot);
-    }
 };

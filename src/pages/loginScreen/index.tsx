@@ -5,7 +5,8 @@ import React, { useState } from "react";
 import Animated, { FadeIn, FadeOut, Layout } from "react-native-reanimated";
 import CodeSender from "./components/CodeSender";
 import Storage from "@/storage";
-import { setAppRouter } from "@/utils/loadAppTools";
+import { setAppRouter } from "@/utils/setRouterTools";
+import { CONST_VALUE } from "@/interfaces/commonEnum";
 
 type LoginScreenProps = {
     componentId: string
@@ -16,7 +17,7 @@ const LoginScreen: React.FC<LoginScreenProps> = () => {
     const [passCode, setPassCode] = useState('');
     const loginHandle = () => {
         console.log('9898登录啦');
-        Storage.set('loginStatus', true);
+        Storage.set(CONST_VALUE.LOGIN_STATUS, true);
         setAppRouter();
     };
     const validateMobileNum = (val: string) => {
