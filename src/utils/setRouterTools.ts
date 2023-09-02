@@ -1,12 +1,12 @@
 import { LayoutRoot, Navigation } from 'react-native-navigation';
 import Storage from "@/storage";
 import { Assets } from 'react-native-ui-lib';
-import { CONST_VALUE } from '@/interfaces/commonEnum';
+import { CONSTS_STYLE_VALUE, CONSTS_VALUE } from '@/interfaces/commonEnum';
 import { Platform } from 'react-native';
 
 //设置app路由
 export const setAppRouter = async (isInitApp?: boolean) => {
-    const loginStatus = Storage.getBoolean(CONST_VALUE.LOGIN_STATUS);
+    const loginStatus = Storage.getBoolean(CONSTS_VALUE.LOGIN_STATUS);
     const welcomeRoot = {
         root: {
             stack: {
@@ -31,19 +31,14 @@ export const setAppRouter = async (isInitApp?: boolean) => {
                         stack: {
                             children: [{
                                 component: {
-                                    name: 'HomeScreen',
-                                    options: {
-                                        topBar: {
-                                            visible: false
-                                        }
-                                    }
+                                    name: 'HomeScreen'
                                 },
                             }],
                             options: {
                                 bottomTab: {
                                     text: '首页',
                                     icon: Assets.bottomBarIcons.home,
-                                    selectedIcon: Assets.bottomBarIcons.homeSelect
+                                    selectedIcon: Assets.bottomBarIcons.homeSelect,
                                 }
                             }
                         }
@@ -73,12 +68,7 @@ export const setAppRouter = async (isInitApp?: boolean) => {
                         stack: {
                             children: [{
                                 component: {
-                                    name: 'MineScreen',
-                                    options: {
-                                        topBar: {
-                                            visible: false
-                                        }
-                                    }
+                                    name: 'MineScreen'
                                 },
                             }],
                             options: {
@@ -94,14 +84,16 @@ export const setAppRouter = async (isInitApp?: boolean) => {
                 options: {
                     bottomTabs: {
                         currentTabIndex: 0,
-                        translucent: true,
+                        translucent: Platform.OS === 'ios' ? true : false,
                         drawBehind: Platform.OS === 'ios' ? true : false,
-                        tabsAttachMode: 'together'
+                        tabsAttachMode: 'together',
+                        backgroundColor: CONSTS_STYLE_VALUE.BOTTOMBAR_COLOR
                     },
                     bottomTab: {
                         textColor: '#959595',
                         selectedTextColor: '#000000',
-                        fontSize: 12
+                        fontSize: 12,
+                        animateBadge: true
                     }
                 }
             }

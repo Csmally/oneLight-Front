@@ -2,21 +2,20 @@ import Screens from '@/pages/screensMap';
 import { Navigation } from 'react-native-navigation';
 import { Colors, Typography, Spacings, Assets } from 'react-native-ui-lib';
 import Storage from '@/storage';
-import { Dimensions, Platform } from 'react-native';
-import { CONST_VALUE } from '@/interfaces/commonEnum';
+import { Dimensions } from 'react-native';
+import { CONSTS_STYLE_VALUE, CONSTS_VALUE } from '@/interfaces/commonEnum';
 
 //初始化storage数据
 export const initStorageData = () => {
-    const loginStatus = Storage.getBoolean(CONST_VALUE.LOGIN_STATUS);
+    const loginStatus = Storage.getBoolean(CONSTS_VALUE.LOGIN_STATUS);
     // 获取屏幕尺寸
     const screenWidth = Dimensions.get('screen').width;
     const screenHeight = Dimensions.get('screen').height;
-    console.log(`9898屏幕高度${Platform.OS}`,screenHeight);
     if (!loginStatus) {
-        Storage.set(CONST_VALUE.LOGIN_STATUS, false);
+        Storage.set(CONSTS_VALUE.LOGIN_STATUS, false);
     }
-    Storage.set(CONST_VALUE.SCREEN_WIDTH, screenWidth);
-    Storage.set(CONST_VALUE.SCREEN_HEIGHT, screenHeight);
+    Storage.set(CONSTS_VALUE.SCREEN_WIDTH, screenWidth);
+    Storage.set(CONSTS_VALUE.SCREEN_HEIGHT, screenHeight);
 };
 
 //设置导航默认样式
@@ -29,7 +28,7 @@ export const setDefaultNavigationStyle = () => {
             //         dark: Colors.grey10
             //     },
             // },
-            visible: true,
+            visible: false,
             animate: true,
             animateLeftButtons: true,
             animateRightButtons: true,
@@ -42,6 +41,18 @@ export const setDefaultNavigationStyle = () => {
             title: {
                 text: 'oneLight'  //默认title
             },
+        },
+        layout: {
+            componentBackgroundColor: CONSTS_STYLE_VALUE.PAGE_BG_COLOR
+        },
+        animations: {
+            setRoot: {
+                alpha: {
+                    from: 0,
+                    to: 1,
+                    duration: 300
+                }
+            }
         }
     });
 };
@@ -118,3 +129,8 @@ export const screensRegister = () => {
         Navigation.registerComponent(screenInfo.path, () => screenInfo.component);
     });
 };
+
+//获取屏幕信息，例如bottomBarHeight
+export const getNavigationConsts = () => {
+    return Navigation.constantsSync();
+}

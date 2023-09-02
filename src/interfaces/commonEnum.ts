@@ -9,9 +9,9 @@ enum BASE_SCREEN_SIZE {
 }
 
 /**
- * Storage存储的键值对的key
+ * 字符串常量
  */
-enum CONST_VALUE {
+enum CONSTS_VALUE {
     SCREEN_HEIGHT = 'SCREEN_HEIGHT',
     SCREEN_WIDTH = 'SCREEN_WIDTH',
     STATUSBAR_HEIGHT = 'STATUSBAR_HEIGHT',
@@ -19,4 +19,12 @@ enum CONST_VALUE {
     LOGIN_STATUS = 'LOGIN_STATUS',
 }
 
-export { BASE_SCREEN_SIZE, CONST_VALUE };
+/**
+ * 样式类常量
+*/
+enum CONSTS_STYLE_VALUE {
+    PAGE_BG_COLOR = '#F6F6F6',
+    BOTTOMBAR_COLOR = '#FFFFFF'
+}
+
+export { BASE_SCREEN_SIZE, CONSTS_VALUE, CONSTS_STYLE_VALUE };
