@@ -1,4 +1,4 @@
-import { Text, View } from "react-native-ui-lib"
+import { Text, View } from "react-native-ui-lib";
 
 const TopBarWidget: React.FC = () => {
     return (

@@ -6,6 +6,7 @@ import Storage from '@/storage';
 import { CONSTS_VALUE } from '@/interfaces/commonEnum';
 import { getNavigationConsts } from '@/utils/loadAppTools';
 import Header from './components/Header';
+import { BlurView } from '@react-native-community/blur';
 
 const DATA = [
     {
@@ -96,7 +97,7 @@ const HomeScreen: React.FC = () => {
         <View
             style={Platform.OS === 'ios' ? styles.pageForIos : styles.pageForAndroid}
         >
-            <Header/>
+            <Header />
             <FlatList
                 contentInsetAdjustmentBehavior='never'
                 contentContainerStyle={{
@@ -112,6 +113,9 @@ const HomeScreen: React.FC = () => {
                 onRefresh={tt}
                 refreshing={isRefreshing}
             />
+            <View style={[styles.blurContainer, { height: getNavigationConsts().bottomTabsHeight }]}>
+                <BlurView style={{flex: 1}} blurType='xlight' blurAmount={32} />
+            </View>
         </View>
     );
 };
@@ -123,6 +127,13 @@ const styles = StyleSheet.create({
     pageForAndroid: {
         flex: 1
     },
+    blurContainer: {
+        position: 'absolute',
+        bottom: 0,
+        left: 0,
+        right: 0,
+        overflow: 'hidden'
+    }
 });
 
 export default HomeScreen;
