@@ -1,4 +1,3 @@
-import React from 'react';
 import { getViewSize, getFontSize } from '@/utils/sizeTool';
 import { StyleSheet, View, Text, TouchableOpacity } from 'react-native';
 import { Navigation } from "react-native-navigation";
@@ -12,7 +11,15 @@ const SloganTab: React.FC = () => {
             stack: {
                 children: [{
                     component: {
-                        name: 'LoginScreen'
+                        name: 'LoginScreen',
+                        options: {
+                            topBar: {
+                                background: {
+                                    translucent: false,
+                                },
+                                drawBehind: false
+                            }
+                        }
                     }
                 }]
             }

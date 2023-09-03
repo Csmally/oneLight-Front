@@ -1,7 +1,7 @@
 import { StyleSheet, View } from 'react-native';
 import { BlurView } from "@react-native-community/blur";
 import PageCounter from './components/PageCounter';
-import React, { useMemo, useState, useEffect } from 'react';
+import { useMemo, useState, useEffect } from 'react';
 import OpacitySwiper from './components/OpacitySwiper';
 import SloganTab from './components/SloganTab';
 import SplashScreen from 'react-native-splash-screen';

@@ -1,10 +1,11 @@
-import React, { useEffect, useState } from 'react';
-import { FlatList, Platform, ScrollView, StyleSheet } from 'react-native';
+import { useEffect, useState } from 'react';
+import { FlatList, Platform, StyleSheet } from 'react-native';
 import SplashScreen from 'react-native-splash-screen';
 import { Text, View } from 'react-native-ui-lib';
 import Storage from '@/storage';
 import { CONSTS_VALUE } from '@/interfaces/commonEnum';
 import { getNavigationConsts } from '@/utils/loadAppTools';
+import Header from './components/Header';
 
 const DATA = [
     {
@@ -59,13 +60,24 @@ const DATA = [
 
 const TestItem = ({ item }: { item: any }) => {
     return (
-        <View style={{ height: 80, backgroundColor: 'green' }}>
-            <Text>{item.item.title}</Text>
+        <View style={{ height: 60, backgroundColor: 'green' }}>
+            <Text style={{ flex: 1 }}>{item.title}</Text>
         </View>
-    )
-}
+    );
+};
+
+const HeaderWidget = () => {
+    return (
+        <View>
+            <Text>
+                头部头部头部头部头部头部头部头部
+            </Text>
+        </View>
+    );
+};
+
 const HomeScreen: React.FC = () => {
-    const [isRefreshing,setIsRefreshing] = useState(false);
+    const [isRefreshing, setIsRefreshing] = useState(false);
     const tt = () => {
         // Storage.set('LOGIN_STATUS', false);
         console.log('9898开始刷新了');
@@ -73,51 +85,44 @@ const HomeScreen: React.FC = () => {
         setTimeout(() => {
             setIsRefreshing(false);
             console.log('9898结束刷新了');
-        }, 5000);
-    }
+        }, 3000);
+    };
     useEffect(() => {
         setTimeout(() => {
             SplashScreen.hide();
         }, 2500);
     }, []);
     return (
-        <FlatList
-            contentInsetAdjustmentBehavior='never'
+        <View
             style={Platform.OS === 'ios' ? styles.pageForIos : styles.pageForAndroid}
-            contentContainerStyle={{
-                paddingBottom: Platform.OS === 'ios' ? getNavigationConsts().bottomTabsHeight : 0
-            }}
-            data={DATA}
-            renderItem={(item) => <TestItem item={item} />}
-            keyExtractor={item => item.id}
-            ItemSeparatorComponent={()=><View height={20}></View>}
-            ListFooterComponent={()=><Text>到底部了</Text>}
-            ListFooterComponentStyle={{backgroundColor:'pink'}}
-            ListHeaderComponent={()=><Text>我是头部</Text>}
-            ListHeaderComponentStyle={{backgroundColor: 'pink',paddingBottom: 50}}
-            onRefresh={tt}
-            refreshing={isRefreshing}
-        />
+        >
+            <Header/>
+            <FlatList
+                contentInsetAdjustmentBehavior='never'
+                contentContainerStyle={{
+                    paddingBottom: getNavigationConsts().bottomTabsHeight
+                }}
+                data={DATA}
+                renderItem={({ item }) => <TestItem item={item} />}
+                keyExtractor={item => item.id}
+                ItemSeparatorComponent={() => <View height={20}></View>}
+                ListFooterComponent={() => <Text>到底部了</Text>}
+                ListFooterComponentStyle={{ backgroundColor: 'pink' }}
+                ListHeaderComponent={() => <HeaderWidget />}
+                onRefresh={tt}
+                refreshing={isRefreshing}
+            />
+        </View>
     );
 };
 
 const styles = StyleSheet.create({
     pageForIos: {
-        width: '100%',
-        position: 'absolute',
-        height: Storage.getNumber(CONSTS_VALUE.SCREEN_HEIGHT)
+        height: Storage.getNumber(CONSTS_VALUE.WINDOW_HEIGHT)
     },
     pageForAndroid: {
         flex: 1
     },
-    aa: {
-        height: 100,
-        backgroundColor: 'pink'
-    },
-    bb: {
-        height: 100,
-        backgroundColor: 'red'
-    }
 });
 
 export default HomeScreen;

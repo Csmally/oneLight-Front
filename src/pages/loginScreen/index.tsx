@@ -1,7 +1,7 @@
 import { Image, Text, View, Assets, Button, TextField, Colors } from "react-native-ui-lib";
 import { getFontSize, getViewSize } from '@/utils/sizeTool';
 import { StyleSheet } from "react-native";
-import React, { useState } from "react";
+import { useState } from "react";
 import Animated, { FadeIn, FadeOut, Layout } from "react-native-reanimated";
 import CodeSender from "./components/CodeSender";
 import Storage from "@/storage";

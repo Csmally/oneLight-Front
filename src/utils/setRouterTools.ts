@@ -1,8 +1,7 @@
 import { LayoutRoot, Navigation } from 'react-native-navigation';
 import Storage from "@/storage";
 import { Assets } from 'react-native-ui-lib';
-import { CONSTS_STYLE_VALUE, CONSTS_VALUE } from '@/interfaces/commonEnum';
-import { Platform } from 'react-native';
+import { CONSTS_VALUE } from '@/interfaces/commonEnum';
 
 //设置app路由
 export const setAppRouter = async (isInitApp?: boolean) => {
@@ -31,7 +30,12 @@ export const setAppRouter = async (isInitApp?: boolean) => {
                         stack: {
                             children: [{
                                 component: {
-                                    name: 'HomeScreen'
+                                    name: 'HomeScreen',
+                                    options: {
+                                        topBar: {
+                                            visible: false
+                                        }
+                                    }
                                 },
                             }],
                             options: {
@@ -68,7 +72,12 @@ export const setAppRouter = async (isInitApp?: boolean) => {
                         stack: {
                             children: [{
                                 component: {
-                                    name: 'MineScreen'
+                                    name: 'MineScreen',
+                                    options: {
+                                        topBar: {
+                                            visible: false
+                                        }
+                                    }
                                 },
                             }],
                             options: {
@@ -84,10 +93,10 @@ export const setAppRouter = async (isInitApp?: boolean) => {
                 options: {
                     bottomTabs: {
                         currentTabIndex: 0,
-                        translucent: Platform.OS === 'ios' ? true : false,
-                        drawBehind: Platform.OS === 'ios' ? true : false,
+                        // translucent: true,
+                        drawBehind: true,
                         tabsAttachMode: 'together',
-                        backgroundColor: CONSTS_STYLE_VALUE.BOTTOMBAR_COLOR
+                        backgroundColor: 'rgba(255, 255, 255, 0)'
                     },
                     bottomTab: {
                         textColor: '#959595',

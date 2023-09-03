@@ -26,6 +26,7 @@ module.exports = {
         'no-console': 'warn', // 禁止使用 console，警告级别
         'no-unused-vars': 'error', // 未使用的变量，错误级别
         semi: ['error', 'always'], // always 表示要求分号
+        "react/react-in-jsx-scope": "off" // 使用jsx语法时不校验是否导入React
       }
     }
   ]

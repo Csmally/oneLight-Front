@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import SplashScreen from 'react-native-splash-screen';
 import { Text } from 'react-native-ui-lib';
 

@@ -8,27 +8,25 @@ import { CONSTS_STYLE_VALUE, CONSTS_VALUE } from '@/interfaces/commonEnum';
 //初始化storage数据
 export const initStorageData = () => {
     const loginStatus = Storage.getBoolean(CONSTS_VALUE.LOGIN_STATUS);
-    // 获取屏幕尺寸
-    const screenWidth = Dimensions.get('screen').width;
-    const screenHeight = Dimensions.get('screen').height;
+    // 视口屏幕尺寸
+    const windowWidth = Dimensions.get('window').width;
+    const windowHeight = Dimensions.get('window').height;
     if (!loginStatus) {
         Storage.set(CONSTS_VALUE.LOGIN_STATUS, false);
     }
-    Storage.set(CONSTS_VALUE.SCREEN_WIDTH, screenWidth);
-    Storage.set(CONSTS_VALUE.SCREEN_HEIGHT, screenHeight);
+    Storage.set(CONSTS_VALUE.WINDOW_WIDTH, windowWidth);
+    Storage.set(CONSTS_VALUE.WINDOW_HEIGHT, windowHeight);
 };
 
 //设置导航默认样式
 export const setDefaultNavigationStyle = () => {
     Navigation.setDefaultOptions({
         topBar: {
-            // background: {
-            //     color: {
-            //         light: '#F7F8F9',
-            //         dark: Colors.grey10
-            //     },
-            // },
-            visible: false,
+            background: {
+                translucent: true,
+            },
+            visible: true,
+            drawBehind: true,
             animate: true,
             animateLeftButtons: true,
             animateRightButtons: true,
@@ -41,6 +39,11 @@ export const setDefaultNavigationStyle = () => {
             title: {
                 text: 'oneLight'  //默认title
             },
+        },
+        statusBar: {
+            backgroundColor: 'transparent',
+            drawBehind: true,
+            translucent: true
         },
         layout: {
             componentBackgroundColor: CONSTS_STYLE_VALUE.PAGE_BG_COLOR
@@ -133,4 +136,4 @@ export const screensRegister = () => {
 //获取屏幕信息，例如bottomBarHeight
 export const getNavigationConsts = () => {
     return Navigation.constantsSync();
-}
+};

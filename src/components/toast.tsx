@@ -5,7 +5,6 @@ import { View, Text } from "react-native-ui-lib";
 import { Navigation } from 'react-native-navigation';
 import { ToastStore } from "@/store";
 import { observer } from "mobx-react-lite";
-import React from "react";
 
 const ToastScreen: React.FC<ToastProps> = observer(({ componentId = '' }) => {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any

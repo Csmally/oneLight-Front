@@ -1,4 +1,5 @@
 import ToastScreen from '@/components/toast';
+import TopBarWidget from '@/components/topBarWidget';
 import WelcomeScreen from './welcomeScreen';
 import LoginScreen from './loginScreen';
 import HomeScreen from './homeScreen';
@@ -6,6 +7,10 @@ import MineScreen from './mineScreen';
 import ChatScreen from './chatScreen';
 
 export default [
+    {
+        path: 'TopBarWidget',
+        component: TopBarWidget
+    },
     {
         path: 'ToastScreen',
         component: ToastScreen

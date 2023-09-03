@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Text, Colors, View } from "react-native-ui-lib";
 import Icon from 'react-native-vector-icons/FontAwesome5';
 import { getFontSize, getViewSize } from '@/utils/sizeTool';
