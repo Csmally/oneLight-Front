@@ -69,8 +69,8 @@ const TestItem = ({ item }: { item: any }) => {
 
 const HeaderWidget = () => {
     return (
-        <View>
-            <Text>
+        <View style={[styles.header]}>
+            <Text style={{ flex: 1 }}>
                 头部头部头部头部头部头部头部头部
             </Text>
         </View>
@@ -80,7 +80,6 @@ const HeaderWidget = () => {
 const HomeScreen: React.FC = () => {
     const [isRefreshing, setIsRefreshing] = useState(false);
     const tt = () => {
-        // Storage.set('LOGIN_STATUS', false);
         console.log('9898开始刷新了');
         setIsRefreshing(true);
         setTimeout(() => {
@@ -94,9 +93,7 @@ const HomeScreen: React.FC = () => {
         }, 2500);
     }, []);
     return (
-        <View
-            style={Platform.OS === 'ios' ? styles.pageForIos : styles.pageForAndroid}
-        >
+        <View style={Platform.OS === 'ios' ? styles.pageForIos : styles.pageForAndroid} >
             <Header />
             <FlatList
                 contentInsetAdjustmentBehavior='never'
@@ -114,7 +111,7 @@ const HomeScreen: React.FC = () => {
                 refreshing={isRefreshing}
             />
             <View style={[styles.blurContainer, { height: getNavigationConsts().bottomTabsHeight }]}>
-                <BlurView style={{flex: 1}} blurType='xlight' blurAmount={32} />
+                <BlurView style={{ flex: 1 }} blurType='xlight' blurAmount={32} />
             </View>
         </View>
     );
@@ -126,6 +123,9 @@ const styles = StyleSheet.create({
     },
     pageForAndroid: {
         flex: 1
+    },
+    header: {
+        backgroundColor: 'pink',
     },
     blurContainer: {
         position: 'absolute',
