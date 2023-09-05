@@ -12,56 +12,68 @@ const DATA = [
     {
         id: 'bd7acbea-c1b1-46c2-aed5-3ad53abb28b1',
         title: '1 Item',
+        color: 'green'
     },
     {
         id: '3ac68afc-c605-48d3-a4f8-fbd91aa97f62',
         title: '2 Item',
+        color: 'red'
     },
     {
         id: '58694a0f-3da1-471f-bd96-145571e29d73',
         title: '3 Item',
+        color: 'white'
     },
     {
         id: 'bd7acbea-c1b1-46c2-aed5-3ad53abb28b4',
         title: '4 Item',
+        color: 'black'
     },
     {
         id: '3ac68afc-c605-48d3-a4f8-fbd91aa97f65',
         title: '5 Item',
+        color: 'blue'
     },
     {
         id: '58694a0f-3da1-471f-bd96-145571e29d76',
         title: '6 Item',
+        color: 'pink'
     },
     {
         id: 'bd7acbea-c1b1-46c2-aed5-3ad53abb28b7',
         title: '7 Item',
+        color: 'yellow'
     },
     {
         id: '3ac68afc-c605-48d3-a4f8-fbd91aa97f68',
         title: '8 Item',
+        color: 'green'
     },
     {
         id: '58694a0f-3da1-471f-bd96-145571e29d79',
         title: '9 Item',
+        color: 'red'
     },
     {
         id: '58694a0f-3da1-471f-bd96-145571e29d7a',
         title: '10 Item',
+        color: 'blue'
     },
     {
         id: '58694a0f-3da1-471f-bd96-145571e29d7b',
         title: '11 Item',
+        color: 'green'
     },
     {
         id: '58694a0f-3da1-471f-bd96-145571e29d7c',
         title: '12 Item',
+        color: 'pink'
     },
 ];
 
 const TestItem = ({ item }: { item: any }) => {
     return (
-        <View style={{ height: 60, backgroundColor: 'green' }}>
+        <View style={{ height: 60, backgroundColor: item.color }}>
             <Text style={{ flex: 1 }}>{item.title}</Text>
         </View>
     );
@@ -88,13 +100,13 @@ const HomeScreen: React.FC = () => {
         }, 3000);
     };
     useEffect(() => {
+        Storage.set(CONSTS_VALUE.LOGIN_STATUS,false);
         setTimeout(() => {
             SplashScreen.hide();
         }, 2500);
     }, []);
     return (
         <View style={Platform.OS === 'ios' ? styles.pageForIos : styles.pageForAndroid} >
-            <Header />
             <FlatList
                 contentInsetAdjustmentBehavior='never'
                 contentContainerStyle={{
@@ -110,8 +122,9 @@ const HomeScreen: React.FC = () => {
                 onRefresh={tt}
                 refreshing={isRefreshing}
             />
+            <Header />
             <View style={[styles.blurContainer, { height: getNavigationConsts().bottomTabsHeight }]}>
-                <BlurView style={{ flex: 1 }} blurType='xlight' blurAmount={32} />
+                <BlurView style={{ flex: 1 }} blurType='xlight' blurAmount={50} />
             </View>
         </View>
     );
