@@ -72,6 +72,27 @@ export const setAppRouter = async (isInitApp?: boolean) => {
                         stack: {
                             children: [{
                                 component: {
+                                    name: 'RNUILib',
+                                    options: {
+                                        topBar: {
+                                            visible: false
+                                        }
+                                    }
+                                },
+                            }],
+                            options: {
+                                bottomTab: {
+                                    text: '圈子',
+                                    icon: Assets.bottomBarIcons.circle,
+                                    selectedIcon: Assets.bottomBarIcons.circleSelect
+                                }
+                            }
+                        }
+                    },
+                    {
+                        stack: {
+                            children: [{
+                                component: {
                                     name: 'MineScreen',
                                     options: {
                                         topBar: {
@@ -96,13 +117,17 @@ export const setAppRouter = async (isInitApp?: boolean) => {
                         // translucent: true,
                         drawBehind: true,
                         tabsAttachMode: 'together',
-                        backgroundColor: 'rgba(255, 255, 255, 0)'
+                        backgroundColor: 'rgba(255, 255, 255, 0)',
+                        animate: true,
+                        animateTabSelection: true,
+                        titleDisplayMode: 'alwaysShow'
                     },
                     bottomTab: {
                         textColor: '#959595',
                         selectedTextColor: '#000000',
                         fontSize: 12,
-                        animateBadge: true
+                        animateBadge: true,
+                        fontWeight: '500'
                     }
                 }
             }

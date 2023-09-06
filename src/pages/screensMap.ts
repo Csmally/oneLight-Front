@@ -5,8 +5,13 @@ import LoginScreen from './loginScreen';
 import HomeScreen from './homeScreen';
 import MineScreen from './mineScreen';
 import ChatScreen from './chatScreen';
+import RNUILib from './rnUIlibTest/screens/componentScreens/BasicListScreen';
 
 export default [
+    {
+        path: 'RNUILib',
+        component: RNUILib
+    },
     {
         path: 'TopBarWidget',
         component: TopBarWidget

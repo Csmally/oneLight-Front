@@ -69,6 +69,31 @@ const DATA = [
         title: '12 Item',
         color: 'pink'
     },
+    {
+        id: '1',
+        title: '12 Item',
+        color: 'green'
+    },
+    {
+        id: '2',
+        title: '12 Item',
+        color: 'blue'
+    },
+    {
+        id: '3',
+        title: '1241 Item',
+        color: 'yellow'
+    },
+    {
+        id: '4',
+        title: '122 Item',
+        color: 'pink'
+    },
+    {
+        id: '5',
+        title: '123 Item',
+        color: 'green'
+    },
 ];
 
 const TestItem = ({ item }: { item: any }) => {
@@ -100,7 +125,7 @@ const HomeScreen: React.FC = () => {
         }, 3000);
     };
     useEffect(() => {
-        Storage.set(CONSTS_VALUE.LOGIN_STATUS,false);
+        // Storage.set(CONSTS_VALUE.LOGIN_STATUS,false);
         setTimeout(() => {
             SplashScreen.hide();
         }, 2500);
