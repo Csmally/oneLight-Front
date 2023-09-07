@@ -104,18 +104,19 @@ const TestItem = ({ item }: { item: any }) => {
     );
 };
 
-const HeaderWidget = () => {
+const HeaderWidget = ({ headerHeight }: { headerHeight: number }) => {
     return (
-        <View style={[styles.header]}>
+        <Text style={[styles.header, { height: 290 }]} onPress={()=>{console.log('9898我是显示的头部')}}>
             <Text style={{ flex: 1 }}>
                 头部头部头部头部头部头部头部头部
             </Text>
-        </View>
+        </Text>
     );
 };
 
 const HomeScreen: React.FC = () => {
     const [isRefreshing, setIsRefreshing] = useState(false);
+    const [headerHeight, setHeaderHeight] = useState(0);
     const tt = () => {
         console.log('9898开始刷新了');
         setIsRefreshing(true);
@@ -132,6 +133,7 @@ const HomeScreen: React.FC = () => {
     }, []);
     return (
         <View style={Platform.OS === 'ios' ? styles.pageForIos : styles.pageForAndroid} >
+            {/* <Header setHeaderHeight={setHeaderHeight}/> */}
             <FlatList
                 contentInsetAdjustmentBehavior='never'
                 contentContainerStyle={{
@@ -143,11 +145,11 @@ const HomeScreen: React.FC = () => {
                 ItemSeparatorComponent={() => <View height={20}></View>}
                 ListFooterComponent={() => <Text>到底部了</Text>}
                 ListFooterComponentStyle={{ backgroundColor: 'pink' }}
-                ListHeaderComponent={() => <HeaderWidget />}
+                ListHeaderComponent={() => <HeaderWidget headerHeight={headerHeight} />}
                 onRefresh={tt}
                 refreshing={isRefreshing}
             />
-            <Header />
+            <Header setHeaderHeight={setHeaderHeight}/>
             <View style={[styles.blurContainer, { height: getNavigationConsts().bottomTabsHeight }]}>
                 <BlurView style={{ flex: 1 }} blurType='xlight' blurAmount={50} />
             </View>
