@@ -123,6 +123,7 @@ const HomeScreen: React.FC = () => {
     }, []);
     return (
         <View style={Platform.OS === 'ios' ? styles.pageForIos : styles.pageForAndroid} >
+            {/* <Header setHeaderHeight={setHeaderHeight}/> */}
             <FlatList
                 contentInsetAdjustmentBehavior='never'
                 contentContainerStyle={{

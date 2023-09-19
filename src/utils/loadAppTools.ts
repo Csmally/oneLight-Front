@@ -103,14 +103,14 @@ export const loadSysStyle = () => {
         mobile: require('@/static/icons/mobilePhone.png'),
     });
     Assets.loadAssetsGroup('bottomBarIcons', {
-        home: require('../static/bottomBarIcons/home.png'),
-        homeSelect: require('../static/bottomBarIcons/homeSelect.png'),
-        mine: require('../static/bottomBarIcons/mine.png'),
-        mineSelect: require('../static/bottomBarIcons/mineSelect.png'),
-        market: require('../static/bottomBarIcons/market.png'),
-        marketSelect: require('../static/bottomBarIcons/marketSelect.png'),
-        circle: require('../static/bottomBarIcons/circle.png'),
-        circleSelect: require('../static/bottomBarIcons/circleSelect.png'),
+        home: require('@/static/bottomBarIcons/home.png'),
+        homeSelect: require('@/static/bottomBarIcons/homeSelect.png'),
+        mine: require('@/static/bottomBarIcons/mine.png'),
+        mineSelect: require('@/static/bottomBarIcons/mineSelect.png'),
+        market: require('@/static/bottomBarIcons/market.png'),
+        marketSelect: require('@/static/bottomBarIcons/marketSelect.png'),
+        circle: require('@/static/bottomBarIcons/circle.png'),
+        circleSelect: require('@/static/bottomBarIcons/circleSelect.png'),
     });
 };
 

@@ -6,14 +6,27 @@ import { StyleSheet, TextInput } from "react-native";
 import { View } from "react-native-ui-lib";
 import Icon from "react-native-vector-icons/MaterialCommunityIcons";
 
-const Header: React.FC = () => {
+type HeaderProps = {
+    setHeaderHeight: (height: number) => void;
+}
+const Header: React.FC<HeaderProps> = ({ setHeaderHeight }) => {
+    const getHeight = (e: any) => {
+        const height = e?.nativeEvent?.layout?.height || 0;
+        setHeaderHeight(height);
+    }
     return (
-        <View style={[styles.container, { paddingTop: getNavigationConsts().statusBarHeight }]}>
+        <View style={[styles.container, { top: getNavigationConsts().statusBarHeight }]} onLayout={getHeight}>
             <BlurView style={styles.blurContainer} blurType='xlight' blurAmount={50} />
             <View style={styles.innerContainer}>
+<<<<<<< HEAD
                 <Icon name="line-scan" size={getViewSize(25)} color={commonStyles.black} />
                 <TextInput style={styles.middle} />
                 <Icon name="bell-outline" size={getViewSize(25)} color={commonStyles.black} />
+=======
+                <Icon name="line-scan" size={getViewSize(25)} color={CONSTS_STYLE_VALUE.BLACK_COLOR} onPress={() => console.log('9898我是隐藏的订单')} />
+                <TextInput style={styles.middleTextInput} />
+                <Icon name="bell-outline" size={getViewSize(25)} color={CONSTS_STYLE_VALUE.BLACK_COLOR} />
+>>>>>>> d6aae571215af518c6684e7bb64e52ff9c347234
             </View>
         </View>
     );
@@ -22,30 +35,32 @@ const Header: React.FC = () => {
 const styles = StyleSheet.create({
     container: {
         position: 'absolute',
-        top: 0,
-        left: 0,
-        right: 0,
+        // top: 0,
+        left: 10,
+        right: 10,
         overflow: 'hidden',
+        // opacity: 0
+        borderRadius: 20
     },
     blurContainer: {
         position: 'absolute',
         top: 0,
         left: 0,
         right: 0,
-        height: 999
+        bottom: 0
     },
     innerContainer: {
-        paddingVertical: getViewSize(5),
+        paddingVertical: getViewSize(12),
         paddingHorizontal: getViewSize(10),
         display: 'flex',
         flexDirection: 'row',
         alignItems: 'center'
     },
-    middle: {
+    middleTextInput: {
         flex: 1,
-        backgroundColor: 'black',
+        backgroundColor: '#dcdcdc',
         marginHorizontal: getViewSize(10),
-        height: getViewSize(30)
+        height: getViewSize(40),
     }
 });
 
