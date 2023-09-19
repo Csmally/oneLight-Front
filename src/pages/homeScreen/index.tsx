@@ -1,12 +1,13 @@
 import { useEffect, useState } from 'react';
-import { FlatList, Platform, StyleSheet } from 'react-native';
+import { FlatList, Platform, RefreshControl, StyleSheet } from 'react-native';
 import SplashScreen from 'react-native-splash-screen';
 import { Text, View } from 'react-native-ui-lib';
 import Storage from '@/storage';
 import { CONSTS_VALUE } from '@/interfaces/commonEnum';
 import { getNavigationConsts } from '@/utils/loadAppTools';
-import Header from './components/Header';
+// import Header from './components/Header';
 import { BlurView } from '@react-native-community/blur';
+import HeaderWidget from './components/HeaderWidget';
 
 const DATA = [
     {
@@ -104,16 +105,6 @@ const TestItem = ({ item }: { item: any }) => {
     );
 };
 
-const HeaderWidget = () => {
-    return (
-        <View style={[styles.header]}>
-            <Text style={{ flex: 1 }}>
-                头部头部头部头部头部头部头部头部
-            </Text>
-        </View>
-    );
-};
-
 const HomeScreen: React.FC = () => {
     const [isRefreshing, setIsRefreshing] = useState(false);
     const tt = () => {
@@ -144,10 +135,9 @@ const HomeScreen: React.FC = () => {
                 ListFooterComponent={() => <Text>到底部了</Text>}
                 ListFooterComponentStyle={{ backgroundColor: 'pink' }}
                 ListHeaderComponent={() => <HeaderWidget />}
-                onRefresh={tt}
-                refreshing={isRefreshing}
+                refreshControl={<RefreshControl refreshing={isRefreshing} onRefresh={tt}></RefreshControl>}
             />
-            <Header />
+            {/* <Header /> */}
             <View style={[styles.blurContainer, { height: getNavigationConsts().bottomTabsHeight }]}>
                 <BlurView style={{ flex: 1 }} blurType='xlight' blurAmount={50} />
             </View>

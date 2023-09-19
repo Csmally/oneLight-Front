@@ -3,7 +3,8 @@ import { Navigation } from 'react-native-navigation';
 import { Colors, Typography, Spacings, Assets } from 'react-native-ui-lib';
 import Storage from '@/storage';
 import { Dimensions } from 'react-native';
-import { CONSTS_STYLE_VALUE, CONSTS_VALUE } from '@/interfaces/commonEnum';
+import { CONSTS_VALUE } from '@/interfaces/commonEnum';
+import commonStyles from '@/common/styles';
 
 //初始化storage数据
 export const initStorageData = () => {
@@ -46,7 +47,7 @@ export const setDefaultNavigationStyle = () => {
             translucent: true
         },
         layout: {
-            componentBackgroundColor: CONSTS_STYLE_VALUE.PAGE_BG_COLOR
+            componentBackgroundColor: commonStyles.pageBgColor
         },
         animations: {
             setRoot: {

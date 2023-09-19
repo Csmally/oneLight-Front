@@ -1,4 +1,4 @@
-import { CONSTS_STYLE_VALUE } from "@/interfaces/commonEnum";
+import commonStyles from "@/common/styles";
 import { getNavigationConsts } from "@/utils/loadAppTools";
 import { getViewSize } from "@/utils/sizeTool";
 import { BlurView } from "@react-native-community/blur";
@@ -11,9 +11,9 @@ const Header: React.FC = () => {
         <View style={[styles.container, { paddingTop: getNavigationConsts().statusBarHeight }]}>
             <BlurView style={styles.blurContainer} blurType='xlight' blurAmount={50} />
             <View style={styles.innerContainer}>
-                <Icon name="line-scan" size={getViewSize(25)} color={CONSTS_STYLE_VALUE.BLACK_COLOR} />
+                <Icon name="line-scan" size={getViewSize(25)} color={commonStyles.black} />
                 <TextInput style={styles.middle} />
-                <Icon name="bell-outline" size={getViewSize(25)} color={CONSTS_STYLE_VALUE.BLACK_COLOR} />
+                <Icon name="bell-outline" size={getViewSize(25)} color={commonStyles.black} />
             </View>
         </View>
     );
