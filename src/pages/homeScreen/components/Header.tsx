@@ -13,20 +13,14 @@ const Header: React.FC<HeaderProps> = ({ setHeaderHeight }) => {
     const getHeight = (e: any) => {
         const height = e?.nativeEvent?.layout?.height || 0;
         setHeaderHeight(height);
-    }
+    };
     return (
         <View style={[styles.container, { top: getNavigationConsts().statusBarHeight }]} onLayout={getHeight}>
             <BlurView style={styles.blurContainer} blurType='xlight' blurAmount={50} />
             <View style={styles.innerContainer}>
-<<<<<<< HEAD
                 <Icon name="line-scan" size={getViewSize(25)} color={commonStyles.black} />
-                <TextInput style={styles.middle} />
+                <TextInput />
                 <Icon name="bell-outline" size={getViewSize(25)} color={commonStyles.black} />
-=======
-                <Icon name="line-scan" size={getViewSize(25)} color={CONSTS_STYLE_VALUE.BLACK_COLOR} onPress={() => console.log('9898我是隐藏的订单')} />
-                <TextInput style={styles.middleTextInput} />
-                <Icon name="bell-outline" size={getViewSize(25)} color={CONSTS_STYLE_VALUE.BLACK_COLOR} />
->>>>>>> d6aae571215af518c6684e7bb64e52ff9c347234
             </View>
         </View>
     );
