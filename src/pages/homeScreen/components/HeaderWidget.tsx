@@ -1,42 +1,31 @@
-import commonStyles from "@/common/styles";
+import { commonShadowStyles, commonStyles } from "@/common/styles";
 import { getNavigationConsts } from "@/utils/loadAppTools";
 import { getViewSize } from "@/utils/sizeTool";
-import { View, Text, Image, StyleSheet, ScrollView } from "react-native";
+import { View, Text, StyleSheet } from "react-native";
 import Icon from "react-native-vector-icons/FontAwesome5";
 import IconAntDesign from 'react-native-vector-icons/AntDesign';
+import CategoryTabs from "./CategoryTabs";
+import FastImage from "react-native-fast-image";
 
-const HeaderWidget = () => {
+const HeaderWidget: React.FC = () => {
     return (
         <View>
             <View style={[styles.topContainer, { paddingTop: getNavigationConsts().statusBarHeight }]}>
                 <View style={styles.settings}>
-                    <Icon name="location-arrow" size={getViewSize(25)} color={commonStyles.black} />
+                    <Icon name="location-arrow" size={getViewSize(20)} color={commonStyles.black} />
                 </View>
                 <View style={styles.communityNameContainer}>
-                    <Text style={styles.communityName}>清华大学光华学院</Text>
+                    <Text style={styles.communityName} ellipsizeMode='middle' numberOfLines={1}>清华大学光华学院</Text>
                 </View>
                 <View style={[styles.settings, styles.avatorSetting]}>
-                    <Image style={styles.avator} source={{ uri: 'https://tuchuangs.com/imgs/2023/09/18/44d99b5d075ce313.jpg' }} />
+                    <FastImage style={styles.avator} source={{ uri: 'https://tuchuangs.com/imgs/2023/09/18/44d99b5d075ce313.jpg' }} />
                 </View>
             </View>
-            <View style={[styles.searchContainer, styles.shaw]}>
+            <View style={[styles.searchContainer, commonShadowStyles.style]}>
                 <IconAntDesign name="search1" size={getViewSize(25)} color={commonStyles.black_3a} />
                 <Text style={styles.searchPlaceholder}>搜索更多~</Text>
             </View>
-            <ScrollView
-                horizontal
-                bounces={false}
-                showsHorizontalScrollIndicator={false}
-                contentContainerStyle={{ marginHorizontal: commonStyles.pageBorderGap }}
-            >
-                {
-                    [1, 2, 3, 4, 5, 6, 7, 8, 9].map(item => (
-                        <View key={item} style={{ width: 80, height: 50, backgroundColor: 'pink', borderColor: 'black', borderWidth: 1 }}>
-                            <Text>{item}</Text>
-                        </View>
-                    ))
-                }
-            </ScrollView>
+            <CategoryTabs />
         </View>
     );
 };
@@ -44,7 +33,6 @@ const HeaderWidget = () => {
 const styles = StyleSheet.create({
     topContainer: {
         flex: 1,
-        // backgroundColor: 'pink',
         flexDirection: 'row',
         justifyContent: 'space-between',
         alignItems: 'center',
@@ -61,9 +49,10 @@ const styles = StyleSheet.create({
         width: '50%',
     },
     communityName: {
+        color: commonStyles.black,
         textAlign: 'center',
         fontSize: commonStyles.topBarFontSize,
-        fontWeight: '600',
+        fontWeight: 'bold',
     },
     avator: {
         width: getViewSize(42),
@@ -84,11 +73,5 @@ const styles = StyleSheet.create({
         marginLeft: 8,
         color: commonStyles.grey_placeholder
     },
-    shaw: {
-        shadowColor: '#cecece',
-        shadowOffset: { width: 3, height: 9 },
-        shadowOpacity: 0.2,
-        shadowRadius: 2
-    }
 });
 export default HeaderWidget;

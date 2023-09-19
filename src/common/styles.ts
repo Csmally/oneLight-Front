@@ -1,4 +1,5 @@
 import { getFontSize, getViewSize } from "@/utils/sizeTool";
+import { Platform, StyleSheet } from "react-native";
 
 const commonStyles = {
     pageBgColor: '#F6F6F6',
@@ -10,4 +11,20 @@ const commonStyles = {
     pageBorderGap: getViewSize(10),
 };
 
-export default commonStyles;
+const commonShadowStyles = StyleSheet.create({
+    style: {
+        shadowOffset: { width: 3, height: 9 },
+        shadowOpacity: 0.2,
+        shadowRadius: 2,
+        ...Platform.select({
+            ios: {
+                shadowColor: '#cecece',
+            },
+            android: {
+                shadowColor: commonStyles.black,
+                elevation: 20,
+            }
+        })
+    }
+});
+export { commonStyles, commonShadowStyles };

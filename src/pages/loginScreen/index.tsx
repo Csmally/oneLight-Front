@@ -1,4 +1,4 @@
-import { Image, Text, View, Assets, Button, TextField, Colors } from "react-native-ui-lib";
+import { Text, View, Assets, Button, TextField, Colors } from "react-native-ui-lib";
 import { getFontSize, getViewSize } from '@/utils/sizeTool';
 import { StyleSheet } from "react-native";
 import { useState } from "react";
@@ -7,6 +7,7 @@ import CodeSender from "./components/CodeSender";
 import Storage from "@/storage";
 import { setAppRouter } from "@/utils/setRouterTools";
 import { CONSTS_VALUE } from "@/interfaces/commonEnum";
+import FastImage from "react-native-fast-image";
 
 type LoginScreenProps = {
     componentId: string
@@ -34,11 +35,9 @@ const LoginScreen: React.FC<LoginScreenProps> = () => {
             entering={FadeIn.duration(1000)}
             exiting={FadeOut.duration(1000)}>
             <View flex bg-screenBG padding-20>
-                <Image
-                    style={styles.viewMargin}
-                    source={Assets.icons.logo}
-                    height={getViewSize(65)}
-                    width={getViewSize(65)} />
+                <FastImage
+                    style={[styles.viewMargin, styles.logo]}
+                    source={Assets.icons.logo} />
                 <Text center style={[styles.title, styles.viewMargin]}>
                     嗨
                     <Text style={styles.appName}>,  oneLight</Text>
@@ -73,16 +72,12 @@ const LoginScreen: React.FC<LoginScreenProps> = () => {
                 <Animated.View layout={Layout.duration(500)}>
                     <Text center color='#a8a8a8' style={styles.viewMargin}>或</Text>
                     <View style={[styles.loginMethods, styles.viewMargin]}>
-                        <Image
+                        <FastImage
                             style={styles.loginMethod}
-                            source={Assets.icons.wechat}
-                            height={getViewSize(30)}
-                            width={getViewSize(30)} />
-                        <Image
+                            source={Assets.icons.wechat} />
+                        <FastImage
                             style={styles.loginMethod}
-                            source={Assets.icons.alipay}
-                            height={getViewSize(30)}
-                            width={getViewSize(30)} />
+                            source={Assets.icons.alipay} />
                     </View>
                     <View style={styles.btnContainer}>
                         <Button
@@ -132,7 +127,9 @@ const styles = StyleSheet.create({
         justifyContent: 'center'
     },
     loginMethod: {
-        marginHorizontal: getViewSize(25)
+        marginHorizontal: getViewSize(25),
+        width: getViewSize(30),
+        height: getViewSize(30)
     },
     btnContainer: {
         display: 'flex',
@@ -140,6 +137,10 @@ const styles = StyleSheet.create({
     },
     loginBtn: {
         width: getViewSize(200)
+    },
+    logo: {
+        width: getViewSize(65),
+        height: getViewSize(65)
     }
 });
 

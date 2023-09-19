@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
-import { FlatList, Platform, RefreshControl, StyleSheet } from 'react-native';
+import { FlatList, Platform, RefreshControl, StyleSheet, Text } from 'react-native';
 import SplashScreen from 'react-native-splash-screen';
-import { Text, View } from 'react-native-ui-lib';
+import { View } from 'react-native-ui-lib';
 import Storage from '@/storage';
 import { CONSTS_VALUE } from '@/interfaces/commonEnum';
 import { getNavigationConsts } from '@/utils/loadAppTools';
@@ -116,7 +116,7 @@ const HomeScreen: React.FC = () => {
         }, 3000);
     };
     useEffect(() => {
-        // Storage.set(CONSTS_VALUE.LOGIN_STATUS,false);
+        Storage.set(CONSTS_VALUE.LOGIN_STATUS,false);
         setTimeout(() => {
             SplashScreen.hide();
         }, 2500);

@@ -1,4 +1,4 @@
-import commonStyles from "@/common/styles";
+import { commonStyles } from "@/common/styles";
 import { getNavigationConsts } from "@/utils/loadAppTools";
 import { getViewSize } from "@/utils/sizeTool";
 import { BlurView } from "@react-native-community/blur";

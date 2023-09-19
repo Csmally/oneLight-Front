@@ -4,7 +4,7 @@ import { Colors, Typography, Spacings, Assets } from 'react-native-ui-lib';
 import Storage from '@/storage';
 import { Dimensions } from 'react-native';
 import { CONSTS_VALUE } from '@/interfaces/commonEnum';
-import commonStyles from '@/common/styles';
+import { commonStyles } from '@/common/styles';
 
 //初始化storage数据
 export const initStorageData = () => {
