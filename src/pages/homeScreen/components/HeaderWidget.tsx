@@ -1,4 +1,4 @@
-import { commonShadowStyles, commonStyles } from "@/common/styles";
+import { commonStyles, getCommonShadowStyle } from "@/common/styles";
 import { getNavigationConsts } from "@/utils/loadAppTools";
 import { getViewSize } from "@/utils/sizeTool";
 import { View, Text, StyleSheet } from "react-native";
@@ -21,7 +21,7 @@ const HeaderWidget: React.FC = () => {
                     <FastImage style={styles.avator} source={{ uri: 'https://tuchuangs.com/imgs/2023/09/18/44d99b5d075ce313.jpg' }} />
                 </View>
             </View>
-            <View style={[styles.searchContainer, commonShadowStyles.style]}>
+            <View style={styles.searchContainer}>
                 <IconAntDesign name="search1" size={getViewSize(25)} color={commonStyles.black_3a} />
                 <Text style={styles.searchPlaceholder}>搜索更多~</Text>
             </View>
@@ -52,7 +52,7 @@ const styles = StyleSheet.create({
         color: commonStyles.black,
         textAlign: 'center',
         fontSize: commonStyles.topBarFontSize,
-        fontWeight: 'bold',
+        fontWeight: 'bold'
     },
     avator: {
         width: getViewSize(42),
@@ -66,8 +66,10 @@ const styles = StyleSheet.create({
         padding: getViewSize(12),
         backgroundColor: commonStyles.white,
         borderRadius: getViewSize(30),
-        marginVertical: getViewSize(20),
-        marginHorizontal: commonStyles.pageBorderGap
+        marginTop: getViewSize(20),
+        marginBottom: getViewSize(10),
+        marginHorizontal: commonStyles.pageBorderGap,
+        ...getCommonShadowStyle().style
     },
     searchPlaceholder: {
         marginLeft: 8,

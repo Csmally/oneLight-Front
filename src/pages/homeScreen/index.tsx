@@ -99,8 +99,13 @@ const DATA = [
 
 const TestItem = ({ item }: { item: any }) => {
     return (
-        <View style={{ height: 60, backgroundColor: item.color }}>
-            <Text style={{ flex: 1 }}>{item.title}</Text>
+        // <View style={{ height: 60, backgroundColor: item.color }}>
+        //     <Text style={{ flex: 1 }}>{item.title}</Text>
+        // </View>
+        <View style={{ paddingVertical: 20 }}>
+            <View style={{ height: 60, backgroundColor: item.color }}>
+                <Text style={{ flex: 1 }}>{item.title}</Text>
+            </View>
         </View>
     );
 };
@@ -108,7 +113,8 @@ const TestItem = ({ item }: { item: any }) => {
 const HomeScreen: React.FC = () => {
     const [isRefreshing, setIsRefreshing] = useState(false);
     const tt = () => {
-        console.log('9898开始刷新了');
+        console.log('9898开始刷新了2', __DEV__);
+        console.log('9898环境变量', process);
         setIsRefreshing(true);
         setTimeout(() => {
             setIsRefreshing(false);
@@ -116,7 +122,7 @@ const HomeScreen: React.FC = () => {
         }, 3000);
     };
     useEffect(() => {
-        Storage.set(CONSTS_VALUE.LOGIN_STATUS,false);
+        // Storage.set(CONSTS_VALUE.LOGIN_STATUS,false);
         setTimeout(() => {
             SplashScreen.hide();
         }, 2500);
@@ -132,10 +138,11 @@ const HomeScreen: React.FC = () => {
                 data={DATA}
                 renderItem={({ item }) => <TestItem item={item} />}
                 keyExtractor={item => item.id}
-                ItemSeparatorComponent={() => <View height={20}></View>}
+                ItemSeparatorComponent={() => <View height={5}></View>}
                 ListFooterComponent={() => <Text>到底部了</Text>}
                 ListFooterComponentStyle={{ backgroundColor: 'pink' }}
                 ListHeaderComponent={() => <HeaderWidget />}
+                stickyHeaderIndices={[0]}
                 refreshControl={<RefreshControl refreshing={isRefreshing} onRefresh={tt}></RefreshControl>}
             />
             {/* <Header /> */}

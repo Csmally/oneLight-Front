@@ -1,6 +1,20 @@
 import { getFontSize, getViewSize } from "@/utils/sizeTool";
 import { Platform, StyleSheet } from "react-native";
 
+type shadowOffsetType = {
+    width: number,
+    height: number
+}
+
+type CommonShadowParams = {
+    shadowOffset?: shadowOffsetType,
+    shadowOpacity?: number,
+    shadowRadius?: number,
+    shadowColorForIos?: string,
+    shadowColorForAndroid?: string,
+    elevation?: number
+}
+
 const commonStyles = {
     pageBgColor: '#F6F6F6',
     white: '#FFFFFF',
@@ -11,20 +25,35 @@ const commonStyles = {
     pageBorderGap: getViewSize(10),
 };
 
-const commonShadowStyles = StyleSheet.create({
-    style: {
-        shadowOffset: { width: 3, height: 9 },
-        shadowOpacity: 0.2,
-        shadowRadius: 2,
-        ...Platform.select({
-            ios: {
-                shadowColor: '#cecece',
-            },
-            android: {
-                shadowColor: commonStyles.black,
-                elevation: 20,
-            }
-        })
-    }
-});
-export { commonStyles, commonShadowStyles };
+const defaultShadowParam = {
+    shadowOffset: {
+        width: 3,
+        height: 10
+    },
+    shadowOpacity: 0.2,
+    shadowRadius: 2,
+    shadowColorForIos: '#cecece',
+    shadowColorForAndroid: commonStyles.black,
+    elevation: 20
+};
+
+const getCommonShadowStyle = (params?: CommonShadowParams) => {
+    const shadowStyles = { ...defaultShadowParam, ...params };
+    return StyleSheet.create({
+        style: {
+            ...Platform.select({
+                ios: {
+                    shadowOffset: shadowStyles.shadowOffset,
+                    shadowOpacity: shadowStyles.shadowOpacity,
+                    shadowRadius: shadowStyles.shadowRadius,
+                    shadowColor: shadowStyles.shadowColorForIos,
+                },
+                android: {
+                    shadowColor: shadowStyles.shadowColorForAndroid,
+                    elevation: shadowStyles.elevation,
+                }
+            })
+        }
+    });
+};
+export { commonStyles, getCommonShadowStyle };
