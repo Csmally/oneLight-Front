@@ -1,18 +1,12 @@
 import { getFontSize, getViewSize } from "@/utils/sizeTool";
 import { Platform, StyleSheet } from "react-native";
 
-type shadowOffsetType = {
-    width: number,
-    height: number
-}
-
 type CommonShadowParams = {
-    shadowOffset?: shadowOffsetType,
+    shadowWidth?: number,
     shadowOpacity?: number,
     shadowRadius?: number,
     shadowColorForIos?: string,
     shadowColorForAndroid?: string,
-    elevation?: number
 }
 
 const commonStyles = {
@@ -25,32 +19,31 @@ const commonStyles = {
     pageBorderGap: getViewSize(10),
 };
 
-const defaultShadowParam = {
-    shadowOffset: {
-        width: 3,
-        height: 10
-    },
-    shadowOpacity: 0.2,
+const defaultShadowParam: CommonShadowParams = {
+    shadowWidth: getViewSize(10),
+    shadowOpacity: 0.3,
     shadowRadius: 2,
     shadowColorForIos: '#cecece',
     shadowColorForAndroid: commonStyles.black,
-    elevation: 20
 };
 
 const getCommonShadowStyle = (params?: CommonShadowParams) => {
-    const shadowStyles = { ...defaultShadowParam, ...params };
+    const shadowStyles: CommonShadowParams = { ...defaultShadowParam, ...params };
     return StyleSheet.create({
         style: {
             ...Platform.select({
                 ios: {
-                    shadowOffset: shadowStyles.shadowOffset,
+                    shadowOffset: {
+                        width: 0,
+                        height: shadowStyles.shadowWidth
+                    },
                     shadowOpacity: shadowStyles.shadowOpacity,
                     shadowRadius: shadowStyles.shadowRadius,
                     shadowColor: shadowStyles.shadowColorForIos,
                 },
                 android: {
                     shadowColor: shadowStyles.shadowColorForAndroid,
-                    elevation: shadowStyles.elevation,
+                    elevation: shadowStyles.shadowWidth,
                 }
             })
         }

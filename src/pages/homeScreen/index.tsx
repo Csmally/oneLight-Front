@@ -5,11 +5,10 @@ import { View } from 'react-native-ui-lib';
 import Storage from '@/storage';
 import { CONSTS_VALUE } from '@/interfaces/commonEnum';
 import { getNavigationConsts } from '@/utils/loadAppTools';
-// import Header from './components/Header';
 import { BlurView } from '@react-native-community/blur';
-import HeaderWidget from './components/HeaderWidget';
+import AnimatedHeader from './components/AnimatedHeader';
 
-const DATA = [
+const DATA: NewsItem[] = [
     {
         id: 'bd7acbea-c1b1-46c2-aed5-3ad53abb28b1',
         title: '1 Item',
@@ -99,13 +98,8 @@ const DATA = [
 
 const TestItem = ({ item }: { item: any }) => {
     return (
-        // <View style={{ height: 60, backgroundColor: item.color }}>
-        //     <Text style={{ flex: 1 }}>{item.title}</Text>
-        // </View>
-        <View style={{ paddingVertical: 20 }}>
-            <View style={{ height: 60, backgroundColor: item.color }}>
-                <Text style={{ flex: 1 }}>{item.title}</Text>
-            </View>
+        <View style={{ height: 60, backgroundColor: item.color }}>
+            <Text style={{ flex: 1 }}>{item.title}</Text>
         </View>
     );
 };
@@ -113,12 +107,9 @@ const TestItem = ({ item }: { item: any }) => {
 const HomeScreen: React.FC = () => {
     const [isRefreshing, setIsRefreshing] = useState(false);
     const tt = () => {
-        console.log('9898开始刷新了2', __DEV__);
-        console.log('9898环境变量', process);
         setIsRefreshing(true);
         setTimeout(() => {
             setIsRefreshing(false);
-            console.log('9898结束刷新了');
         }, 3000);
     };
     useEffect(() => {
@@ -129,7 +120,6 @@ const HomeScreen: React.FC = () => {
     }, []);
     return (
         <View style={Platform.OS === 'ios' ? styles.pageForIos : styles.pageForAndroid} >
-            {/* <Header setHeaderHeight={setHeaderHeight}/> */}
             <FlatList
                 contentInsetAdjustmentBehavior='never'
                 contentContainerStyle={{
@@ -141,11 +131,10 @@ const HomeScreen: React.FC = () => {
                 ItemSeparatorComponent={() => <View height={5}></View>}
                 ListFooterComponent={() => <Text>到底部了</Text>}
                 ListFooterComponentStyle={{ backgroundColor: 'pink' }}
-                ListHeaderComponent={() => <HeaderWidget />}
+                ListHeaderComponent={() => <AnimatedHeader />}
                 stickyHeaderIndices={[0]}
                 refreshControl={<RefreshControl refreshing={isRefreshing} onRefresh={tt}></RefreshControl>}
             />
-            {/* <Header /> */}
             <View style={[styles.blurContainer, { height: getNavigationConsts().bottomTabsHeight }]}>
                 <BlurView style={{ flex: 1 }} blurType='xlight' blurAmount={50} />
             </View>

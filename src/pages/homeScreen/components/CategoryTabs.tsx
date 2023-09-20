@@ -34,7 +34,7 @@ const CategoryTabs: React.FC = () => {
             horizontal
             bounces={false}
             showsHorizontalScrollIndicator={false}
-            contentContainerStyle={{ paddingVertical: 10 }}
+            contentContainerStyle={{ paddingVertical: getViewSize(10), paddingRight: commonStyles.pageBorderGap }}
         >
             {
                 tabs.map((item, index) => (
@@ -67,10 +67,10 @@ const styles = StyleSheet.create({
         width: getViewSize(100),
         height: getViewSize(46),
         borderRadius: getViewSize(23),
-        marginHorizontal: getViewSize(5),
+        marginLeft: commonStyles.pageBorderGap,
         backgroundColor: commonStyles.white,
         paddingHorizontal: getViewSize(20),
-        ...getCommonShadowStyle({ elevation: 10 }).style
+        ...getCommonShadowStyle().style
     },
     selectTab: {
         backgroundColor: commonStyles.black

@@ -22,6 +22,13 @@ interface StackRoot {
     }
 }
 
+// 信息 常见：首页一条发布信息
+interface NewsItem {
+    id: string,
+    title: string,
+    color: string
+}
+
 interface ToastTool {
     show: (params: ToastProps) => void;
 }
