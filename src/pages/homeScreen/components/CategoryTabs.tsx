@@ -34,14 +34,14 @@ const CategoryTabs: React.FC = () => {
             horizontal
             bounces={false}
             showsHorizontalScrollIndicator={false}
-            contentContainerStyle={{ paddingVertical: getViewSize(10), paddingRight: commonStyles.pageBorderGap }}
+            contentContainerStyle={{ paddingVertical: 10, paddingRight: commonStyles.pageBorderGap }}
         >
             {
                 tabs.map((item, index) => (
                     <TouchableOpacity
                         key={index}
                         activeOpacity={0.6}
-                        style={[styles.tabItem, index === currentTab && styles.selectTab]}
+                        style={[styles.tabItem, index === currentTab ? styles.selectTab : styles.tab]}
                         onPress={() => setCurrentTab(index)}
                     >
                         <FastImage source={item.img} style={styles.tabIcon} />
@@ -70,6 +70,8 @@ const styles = StyleSheet.create({
         marginLeft: commonStyles.pageBorderGap,
         backgroundColor: commonStyles.white,
         paddingHorizontal: getViewSize(20),
+    },
+    tab: {
         ...getCommonShadowStyle().style
     },
     selectTab: {

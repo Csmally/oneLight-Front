@@ -1,29 +1,34 @@
 import { commonStyles, getCommonShadowStyle } from "@/common/styles";
 import { getViewSize } from "@/utils/sizeTool";
-import { View, Text, StyleSheet } from "react-native";
+import { Text, StyleSheet, Dimensions } from "react-native";
+import Animated from "react-native-reanimated";
 import Icon from 'react-native-vector-icons/AntDesign';
 
-const SearchBar: React.FC = () => {
+const SearchBar: React.FC = ({ searchBarAnimatedStyle }) => {
     return (
-        <View style={styles.searchContainer}>
+        <Animated.View style={[styles.searchContainer, searchBarAnimatedStyle]}>
             <Icon name="search1" size={getViewSize(25)} color={commonStyles.black_3a} />
-            <Text style={styles.searchPlaceholder}>搜索更多~</Text>
-        </View>
+            <Text style={styles.searchPlaceholder} onPress={() => { console.log('9898点击了'); }}>搜索更多~</Text>
+        </Animated.View>
     );
 };
 
 const styles = StyleSheet.create({
     searchContainer: {
         flex: 1,
+        width: Dimensions.get('window').width - commonStyles.pageBorderGap * 2,
         flexDirection: 'row',
         alignItems: 'center',
-        padding: getViewSize(10),
+        // alignSelf: 'flex-end',
+        height: 50,
+        paddingHorizontal: 10,
         backgroundColor: commonStyles.white,
-        borderRadius: getViewSize(30),
-        marginTop: getViewSize(20),
-        marginBottom: getViewSize(10),
+        borderRadius: 25,
         marginHorizontal: commonStyles.pageBorderGap,
+        marginVertical: 10,
         ...getCommonShadowStyle().style
+    },
+    tt: {
     },
     searchPlaceholder: {
         marginLeft: 8,

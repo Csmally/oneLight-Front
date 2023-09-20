@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { FlatList, Platform, RefreshControl, StyleSheet, Text } from 'react-native';
+import { Platform, RefreshControl, StyleSheet, Text } from 'react-native';
 import SplashScreen from 'react-native-splash-screen';
 import { View } from 'react-native-ui-lib';
 import Storage from '@/storage';
@@ -7,6 +7,8 @@ import { CONSTS_VALUE } from '@/interfaces/commonEnum';
 import { getNavigationConsts } from '@/utils/loadAppTools';
 import { BlurView } from '@react-native-community/blur';
 import AnimatedHeader from './components/AnimatedHeader';
+import Animated, { useAnimatedScrollHandler, useSharedValue } from 'react-native-reanimated';
+import useHeaterAnimatedStyles from './useHeaterAnimatedStyles';
 
 const DATA: NewsItem[] = [
     {
@@ -118,20 +120,41 @@ const HomeScreen: React.FC = () => {
             SplashScreen.hide();
         }, 2500);
     }, []);
+    // 滑动事件
+    const scrollY = useSharedValue(0);
+    const scrollHandler = useAnimatedScrollHandler((event) => {
+        scrollY.value = event.contentOffset.y;
+    });
+    const {
+        infoBarAnimatedStyle,
+        avatorAnimatedStyle,
+        searchBarAnimatedStyle,
+        communityNameAnimatedStyle,
+    } = useHeaterAnimatedStyles(scrollY);
     return (
         <View style={Platform.OS === 'ios' ? styles.pageForIos : styles.pageForAndroid} >
-            <FlatList
+            <Animated.FlatList
                 contentInsetAdjustmentBehavior='never'
                 contentContainerStyle={{
                     paddingBottom: getNavigationConsts().bottomTabsHeight
                 }}
+                onScroll={scrollHandler}
                 data={DATA}
                 renderItem={({ item }) => <TestItem item={item} />}
                 keyExtractor={item => item.id}
                 ItemSeparatorComponent={() => <View height={5}></View>}
                 ListFooterComponent={() => <Text>到底部了</Text>}
                 ListFooterComponentStyle={{ backgroundColor: 'pink' }}
-                ListHeaderComponent={() => <AnimatedHeader />}
+                ListHeaderComponent={
+                    () => (
+                        <AnimatedHeader
+                            infoBarAnimatedStyle={infoBarAnimatedStyle}
+                            avatorAnimatedStyle={avatorAnimatedStyle}
+                            searchBarAnimatedStyle={searchBarAnimatedStyle}
+                            communityNameAnimatedStyle={communityNameAnimatedStyle}
+                        />
+                    )
+                }
                 stickyHeaderIndices={[0]}
                 refreshControl={<RefreshControl refreshing={isRefreshing} onRefresh={tt}></RefreshControl>}
             />

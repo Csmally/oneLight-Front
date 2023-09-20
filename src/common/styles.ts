@@ -20,7 +20,7 @@ const commonStyles = {
 };
 
 const defaultShadowParam: CommonShadowParams = {
-    shadowWidth: getViewSize(10),
+    shadowWidth: 10,
     shadowOpacity: 0.3,
     shadowRadius: 2,
     shadowColorForIos: '#cecece',
