@@ -1,22 +1,24 @@
 import { commonStyles } from "@/common/styles";
 import { getNavigationConsts } from "@/utils/loadAppTools";
 import { getViewSize } from "@/utils/sizeTool";
-import { View, Text, StyleSheet } from "react-native";
+import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 import Animated from "react-native-reanimated";
 import Icon from "react-native-vector-icons/FontAwesome5";
 
 const InfoBar: React.FC = ({ infoBarAnimatedStyle, avatorAnimatedStyle, communityNameAnimatedStyle }) => {
     return (
-        <View style={{ paddingTop: getNavigationConsts().statusBarHeight, zIndex: 2 }}>
+        <View style={{ paddingTop: getNavigationConsts().statusBarHeight, zIndex: 2, backgroundColor: 'red' }}>
             <Animated.View style={[styles.container, infoBarAnimatedStyle]}>
                 <View style={styles.settings}>
-                    <Icon name="location-arrow" size={getViewSize(20)} color={commonStyles.black} />
+                    <Icon name="location-arrow" onPress={() => { console.log('9898我是定位位置'); }} size={getViewSize(20)} color={commonStyles.black} />
                 </View>
                 <Animated.View style={[styles.communityNameContainer, communityNameAnimatedStyle]}>
                     <Text style={styles.communityName} ellipsizeMode='middle' numberOfLines={1}>清华大学光华学院</Text>
                 </Animated.View>
                 <View style={[styles.settings, styles.avatorSetting]}>
-                    <Animated.Image style={avatorAnimatedStyle} source={{ uri: 'https://tuchuangs.com/imgs/2023/09/18/44d99b5d075ce313.jpg' }} />
+                    <TouchableOpacity onPress={() => { console.log('9898我是个人信息'); }}>
+                        <Animated.Image style={avatorAnimatedStyle} source={{ uri: 'https://tuchuangs.com/imgs/2023/09/18/44d99b5d075ce313.jpg' }} />
+                    </TouchableOpacity>
                 </View>
             </Animated.View>
         </View>

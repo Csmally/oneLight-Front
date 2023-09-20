@@ -1,15 +1,17 @@
 import { commonStyles, getCommonShadowStyle } from "@/common/styles";
 import { getViewSize } from "@/utils/sizeTool";
-import { Text, StyleSheet, Dimensions } from "react-native";
+import { Text, StyleSheet, Dimensions, TouchableWithoutFeedback } from "react-native";
 import Animated from "react-native-reanimated";
 import Icon from 'react-native-vector-icons/AntDesign';
 
 const SearchBar: React.FC = ({ searchBarAnimatedStyle }) => {
     return (
-        <Animated.View style={[styles.searchContainer, searchBarAnimatedStyle]}>
-            <Icon name="search1" size={getViewSize(25)} color={commonStyles.black_3a} />
-            <Text style={styles.searchPlaceholder} onPress={() => { console.log('9898点击了'); }}>搜索更多~</Text>
-        </Animated.View>
+        <TouchableWithoutFeedback onPress={() => { console.log('9898跳转页面'); }}>
+            <Animated.View style={[styles.searchContainer, searchBarAnimatedStyle]}>
+                <Icon name="search1" size={getViewSize(25)} color={commonStyles.black_3a} />
+                <Text style={styles.searchPlaceholder} >搜索更多~</Text>
+            </Animated.View>
+        </TouchableWithoutFeedback>
     );
 };
 
