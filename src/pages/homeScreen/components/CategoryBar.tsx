@@ -88,15 +88,9 @@ const styles = StyleSheet.create({
         marginRight: getViewSize(5)
     },
     tabTitle: {
-        // color: commonStyles.black,
         fontWeight: 'bold',
         fontFamily: 'System'
     },
-    selectTabTitle: {
-        // color: commonStyles.white,
-        fontWeight: 'bold',
-        fontFamily: 'System',
-    }
 });
 
 export default CategoryBar;
