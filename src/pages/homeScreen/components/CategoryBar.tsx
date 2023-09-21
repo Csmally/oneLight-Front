@@ -1,7 +1,7 @@
 import { commonStyles } from "@/common/styles";
 import { getViewSize } from "@/utils/sizeTool";
 import { useState } from "react";
-import { Platform, StyleSheet, TouchableOpacity } from "react-native";
+import { StyleSheet, TouchableOpacity } from "react-native";
 import FastImage from "react-native-fast-image";
 import Animated from "react-native-reanimated";
 
@@ -30,14 +30,20 @@ const tabs = [
 
 const CategoryBar: React.FC = (props) => {
     const {
-        scrollY,
+        flatListRef,
         categoryBarShadowAnimatedStyle,
         categoryColorAnimatedStyle,
         categoryTextSColorSAnimatedStyle,
         categoryTextNColorSAnimatedStyle
     } = props;
-    console.log(`9898刷新${Platform.OS}`, scrollY);
     const [currentTab, setCurrentTab] = useState(0);
+    const changeTab = (index: number) => {
+        setCurrentTab(index);
+        flatListRef.current.scrollToOffset({ offset: 10, animated: true });
+        setTimeout(() => {
+            flatListRef.current.scrollToOffset({ offset: 0, animated: true });
+        }, 500);
+    };
     return (
         <Animated.ScrollView
             horizontal
@@ -49,7 +55,7 @@ const CategoryBar: React.FC = (props) => {
                     <TouchableOpacity
                         key={index}
                         activeOpacity={0.6}
-                        onPress={() => setCurrentTab(index)}
+                        onPress={() => changeTab(index)}
                     >
                         <Animated.View
                             style={styles.tabItem}

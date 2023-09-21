@@ -7,7 +7,7 @@ import { StyleSheet, View } from "react-native";
 
 const AnimatedHeader: React.FC = (props) => {
     const {
-        scrollY,
+        flatListRef,
         containerAnimatedStyle,
         infoBarAnimatedStyle,
         avatorAnimatedStyle,
@@ -31,7 +31,7 @@ const AnimatedHeader: React.FC = (props) => {
             <View style={styles.barContainer}>
                 <SearchBar gpaAnimatedStyle={gpaAnimatedStyle} searchBarSpaceAnimatedStyle={searchBarSpaceAnimatedStyle} />
                 <CategoryBar
-                    scrollY={scrollY}
+                    flatListRef={flatListRef}
                     categoryBarShadowAnimatedStyle={categoryBarShadowAnimatedStyle}
                     categoryColorAnimatedStyle={categoryColorAnimatedStyle}
                     categoryTextSColorSAnimatedStyle={categoryTextSColorSAnimatedStyle}

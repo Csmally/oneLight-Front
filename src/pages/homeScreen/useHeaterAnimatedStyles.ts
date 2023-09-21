@@ -115,8 +115,7 @@ const useHeaterAnimatedStyles = (scrollY: SharedValue<number>, initTopbarHeight:
             shadowOpacity,
             shadowRadius,
             elevation: shadowWidth,
-            // shadowColor: Platform.OS === 'ios' ? '#cecece' : '#000000',
-            shadowColor: 'red',
+            shadowColor: Platform.OS === 'ios' ? '#cecece' : '#000000',
             backgroundColor
         };
     });

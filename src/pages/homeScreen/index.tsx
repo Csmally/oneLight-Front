@@ -7,7 +7,7 @@ import { CONSTS_VALUE } from '@/interfaces/commonEnum';
 import { getNavigationConsts } from '@/utils/loadAppTools';
 import { BlurView } from '@react-native-community/blur';
 import AnimatedHeader from './components/AnimatedHeader';
-import Animated, { useAnimatedScrollHandler, useSharedValue } from 'react-native-reanimated';
+import Animated, { useAnimatedRef, useAnimatedScrollHandler, useSharedValue } from 'react-native-reanimated';
 import useHeaterAnimatedStyles from './useHeaterAnimatedStyles';
 
 const DATA: NewsItem[] = [
@@ -118,6 +118,7 @@ const HomeScreen: React.FC = () => {
         // Storage.set(CONSTS_VALUE.LOGIN_STATUS,false);
         SplashScreen.hide();
     }, []);
+    const flatListRef = useAnimatedRef();
     // 滑动距离
     const scrollY = useSharedValue(0);
     // 滑动事件
@@ -141,10 +142,12 @@ const HomeScreen: React.FC = () => {
     return (
         <View style={Platform.OS === 'ios' ? styles.pageForIos : styles.pageForAndroid} >
             <Animated.FlatList
+                ref={ref => flatListRef.current = ref}
                 contentInsetAdjustmentBehavior='never'
                 contentContainerStyle={{
                     paddingBottom: getNavigationConsts().bottomTabsHeight
                 }}
+                removeClippedSubviews
                 onScroll={scrollHandler}
                 data={DATA}
                 renderItem={({ item }) => <TestItem item={item} />}
@@ -155,7 +158,7 @@ const HomeScreen: React.FC = () => {
                 ListHeaderComponent={
                     () => (
                         <AnimatedHeader
-                            scrollY={scrollY}
+                            flatListRef={flatListRef}
                             containerAnimatedStyle={containerAnimatedStyle}
                             infoBarAnimatedStyle={infoBarAnimatedStyle}
                             avatorAnimatedStyle={avatorAnimatedStyle}
