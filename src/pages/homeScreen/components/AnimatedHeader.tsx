@@ -10,23 +10,34 @@ const AnimatedHeader: React.FC = (props) => {
         containerAnimatedStyle,
         infoBarAnimatedStyle,
         avatorAnimatedStyle,
-        searchBarAnimatedStyle,
+        gpaAnimatedStyle,
         communityNameAnimatedStyle,
         hotAreaAnimatedStyle,
         searchBarSpaceAnimatedStyle,
         categoryBarItemAnimatedStyle,
         categoryBarShadowAnimatedStyle,
+        categoryColorAnimatedStyle,
+        categoryTextSColorSAnimatedStyle,
+        categoryTextNColorSAnimatedStyle
     } = props;
     return (
-        <Animated.View>
+        <Animated.View style={containerAnimatedStyle}>
             <InfoBar
                 infoBarAnimatedStyle={infoBarAnimatedStyle}
                 avatorAnimatedStyle={avatorAnimatedStyle}
                 communityNameAnimatedStyle={communityNameAnimatedStyle}
                 hotAreaAnimatedStyle={hotAreaAnimatedStyle}
             />
-            <SearchBar searchBarAnimatedStyle={searchBarAnimatedStyle} searchBarSpaceAnimatedStyle={searchBarSpaceAnimatedStyle} />
-            <CategoryBar searchBarAnimatedStyle={searchBarAnimatedStyle} categoryBarItemAnimatedStyle={categoryBarItemAnimatedStyle} categoryBarShadowAnimatedStyle={categoryBarShadowAnimatedStyle} />
+            <View style={styles.barContainer}>
+                <SearchBar gpaAnimatedStyle={gpaAnimatedStyle} searchBarSpaceAnimatedStyle={searchBarSpaceAnimatedStyle} />
+                <CategoryBar
+                    categoryBarShadowAnimatedStyle={categoryBarShadowAnimatedStyle}
+                    categoryBarItemAnimatedStyle={categoryBarItemAnimatedStyle}
+                    categoryColorAnimatedStyle={categoryColorAnimatedStyle}
+                    categoryTextSColorSAnimatedStyle={categoryTextSColorSAnimatedStyle}
+                    categoryTextNColorSAnimatedStyle={categoryTextNColorSAnimatedStyle}
+                />
+            </View>
             <View style={styles.blurContainer}>
                 <BlurView style={{ flex: 1 }} blurType='xlight' blurAmount={50} />
             </View>
@@ -43,6 +54,12 @@ const styles = StyleSheet.create({
         overflow: 'hidden',
         height: '100%',
         zIndex: -1
+    },
+    barContainer: {
+        position: 'absolute',
+        bottom: 0,
+        left: 0,
+        right: 0,
     }
 });
 

@@ -1,10 +1,11 @@
-import { Extrapolation, SharedValue, interpolate, useAnimatedProps } from "react-native-reanimated";
+import { Platform } from "react-native";
+import { Extrapolation, SharedValue, interpolate, useAnimatedProps, interpolateColor } from "react-native-reanimated";
 
 const useHeaterAnimatedStyles = (scrollY: SharedValue<number>, initTopbarHeight: number) => {
     // 映射头部组件高度动画样式
     const containerAnimatedStyle = useAnimatedProps(() => {
         // height
-        const height = interpolate(scrollY.value, [0, 200], [initTopbarHeight, initTopbarHeight - 50], {
+        const height = interpolate(scrollY.value, [0, 200], [initTopbarHeight, initTopbarHeight - 90], {
             extrapolateLeft: Extrapolation.CLAMP,
             extrapolateRight: Extrapolation.CLAMP,
         });
@@ -53,19 +54,6 @@ const useHeaterAnimatedStyles = (scrollY: SharedValue<number>, initTopbarHeight:
             opacity
         };
     });
-    // 映射搜索框动画样式
-    const searchBarAnimatedStyle = useAnimatedProps(() => {
-        // 上下移动距离
-        const translateY = interpolate(scrollY.value, [0, 200], [0, -50], {
-            extrapolateLeft: Extrapolation.CLAMP,
-            extrapolateRight: Extrapolation.CLAMP,
-        });
-        return {
-            // marginVertical,
-            // width,
-            transform: [{ translateY }]
-        };
-    });
     // 映射搜索栏热区动画样式
     const hotAreaAnimatedStyle = useAnimatedProps(() => {
         // 热区宽度
@@ -102,7 +90,7 @@ const useHeaterAnimatedStyles = (scrollY: SharedValue<number>, initTopbarHeight:
         });
         return {
             marginLeft: gapStyle,
-            marginBottom: gapStyle,
+            marginVertical: gapStyle,
             borderRadius
         };
     });
@@ -123,6 +111,8 @@ const useHeaterAnimatedStyles = (scrollY: SharedValue<number>, initTopbarHeight:
             extrapolateLeft: Extrapolation.CLAMP,
             extrapolateRight: Extrapolation.CLAMP,
         });
+        // 背景颜色
+        const backgroundColor = interpolateColor(scrollY.value, [0, 200], ['rgba(255, 255, 255,1)', 'rgba(255, 255, 255,0)']);
         return {
             shadowOffset: {
                 width: 0,
@@ -131,19 +121,58 @@ const useHeaterAnimatedStyles = (scrollY: SharedValue<number>, initTopbarHeight:
             shadowOpacity,
             shadowRadius,
             elevation: shadowWidth,
-            shadowColor: 'red'
+            shadowColor: Platform.OS === 'ios' ? '#cecece' : '#000000',
+            backgroundColor
+        };
+    });
+    // 搜索框边距动画
+    const gpaAnimatedStyle = useAnimatedProps(() => {
+        // 边距
+        const gapStyle = interpolate(scrollY.value, [0, 200], [10, 0], {
+            extrapolateLeft: Extrapolation.CLAMP,
+            extrapolateRight: Extrapolation.CLAMP,
+        });
+        return {
+            marginVertical: gapStyle,
+        };
+    });
+    // 分类背景色变化动画(选中)
+    const categoryColorAnimatedStyle = useAnimatedProps(() => {
+        // 背景颜色
+        const backgroundColor = interpolateColor(scrollY.value, [0, 200], ['rgba(0, 0, 0,1)', 'rgba(0, 0, 0,0)']);
+        return {
+            backgroundColor,
+        };
+    });
+    // 分类栏字体色变化动画(选中)
+    const categoryTextSColorSAnimatedStyle = useAnimatedProps(() => {
+        // 背景颜色
+        const color = interpolateColor(scrollY.value, [0, 200], ['#ffffff', '#000000']);
+        return {
+            color,
+        };
+    });
+    // 分类栏字体色变化动画(未选中)
+    const categoryTextNColorSAnimatedStyle = useAnimatedProps(() => {
+        // 背景颜色
+        const color = interpolateColor(scrollY.value, [0, 200], ['#000000', '#ffffff']);
+        return {
+            color,
         };
     });
     return {
         infoBarAnimatedStyle,
         avatorAnimatedStyle,
-        searchBarAnimatedStyle,
         communityNameAnimatedStyle,
         hotAreaAnimatedStyle,
         searchBarSpaceAnimatedStyle,
         categoryBarItemAnimatedStyle,
         categoryBarShadowAnimatedStyle,
-        containerAnimatedStyle
+        containerAnimatedStyle,
+        gpaAnimatedStyle,
+        categoryColorAnimatedStyle,
+        categoryTextSColorSAnimatedStyle,
+        categoryTextNColorSAnimatedStyle
     };
 };
 

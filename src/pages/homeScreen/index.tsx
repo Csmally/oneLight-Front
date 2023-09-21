@@ -126,17 +126,20 @@ const HomeScreen: React.FC = () => {
     const scrollHandler = useAnimatedScrollHandler((event) => {
         scrollY.value = event.contentOffset.y;
     });
-    const initTopbarHeight = getNavigationConsts().statusBarHeight + 180;
+    const initTopbarHeight = getNavigationConsts().statusBarHeight + 190;
     const {
         containerAnimatedStyle,
         infoBarAnimatedStyle,
         avatorAnimatedStyle,
-        searchBarAnimatedStyle,
         communityNameAnimatedStyle,
         hotAreaAnimatedStyle,
         searchBarSpaceAnimatedStyle,
         categoryBarItemAnimatedStyle,
         categoryBarShadowAnimatedStyle,
+        gpaAnimatedStyle,
+        categoryColorAnimatedStyle,
+        categoryTextSColorSAnimatedStyle,
+        categoryTextNColorSAnimatedStyle,
     } = useHeaterAnimatedStyles(scrollY, initTopbarHeight);
     return (
         <View style={Platform.OS === 'ios' ? styles.pageForIos : styles.pageForAndroid} >
@@ -158,12 +161,15 @@ const HomeScreen: React.FC = () => {
                             containerAnimatedStyle={containerAnimatedStyle}
                             infoBarAnimatedStyle={infoBarAnimatedStyle}
                             avatorAnimatedStyle={avatorAnimatedStyle}
-                            searchBarAnimatedStyle={searchBarAnimatedStyle}
                             communityNameAnimatedStyle={communityNameAnimatedStyle}
                             hotAreaAnimatedStyle={hotAreaAnimatedStyle}
                             searchBarSpaceAnimatedStyle={searchBarSpaceAnimatedStyle}
                             categoryBarItemAnimatedStyle={categoryBarItemAnimatedStyle}
                             categoryBarShadowAnimatedStyle={categoryBarShadowAnimatedStyle}
+                            gpaAnimatedStyle={gpaAnimatedStyle}
+                            categoryColorAnimatedStyle={categoryColorAnimatedStyle}
+                            categoryTextSColorSAnimatedStyle={categoryTextSColorSAnimatedStyle}
+                            categoryTextNColorSAnimatedStyle={categoryTextNColorSAnimatedStyle}
                         />
                     )
                 }
