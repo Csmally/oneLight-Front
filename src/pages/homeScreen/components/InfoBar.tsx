@@ -17,17 +17,17 @@ const InfoBar: React.FC = (props) => {
                 <View style={styles.settings}>
                     <Icon name="location-arrow" onPress={() => { console.log('9898我是定位位置'); }} size={getViewSize(20)} color={commonStyles.black} />
                 </View>
-                <Animated.View style={[styles.communityNameContainer, communityNameAnimatedStyle]}>
+                <Animated.View style={styles.communityNameContainer} animatedProps={communityNameAnimatedStyle}>
                     <Text style={styles.communityName} ellipsizeMode='middle' numberOfLines={1}>清华大学光华学院</Text>
                 </Animated.View>
                 <View style={[styles.settings, styles.avatorSetting]}>
                     <TouchableOpacity onPress={() => { console.log('9898我是个人信息'); }}>
-                        <Animated.Image style={avatorAnimatedStyle} source={{ uri: 'https://tuchuangs.com/imgs/2023/09/18/44d99b5d075ce313.jpg' }} />
+                        <Animated.Image animatedProps={avatorAnimatedStyle} source={{ uri: 'https://tuchuangs.com/imgs/2023/09/18/44d99b5d075ce313.jpg' }} />
                     </TouchableOpacity>
                 </View>
                 {/* 搜索框热区 */}
                 <TouchableWithoutFeedback onPress={() => { console.log('9898我是热区跳转'); }}>
-                    <Animated.View style={[styles.hotArea, hotAreaAnimatedStyle]} />
+                    <Animated.View style={styles.hotArea} animatedProps={hotAreaAnimatedStyle} />
                 </TouchableWithoutFeedback>
             </Animated.View>
         </View>

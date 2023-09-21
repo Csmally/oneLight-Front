@@ -7,8 +7,8 @@ import Icon from 'react-native-vector-icons/AntDesign';
 const SearchBar: React.FC = ({ searchBarSpaceAnimatedStyle, gpaAnimatedStyle }) => {
     return (
         <TouchableWithoutFeedback onPress={() => { console.log('9898跳转页面'); }} style={{ zIndex: 1 }}>
-            <Animated.View style={[styles.container, gpaAnimatedStyle]}>
-                <Animated.View style={searchBarSpaceAnimatedStyle} />
+            <Animated.View style={styles.container} animatedProps={gpaAnimatedStyle}>
+                <Animated.View animatedProps={searchBarSpaceAnimatedStyle} />
                 <Animated.View style={styles.searchContainer}>
                     <Icon name="search1" size={getViewSize(25)} color={commonStyles.black_3a} />
                     <Text style={styles.searchPlaceholder} >搜索更多~</Text>

@@ -7,6 +7,7 @@ import { StyleSheet, View } from "react-native";
 
 const AnimatedHeader: React.FC = (props) => {
     const {
+        scrollY,
         containerAnimatedStyle,
         infoBarAnimatedStyle,
         avatorAnimatedStyle,
@@ -14,14 +15,13 @@ const AnimatedHeader: React.FC = (props) => {
         communityNameAnimatedStyle,
         hotAreaAnimatedStyle,
         searchBarSpaceAnimatedStyle,
-        categoryBarItemAnimatedStyle,
         categoryBarShadowAnimatedStyle,
         categoryColorAnimatedStyle,
         categoryTextSColorSAnimatedStyle,
         categoryTextNColorSAnimatedStyle
     } = props;
     return (
-        <Animated.View style={containerAnimatedStyle}>
+        <Animated.View animatedProps={containerAnimatedStyle}>
             <InfoBar
                 infoBarAnimatedStyle={infoBarAnimatedStyle}
                 avatorAnimatedStyle={avatorAnimatedStyle}
@@ -31,8 +31,8 @@ const AnimatedHeader: React.FC = (props) => {
             <View style={styles.barContainer}>
                 <SearchBar gpaAnimatedStyle={gpaAnimatedStyle} searchBarSpaceAnimatedStyle={searchBarSpaceAnimatedStyle} />
                 <CategoryBar
+                    scrollY={scrollY}
                     categoryBarShadowAnimatedStyle={categoryBarShadowAnimatedStyle}
-                    categoryBarItemAnimatedStyle={categoryBarItemAnimatedStyle}
                     categoryColorAnimatedStyle={categoryColorAnimatedStyle}
                     categoryTextSColorSAnimatedStyle={categoryTextSColorSAnimatedStyle}
                     categoryTextNColorSAnimatedStyle={categoryTextNColorSAnimatedStyle}

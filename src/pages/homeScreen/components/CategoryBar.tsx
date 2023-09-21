@@ -1,7 +1,7 @@
 import { commonStyles } from "@/common/styles";
 import { getViewSize } from "@/utils/sizeTool";
 import { useState } from "react";
-import { StyleSheet, TouchableOpacity } from "react-native";
+import { Platform, StyleSheet, TouchableOpacity } from "react-native";
 import FastImage from "react-native-fast-image";
 import Animated from "react-native-reanimated";
 
@@ -30,12 +30,13 @@ const tabs = [
 
 const CategoryBar: React.FC = (props) => {
     const {
-        categoryBarItemAnimatedStyle,
+        scrollY,
         categoryBarShadowAnimatedStyle,
         categoryColorAnimatedStyle,
         categoryTextSColorSAnimatedStyle,
         categoryTextNColorSAnimatedStyle
     } = props;
+    console.log(`9898刷新${Platform.OS}`, scrollY);
     const [currentTab, setCurrentTab] = useState(0);
     return (
         <Animated.ScrollView
@@ -51,14 +52,13 @@ const CategoryBar: React.FC = (props) => {
                         onPress={() => setCurrentTab(index)}
                     >
                         <Animated.View
-                            style={[
-                                styles.tabItem, index === currentTab ? categoryColorAnimatedStyle : categoryBarShadowAnimatedStyle,
-                                categoryBarItemAnimatedStyle,
-                            ]}
+                            style={styles.tabItem}
+                            animatedProps={index === currentTab ? categoryColorAnimatedStyle : categoryBarShadowAnimatedStyle}
                         >
                             <FastImage source={item.img} style={styles.tabIcon} />
                             <Animated.Text
-                                style={[styles.tabTitle, index === currentTab ? categoryTextSColorSAnimatedStyle : categoryTextNColorSAnimatedStyle]}
+                                style={styles.tabTitle}
+                                animatedProps={index === currentTab ? categoryTextSColorSAnimatedStyle : categoryTextNColorSAnimatedStyle}
                                 ellipsizeMode='middle'
                                 numberOfLines={1}
                             >

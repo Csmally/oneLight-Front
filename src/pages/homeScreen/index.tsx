@@ -116,9 +116,7 @@ const HomeScreen: React.FC = () => {
     };
     useEffect(() => {
         // Storage.set(CONSTS_VALUE.LOGIN_STATUS,false);
-        setTimeout(() => {
-            SplashScreen.hide();
-        }, 2500);
+        SplashScreen.hide();
     }, []);
     // 滑动距离
     const scrollY = useSharedValue(0);
@@ -134,7 +132,6 @@ const HomeScreen: React.FC = () => {
         communityNameAnimatedStyle,
         hotAreaAnimatedStyle,
         searchBarSpaceAnimatedStyle,
-        categoryBarItemAnimatedStyle,
         categoryBarShadowAnimatedStyle,
         gpaAnimatedStyle,
         categoryColorAnimatedStyle,
@@ -158,13 +155,13 @@ const HomeScreen: React.FC = () => {
                 ListHeaderComponent={
                     () => (
                         <AnimatedHeader
+                            scrollY={scrollY}
                             containerAnimatedStyle={containerAnimatedStyle}
                             infoBarAnimatedStyle={infoBarAnimatedStyle}
                             avatorAnimatedStyle={avatorAnimatedStyle}
                             communityNameAnimatedStyle={communityNameAnimatedStyle}
                             hotAreaAnimatedStyle={hotAreaAnimatedStyle}
                             searchBarSpaceAnimatedStyle={searchBarSpaceAnimatedStyle}
-                            categoryBarItemAnimatedStyle={categoryBarItemAnimatedStyle}
                             categoryBarShadowAnimatedStyle={categoryBarShadowAnimatedStyle}
                             gpaAnimatedStyle={gpaAnimatedStyle}
                             categoryColorAnimatedStyle={categoryColorAnimatedStyle}

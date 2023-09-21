@@ -76,24 +76,6 @@ const useHeaterAnimatedStyles = (scrollY: SharedValue<number>, initTopbarHeight:
             width,
         };
     });
-    // 映射分类栏动画样式
-    const categoryBarItemAnimatedStyle = useAnimatedProps(() => {
-        // 边距
-        const gapStyle = interpolate(scrollY.value, [0, 200], [10, 0], {
-            extrapolateLeft: Extrapolation.CLAMP,
-            extrapolateRight: Extrapolation.CLAMP,
-        });
-        // 圆角
-        const borderRadius = interpolate(scrollY.value, [0, 200], [25, 0], {
-            extrapolateLeft: Extrapolation.CLAMP,
-            extrapolateRight: Extrapolation.CLAMP,
-        });
-        return {
-            marginLeft: gapStyle,
-            marginVertical: gapStyle,
-            borderRadius
-        };
-    });
     // 映射分类栏阴影动画样式
     const categoryBarShadowAnimatedStyle = useAnimatedProps(() => {
         // 阴影宽度 & 安卓elevation
@@ -113,7 +95,19 @@ const useHeaterAnimatedStyles = (scrollY: SharedValue<number>, initTopbarHeight:
         });
         // 背景颜色
         const backgroundColor = interpolateColor(scrollY.value, [0, 200], ['rgba(255, 255, 255,1)', 'rgba(255, 255, 255,0)']);
+        const gapStyle = interpolate(scrollY.value, [0, 200], [10, 0], {
+            extrapolateLeft: Extrapolation.CLAMP,
+            extrapolateRight: Extrapolation.CLAMP,
+        });
+        // 圆角
+        const borderRadius = interpolate(scrollY.value, [0, 200], [25, 0], {
+            extrapolateLeft: Extrapolation.CLAMP,
+            extrapolateRight: Extrapolation.CLAMP,
+        });
         return {
+            marginLeft: gapStyle,
+            marginVertical: gapStyle,
+            borderRadius,
             shadowOffset: {
                 width: 0,
                 height: shadowWidth
@@ -121,7 +115,8 @@ const useHeaterAnimatedStyles = (scrollY: SharedValue<number>, initTopbarHeight:
             shadowOpacity,
             shadowRadius,
             elevation: shadowWidth,
-            shadowColor: Platform.OS === 'ios' ? '#cecece' : '#000000',
+            // shadowColor: Platform.OS === 'ios' ? '#cecece' : '#000000',
+            shadowColor: 'red',
             backgroundColor
         };
     });
@@ -140,7 +135,20 @@ const useHeaterAnimatedStyles = (scrollY: SharedValue<number>, initTopbarHeight:
     const categoryColorAnimatedStyle = useAnimatedProps(() => {
         // 背景颜色
         const backgroundColor = interpolateColor(scrollY.value, [0, 200], ['rgba(0, 0, 0,1)', 'rgba(0, 0, 0,0)']);
+        // 边距
+        const gapStyle = interpolate(scrollY.value, [0, 200], [10, 0], {
+            extrapolateLeft: Extrapolation.CLAMP,
+            extrapolateRight: Extrapolation.CLAMP,
+        });
+        // 圆角
+        const borderRadius = interpolate(scrollY.value, [0, 200], [25, 0], {
+            extrapolateLeft: Extrapolation.CLAMP,
+            extrapolateRight: Extrapolation.CLAMP,
+        });
         return {
+            marginLeft: gapStyle,
+            marginVertical: gapStyle,
+            borderRadius,
             backgroundColor,
         };
     });
@@ -149,7 +157,7 @@ const useHeaterAnimatedStyles = (scrollY: SharedValue<number>, initTopbarHeight:
         // 背景颜色
         const color = interpolateColor(scrollY.value, [0, 200], ['#ffffff', '#000000']);
         return {
-            color,
+            color
         };
     });
     // 分类栏字体色变化动画(未选中)
@@ -157,7 +165,7 @@ const useHeaterAnimatedStyles = (scrollY: SharedValue<number>, initTopbarHeight:
         // 背景颜色
         const color = interpolateColor(scrollY.value, [0, 200], ['#000000', '#ffffff']);
         return {
-            color,
+            color
         };
     });
     return {
@@ -166,7 +174,6 @@ const useHeaterAnimatedStyles = (scrollY: SharedValue<number>, initTopbarHeight:
         communityNameAnimatedStyle,
         hotAreaAnimatedStyle,
         searchBarSpaceAnimatedStyle,
-        categoryBarItemAnimatedStyle,
         categoryBarShadowAnimatedStyle,
         containerAnimatedStyle,
         gpaAnimatedStyle,
