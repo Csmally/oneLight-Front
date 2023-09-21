@@ -1,8 +1,9 @@
 import { commonStyles, getCommonShadowStyle } from "@/common/styles";
 import { getViewSize } from "@/utils/sizeTool";
 import { useState } from "react";
-import { ScrollView, StyleSheet, Text, TouchableOpacity } from "react-native";
+import { StyleSheet, Text, TouchableOpacity } from "react-native";
 import FastImage from "react-native-fast-image";
+import Animated from "react-native-reanimated";
 
 const tabs = [
     {
@@ -27,35 +28,41 @@ const tabs = [
     },
 ];
 
-const CategoryTabs: React.FC = () => {
+const CategoryBar: React.FC = (props) => {
+    const { categoryBarItemAnimatedStyle, categoryBarShadowAnimatedStyle, searchBarAnimatedStyle } = props;
     const [currentTab, setCurrentTab] = useState(0);
     return (
-        <ScrollView
+        <Animated.ScrollView
             horizontal
-            bounces={false}
             showsHorizontalScrollIndicator={false}
-            contentContainerStyle={{ paddingVertical: 10, paddingRight: commonStyles.pageBorderGap }}
+            style={[{ zIndex: 2 }, searchBarAnimatedStyle]}
         >
             {
                 tabs.map((item, index) => (
                     <TouchableOpacity
                         key={index}
                         activeOpacity={0.6}
-                        style={[styles.tabItem, index === currentTab ? styles.selectTab : styles.tab]}
                         onPress={() => setCurrentTab(index)}
                     >
-                        <FastImage source={item.img} style={styles.tabIcon} />
-                        <Text
-                            style={index === currentTab ? styles.selectTabTitle : styles.tabTitle}
-                            ellipsizeMode='middle'
-                            numberOfLines={1}
+                        <Animated.View
+                            style={[
+                                styles.tabItem, index === currentTab ? styles.selectTab : categoryBarShadowAnimatedStyle,
+                                categoryBarItemAnimatedStyle,
+                            ]}
                         >
-                            {item.title}
-                        </Text>
+                            <FastImage source={item.img} style={styles.tabIcon} />
+                            <Text
+                                style={index === currentTab ? styles.selectTabTitle : styles.tabTitle}
+                                ellipsizeMode='middle'
+                                numberOfLines={1}
+                            >
+                                {item.title}
+                            </Text>
+                        </Animated.View>
                     </TouchableOpacity>
                 ))
             }
-        </ScrollView>
+        </Animated.ScrollView >
     );
 };
 
@@ -65,14 +72,22 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         width: getViewSize(100),
-        height: getViewSize(46),
-        borderRadius: getViewSize(23),
-        marginLeft: commonStyles.pageBorderGap,
+        height: 50,
         backgroundColor: commonStyles.white,
+        marginTop: commonStyles.pageBorderGap,
         paddingHorizontal: getViewSize(20),
     },
-    tab: {
+    tab1: {
         ...getCommonShadowStyle().style
+    },
+    tab: {
+        // shadowOffset: {
+        //     width: 0,
+        //     height: shadowStyles.shadowWidth
+        // },
+        // shadowOpacity: shadowStyles.shadowOpacity,
+        // shadowRadius: shadowStyles.shadowRadius,
+        // shadowColor: shadowStyles.shadowColorForIos,
     },
     selectTab: {
         backgroundColor: commonStyles.black
@@ -95,4 +110,4 @@ const styles = StyleSheet.create({
     }
 });
 
-export default CategoryTabs;
+export default CategoryBar;

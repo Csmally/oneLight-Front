@@ -120,17 +120,24 @@ const HomeScreen: React.FC = () => {
             SplashScreen.hide();
         }, 2500);
     }, []);
-    // 滑动事件
+    // 滑动距离
     const scrollY = useSharedValue(0);
+    // 滑动事件
     const scrollHandler = useAnimatedScrollHandler((event) => {
         scrollY.value = event.contentOffset.y;
     });
+    const initTopbarHeight = getNavigationConsts().statusBarHeight + 180;
     const {
+        containerAnimatedStyle,
         infoBarAnimatedStyle,
         avatorAnimatedStyle,
         searchBarAnimatedStyle,
         communityNameAnimatedStyle,
-    } = useHeaterAnimatedStyles(scrollY);
+        hotAreaAnimatedStyle,
+        searchBarSpaceAnimatedStyle,
+        categoryBarItemAnimatedStyle,
+        categoryBarShadowAnimatedStyle,
+    } = useHeaterAnimatedStyles(scrollY, initTopbarHeight);
     return (
         <View style={Platform.OS === 'ios' ? styles.pageForIos : styles.pageForAndroid} >
             <Animated.FlatList
@@ -148,10 +155,15 @@ const HomeScreen: React.FC = () => {
                 ListHeaderComponent={
                     () => (
                         <AnimatedHeader
+                            containerAnimatedStyle={containerAnimatedStyle}
                             infoBarAnimatedStyle={infoBarAnimatedStyle}
                             avatorAnimatedStyle={avatorAnimatedStyle}
                             searchBarAnimatedStyle={searchBarAnimatedStyle}
                             communityNameAnimatedStyle={communityNameAnimatedStyle}
+                            hotAreaAnimatedStyle={hotAreaAnimatedStyle}
+                            searchBarSpaceAnimatedStyle={searchBarSpaceAnimatedStyle}
+                            categoryBarItemAnimatedStyle={categoryBarItemAnimatedStyle}
+                            categoryBarShadowAnimatedStyle={categoryBarShadowAnimatedStyle}
                         />
                     )
                 }
