@@ -11,7 +11,7 @@ const imgUrls = [
     'https://tuchuangs.com/imgs/2023/04/23/d12921d23883b1d7.jpeg',
     'https://tuchuangs.com/imgs/2023/04/23/1bc98cb602be8e78.jpeg'
 ];
-const WelcomeScreen: React.FC = () => {
+function WelcomeScreen() {
     const [activeIndex, setActiveIndex] = useState(0);
     useEffect(() => {
         setTimeout(() => {
@@ -39,7 +39,7 @@ const WelcomeScreen: React.FC = () => {
             </View >
         </View>
     );
-};
+}
 
 const styles = StyleSheet.create({
     page: {

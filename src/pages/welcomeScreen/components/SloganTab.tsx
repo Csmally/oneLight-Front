@@ -2,7 +2,7 @@ import { getViewSize, getFontSize } from '@/utils/sizeTool';
 import { StyleSheet, View, Text, TouchableOpacity } from 'react-native';
 import { Navigation } from "react-native-navigation";
 
-const SloganTab: React.FC = () => {
+function SloganTab() {
     const joinUs = () => {
         console.log('加入我们！！！');
     };
@@ -43,7 +43,7 @@ const SloganTab: React.FC = () => {
             </TouchableOpacity>
         </View>
     );
-};
+}
 
 const styles = StyleSheet.create({
     container: {

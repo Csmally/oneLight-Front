@@ -1,13 +1,13 @@
 import { StyleSheet } from 'react-native';
 import { Text, View } from 'react-native-ui-lib';
 
-const MineScreen: React.FC = () => {
+function MineScreen() {
     return (
         <View style={styles.test}>
             <Text>我的页</Text>
         </View>
     );
-};
+}
 
 const styles = StyleSheet.create({
     test: {

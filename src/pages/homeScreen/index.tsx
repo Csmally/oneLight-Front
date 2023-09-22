@@ -105,7 +105,7 @@ const TestItem = ({ item }: { item: any }) => {
     );
 };
 
-const HomeScreen: React.FC = () => {
+function HomeScreen() {
     const [isRefreshing, setIsRefreshing] = useState(false);
     const tt = () => {
         setIsRefreshing(true);
@@ -158,7 +158,7 @@ const HomeScreen: React.FC = () => {
             </View>
         </View>
     );
-};
+}
 
 const styles = StyleSheet.create({
     pageForIos: {

@@ -4,7 +4,7 @@ import Icon from 'react-native-vector-icons/FontAwesome5';
 import { getFontSize, getViewSize } from '@/utils/sizeTool';
 import { StyleSheet, ActivityIndicator, TouchableWithoutFeedback } from "react-native";
 
-const CodeSender: React.FC = () => {
+function CodeSender() {
     const [status, setStatus] = useState(true);
     const [second, setSecond] = useState(30);
     const secondRef = useRef(30);
@@ -52,7 +52,7 @@ const CodeSender: React.FC = () => {
                 </View>
             </TouchableWithoutFeedback>
     );
-};
+}
 
 const styles = StyleSheet.create({
     container: {
