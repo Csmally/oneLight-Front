@@ -1,5 +1,6 @@
 import { commonStyles } from "@/common/styles";
 import { getViewSize } from "@/utils/sizeTool";
+import { memo } from "react";
 import { Platform, StyleSheet, TouchableOpacity } from "react-native";
 import FastImage from "react-native-fast-image";
 import Animated, { Extrapolation, SharedValue, interpolate, interpolateColor, useAnimatedStyle } from "react-native-reanimated";
@@ -57,7 +58,8 @@ function CategoryItem({ categoryInfo, scrollY, setActiveTabIndex, selfIndex, act
             shadowOpacity,
             shadowRadius,
             elevation: shadowWidth,
-            shadowColor: Platform.OS === 'ios' ? '#cecece' : '#000000',
+            // shadowColor: Platform.OS === 'ios' ? '#cecece' : '#000000',
+            shadowColor: 'red'
         } : {};
         return {
             marginLeft: gapStyle,
@@ -124,4 +126,6 @@ const styles = StyleSheet.create({
         fontFamily: 'System'
     },
 });
-export default CategoryItem;
+export default memo(CategoryItem, (prevProps, nextProps) => {
+    return prevProps.activeTabIndex !== nextProps.selfIndex && nextProps.activeTabIndex !== nextProps.selfIndex;
+});
