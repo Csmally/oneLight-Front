@@ -6,7 +6,7 @@ type OpacitySwiperProps = {
     onIndexChanged: (index: number) => void;
     imgUrls: string[]
 }
-const OpacitySwiper: React.FC<OpacitySwiperProps> = ({ onIndexChanged, imgUrls }) => {
+function OpacitySwiper({ onIndexChanged, imgUrls }: OpacitySwiperProps) {
     const [activeIndex, setActiveIndex] = useState(0);
     useEffect(() => {
         const timer = setTimeout(() => {

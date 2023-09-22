@@ -12,7 +12,7 @@ import FastImage from "react-native-fast-image";
 type LoginScreenProps = {
     componentId: string
 }
-const LoginScreen: React.FC<LoginScreenProps> = () => {
+function LoginScreen() {
     const [isShowPassCode, setIShowPassCode] = useState(false);
     const [account, setAccount] = useState('');
     const [passCode, setPassCode] = useState('');
@@ -93,7 +93,7 @@ const LoginScreen: React.FC<LoginScreenProps> = () => {
             </View>
         </Animated.View>
     );
-};
+}
 
 const styles = StyleSheet.create({
     container: {

@@ -5,19 +5,19 @@ type PageCounterProps = {
     total: number,
     activeIndex: number
 }
-const PageCounter: React.FC<PageCounterProps> = ({ total, activeIndex }) => {
+function PageCounter({ total, activeIndex }: PageCounterProps) {
     return (
         <View style={styles.container}>
             {
                 new Array(total).fill(undefined).map((item, index) => {
                     return (
-                        <Doter key={index} selfIndex={index} activeIndex={activeIndex}/>
+                        <Doter key={index} selfIndex={index} activeIndex={activeIndex} />
                     );
                 })
             }
         </View>
     );
-};
+}
 
 const styles = StyleSheet.create({
     container: {

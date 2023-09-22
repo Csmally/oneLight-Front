@@ -7,7 +7,7 @@ type DoterProps = {
     selfIndex: number,
     activeIndex: number
 }
-const Doter: React.FC<DoterProps> = ({ selfIndex, activeIndex }) => {
+function Doter({ selfIndex, activeIndex }: DoterProps) {
     const animatedWidth = useSharedValue(getViewSize(16));
     const animatedHeight = useSharedValue(getViewSize(6));
     const animatedColor = useSharedValue('#999999');

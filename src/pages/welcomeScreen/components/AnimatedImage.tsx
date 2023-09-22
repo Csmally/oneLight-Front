@@ -7,7 +7,7 @@ type AnimatedImageProps = {
     selfIndex: number,
     activeIndex: number
 }
-const AnimatedImage: React.FC<AnimatedImageProps> = ({ uri, selfIndex, activeIndex }) => {
+function AnimatedImage({ uri, selfIndex, activeIndex }: AnimatedImageProps) {
     const animatedOpacity = useSharedValue(0);
     const animatedStyles = useAnimatedStyle(() => {
         return {
@@ -32,7 +32,7 @@ const AnimatedImage: React.FC<AnimatedImageProps> = ({ uri, selfIndex, activeInd
                 animatedStyles
             ]} />
     );
-};
+}
 
 const styles = StyleSheet.create({
     container: {

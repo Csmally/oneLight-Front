@@ -8,7 +8,6 @@ import { getNavigationConsts } from '@/utils/loadAppTools';
 import { BlurView } from '@react-native-community/blur';
 import AnimatedHeader from './components/AnimatedHeader';
 import Animated, { useAnimatedRef, useAnimatedScrollHandler, useSharedValue } from 'react-native-reanimated';
-import useHeaterAnimatedStyles from './useHeaterAnimatedStyles';
 
 const DATA: NewsItem[] = [
     {
@@ -118,7 +117,7 @@ const HomeScreen: React.FC = () => {
         // Storage.set(CONSTS_VALUE.LOGIN_STATUS,false);
         SplashScreen.hide();
     }, []);
-    const flatListRef = useAnimatedRef();
+    const flatListRef = useAnimatedRef<Animated.FlatList<NewsItem>>();
     // 滑动距离
     const scrollY = useSharedValue(0);
     // 滑动事件
@@ -126,23 +125,10 @@ const HomeScreen: React.FC = () => {
         scrollY.value = event.contentOffset.y;
     });
     const initTopbarHeight = getNavigationConsts().statusBarHeight + 190;
-    const {
-        containerAnimatedStyle,
-        infoBarAnimatedStyle,
-        avatorAnimatedStyle,
-        communityNameAnimatedStyle,
-        hotAreaAnimatedStyle,
-        searchBarSpaceAnimatedStyle,
-        categoryBarShadowAnimatedStyle,
-        gpaAnimatedStyle,
-        categoryColorAnimatedStyle,
-        categoryTextSColorSAnimatedStyle,
-        categoryTextNColorSAnimatedStyle,
-    } = useHeaterAnimatedStyles(scrollY, initTopbarHeight);
     return (
         <View style={Platform.OS === 'ios' ? styles.pageForIos : styles.pageForAndroid} >
             <Animated.FlatList
-                ref={ref => flatListRef.current = ref}
+                ref={flatListRef}
                 contentInsetAdjustmentBehavior='never'
                 contentContainerStyle={{
                     paddingBottom: getNavigationConsts().bottomTabsHeight
@@ -158,18 +144,9 @@ const HomeScreen: React.FC = () => {
                 ListHeaderComponent={
                     () => (
                         <AnimatedHeader
+                            scrollY={scrollY}
+                            initTopbarHeight={initTopbarHeight}
                             flatListRef={flatListRef}
-                            containerAnimatedStyle={containerAnimatedStyle}
-                            infoBarAnimatedStyle={infoBarAnimatedStyle}
-                            avatorAnimatedStyle={avatorAnimatedStyle}
-                            communityNameAnimatedStyle={communityNameAnimatedStyle}
-                            hotAreaAnimatedStyle={hotAreaAnimatedStyle}
-                            searchBarSpaceAnimatedStyle={searchBarSpaceAnimatedStyle}
-                            categoryBarShadowAnimatedStyle={categoryBarShadowAnimatedStyle}
-                            gpaAnimatedStyle={gpaAnimatedStyle}
-                            categoryColorAnimatedStyle={categoryColorAnimatedStyle}
-                            categoryTextSColorSAnimatedStyle={categoryTextSColorSAnimatedStyle}
-                            categoryTextNColorSAnimatedStyle={categoryTextNColorSAnimatedStyle}
                         />
                     )
                 }

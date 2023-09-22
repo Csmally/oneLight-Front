@@ -2,48 +2,38 @@ import { BlurView } from "@react-native-community/blur";
 import CategoryBar from "./CategoryBar";
 import InfoBar from "./InfoBar";
 import SearchBar from "./SearchBar";
-import Animated from "react-native-reanimated";
+import Animated, { AnimatedRef, Extrapolation, SharedValue, interpolate, useAnimatedStyle } from "react-native-reanimated";
 import { StyleSheet, View } from "react-native";
 
-const AnimatedHeader: React.FC = (props) => {
-    const {
-        flatListRef,
-        containerAnimatedStyle,
-        infoBarAnimatedStyle,
-        avatorAnimatedStyle,
-        gpaAnimatedStyle,
-        communityNameAnimatedStyle,
-        hotAreaAnimatedStyle,
-        searchBarSpaceAnimatedStyle,
-        categoryBarShadowAnimatedStyle,
-        categoryColorAnimatedStyle,
-        categoryTextSColorSAnimatedStyle,
-        categoryTextNColorSAnimatedStyle
-    } = props;
+type AnimatedHeaderProps = {
+    scrollY: SharedValue<number>,
+    initTopbarHeight: number,
+    flatListRef: AnimatedRef<Animated.FlatList<NewsItem>>
+}
+
+function AnimatedHeader({ scrollY, initTopbarHeight, flatListRef }: AnimatedHeaderProps) {
+    // 映射头部组件高度动画样式
+    const containerAnimatedStyle = useAnimatedStyle(() => {
+        // height
+        const height = interpolate(scrollY.value, [0, 200], [initTopbarHeight, initTopbarHeight - 90], {
+            extrapolateLeft: Extrapolation.CLAMP,
+            extrapolateRight: Extrapolation.CLAMP,
+        });
+        return { height };
+    });
     return (
-        <Animated.View animatedProps={containerAnimatedStyle}>
-            <InfoBar
-                infoBarAnimatedStyle={infoBarAnimatedStyle}
-                avatorAnimatedStyle={avatorAnimatedStyle}
-                communityNameAnimatedStyle={communityNameAnimatedStyle}
-                hotAreaAnimatedStyle={hotAreaAnimatedStyle}
-            />
+        <Animated.View style={containerAnimatedStyle}>
+            <InfoBar scrollY={scrollY} />
             <View style={styles.barContainer}>
-                <SearchBar gpaAnimatedStyle={gpaAnimatedStyle} searchBarSpaceAnimatedStyle={searchBarSpaceAnimatedStyle} />
-                <CategoryBar
-                    flatListRef={flatListRef}
-                    categoryBarShadowAnimatedStyle={categoryBarShadowAnimatedStyle}
-                    categoryColorAnimatedStyle={categoryColorAnimatedStyle}
-                    categoryTextSColorSAnimatedStyle={categoryTextSColorSAnimatedStyle}
-                    categoryTextNColorSAnimatedStyle={categoryTextNColorSAnimatedStyle}
-                />
+                <SearchBar scrollY={scrollY} />
+                <CategoryBar scrollY={scrollY} flatListRef={flatListRef} />
             </View>
             <View style={styles.blurContainer}>
                 <BlurView style={{ flex: 1 }} blurType='xlight' blurAmount={50} />
             </View>
         </Animated.View>
     );
-};
+}
 
 const styles = StyleSheet.create({
     blurContainer: {
