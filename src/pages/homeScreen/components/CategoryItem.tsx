@@ -1,7 +1,6 @@
-import { commonStyles } from "@/common/styles";
 import { getViewSize } from "@/utils/sizeTool";
 import { memo } from "react";
-import { Platform, StyleSheet, TouchableOpacity } from "react-native";
+import { Platform, StyleSheet, TouchableWithoutFeedback } from "react-native";
 import FastImage from "react-native-fast-image";
 import Animated, { Extrapolation, SharedValue, interpolate, interpolateColor, useAnimatedStyle } from "react-native-reanimated";
 
@@ -12,13 +11,13 @@ type CategoryItemInfo = {
 type CategoryItemProps = {
     scrollY: SharedValue<number>,
     categoryInfo: CategoryItemInfo,
-    setActiveTabIndex: (index: number) => void,
+    changeActiveTab: (index: number) => void,
     selfIndex: number,
-    activeTabIndex: number
+    activeTabIndex: number,
 }
 
-function CategoryItem({ categoryInfo, scrollY, setActiveTabIndex, selfIndex, activeTabIndex }: CategoryItemProps) {
-    // 分类栏item的容器动画
+function CategoryItem({ categoryInfo, scrollY, changeActiveTab, selfIndex, activeTabIndex }: CategoryItemProps) {
+    // 分类栏item的容器动画（边距、阴影）
     const categoryContainerAnimatedStyle = useAnimatedStyle(() => {
         // 背景颜色
         const backgroundColor = interpolateColor(scrollY.value, [0, 200], [
@@ -50,7 +49,7 @@ function CategoryItem({ categoryInfo, scrollY, setActiveTabIndex, selfIndex, act
             extrapolateLeft: Extrapolation.CLAMP,
             extrapolateRight: Extrapolation.CLAMP,
         });
-        const shadowStyle = selfIndex !== activeTabIndex ? {
+        const shadowStyle = {
             shadowOffset: {
                 width: 0,
                 height: shadowWidth
@@ -58,15 +57,18 @@ function CategoryItem({ categoryInfo, scrollY, setActiveTabIndex, selfIndex, act
             shadowOpacity,
             shadowRadius,
             elevation: shadowWidth,
-            // shadowColor: Platform.OS === 'ios' ? '#cecece' : '#000000',
-            shadowColor: 'red'
-        } : {};
+            shadowColor: Platform.OS === 'ios' ? '#cecece' : '#000000',
+        };
+        const noShadowStyle = {
+            shadowOpacity: 0,
+            elevation: 0,
+        };
         return {
             marginLeft: gapStyle,
             marginVertical: gapStyle,
             borderRadius,
             backgroundColor,
-            ...shadowStyle
+            ...selfIndex === activeTabIndex ? noShadowStyle : shadowStyle
         };
     });
     // 分类栏字体色变化动画(选中)
@@ -80,10 +82,7 @@ function CategoryItem({ categoryInfo, scrollY, setActiveTabIndex, selfIndex, act
         };
     });
     return (
-        <TouchableOpacity
-            activeOpacity={0.6}
-            onPress={() => setActiveTabIndex(selfIndex)}
-        >
+        <TouchableWithoutFeedback onPress={() => changeActiveTab(selfIndex)}>
             <Animated.View
                 style={[
                     styles.tabItem,
@@ -102,7 +101,7 @@ function CategoryItem({ categoryInfo, scrollY, setActiveTabIndex, selfIndex, act
                     {categoryInfo.title}
                 </Animated.Text>
             </Animated.View>
-        </TouchableOpacity>
+        </TouchableWithoutFeedback>
     );
 }
 
@@ -113,8 +112,6 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         width: getViewSize(100),
         height: 50,
-        backgroundColor: commonStyles.white,
-        paddingHorizontal: getViewSize(20)
     },
     tabIcon: {
         width: getViewSize(18),

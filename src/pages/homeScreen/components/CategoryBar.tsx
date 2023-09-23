@@ -1,6 +1,7 @@
-import { useState } from "react";
+import { useCallback, useState } from "react";
 import Animated, { AnimatedRef, SharedValue } from "react-native-reanimated";
 import CategoryItem from "./CategoryItem";
+import { FlatList } from "react-native";
 
 const tabs = [
     {
@@ -27,11 +28,15 @@ const tabs = [
 
 type CategoryBarProps = {
     scrollY: SharedValue<number>,
-    flatListRef: AnimatedRef<Animated.FlatList<NewsItem>>
+    flatListRef: AnimatedRef<FlatList<NewsItem>>
 }
 
-function CategoryBar({ scrollY }: CategoryBarProps) {
+function CategoryBar({ scrollY, flatListRef }: CategoryBarProps) {
     const [activeTabIndex, setActiveTabIndex] = useState(0);
+    const changeActiveTab = useCallback((index: number) => {
+        setActiveTabIndex(index);
+        flatListRef.current?.scrollToOffset({ offset: 0, animated: true });
+    }, [flatListRef]);
     return (
         <Animated.ScrollView
             horizontal
@@ -44,7 +49,7 @@ function CategoryBar({ scrollY }: CategoryBarProps) {
                         key={index}
                         categoryInfo={item}
                         scrollY={scrollY}
-                        setActiveTabIndex={setActiveTabIndex}
+                        changeActiveTab={changeActiveTab}
                         selfIndex={index}
                         activeTabIndex={activeTabIndex}
                     />

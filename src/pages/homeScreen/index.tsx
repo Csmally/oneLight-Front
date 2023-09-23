@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Platform, RefreshControl, StyleSheet, Text } from 'react-native';
+import { FlatList, Platform, RefreshControl, StyleSheet, Text } from 'react-native';
 import SplashScreen from 'react-native-splash-screen';
 import { View } from 'react-native-ui-lib';
 import Storage from '@/storage';
@@ -8,94 +8,8 @@ import { getNavigationConsts } from '@/utils/loadAppTools';
 import { BlurView } from '@react-native-community/blur';
 import AnimatedHeader from './components/AnimatedHeader';
 import Animated, { useAnimatedRef, useAnimatedScrollHandler, useSharedValue } from 'react-native-reanimated';
-
-const DATA: NewsItem[] = [
-    {
-        id: 'bd7acbea-c1b1-46c2-aed5-3ad53abb28b1',
-        title: '1 Item',
-        color: 'green'
-    },
-    {
-        id: '3ac68afc-c605-48d3-a4f8-fbd91aa97f62',
-        title: '2 Item',
-        color: 'red'
-    },
-    {
-        id: '58694a0f-3da1-471f-bd96-145571e29d73',
-        title: '3 Item',
-        color: 'white'
-    },
-    {
-        id: 'bd7acbea-c1b1-46c2-aed5-3ad53abb28b4',
-        title: '4 Item',
-        color: 'black'
-    },
-    {
-        id: '3ac68afc-c605-48d3-a4f8-fbd91aa97f65',
-        title: '5 Item',
-        color: 'blue'
-    },
-    {
-        id: '58694a0f-3da1-471f-bd96-145571e29d76',
-        title: '6 Item',
-        color: 'pink'
-    },
-    {
-        id: 'bd7acbea-c1b1-46c2-aed5-3ad53abb28b7',
-        title: '7 Item',
-        color: 'yellow'
-    },
-    {
-        id: '3ac68afc-c605-48d3-a4f8-fbd91aa97f68',
-        title: '8 Item',
-        color: 'green'
-    },
-    {
-        id: '58694a0f-3da1-471f-bd96-145571e29d79',
-        title: '9 Item',
-        color: 'red'
-    },
-    {
-        id: '58694a0f-3da1-471f-bd96-145571e29d7a',
-        title: '10 Item',
-        color: 'blue'
-    },
-    {
-        id: '58694a0f-3da1-471f-bd96-145571e29d7b',
-        title: '11 Item',
-        color: 'green'
-    },
-    {
-        id: '58694a0f-3da1-471f-bd96-145571e29d7c',
-        title: '12 Item',
-        color: 'pink'
-    },
-    {
-        id: '1',
-        title: '12 Item',
-        color: 'green'
-    },
-    {
-        id: '2',
-        title: '12 Item',
-        color: 'blue'
-    },
-    {
-        id: '3',
-        title: '1241 Item',
-        color: 'yellow'
-    },
-    {
-        id: '4',
-        title: '122 Item',
-        color: 'pink'
-    },
-    {
-        id: '5',
-        title: '123 Item',
-        color: 'green'
-    },
-];
+import News from '@/components/News';
+import newsDataMock from '@/mock/newsData';
 
 const TestItem = ({ item }: { item: any }) => {
     return (
@@ -113,11 +27,17 @@ function HomeScreen() {
             setIsRefreshing(false);
         }, 3000);
     };
+    const [newsData, setNewsData] = useState([]);
+    const getNewsData = () => {
+        newsDataMock.forEach(item => item.id = Math.random());
+        setNewsData(newsDataMock);
+    };
     useEffect(() => {
         // Storage.set(CONSTS_VALUE.LOGIN_STATUS,false);
+        getNewsData();
         SplashScreen.hide();
     }, []);
-    const flatListRef = useAnimatedRef<Animated.FlatList<NewsItem>>();
+    const flatListRef = useAnimatedRef<FlatList<NewsItem>>();
     // 滑动距离
     const scrollY = useSharedValue(0);
     // 滑动事件
@@ -128,16 +48,16 @@ function HomeScreen() {
     return (
         <View style={Platform.OS === 'ios' ? styles.pageForIos : styles.pageForAndroid} >
             <Animated.FlatList
-                ref={flatListRef}
+                ref={ref => flatListRef.current = ref}
                 contentInsetAdjustmentBehavior='never'
                 contentContainerStyle={{
                     paddingBottom: getNavigationConsts().bottomTabsHeight
                 }}
+                keyExtractor={(item, index) => index.toString()}
                 removeClippedSubviews
                 onScroll={scrollHandler}
-                data={DATA}
-                renderItem={({ item }) => <TestItem item={item} />}
-                keyExtractor={item => item.id}
+                data={newsData}
+                renderItem={({ item }) => <News news={item} />}
                 ItemSeparatorComponent={() => <View height={5}></View>}
                 ListFooterComponent={() => <Text>到底部了</Text>}
                 ListFooterComponentStyle={{ backgroundColor: 'pink' }}

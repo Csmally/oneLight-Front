@@ -1,7 +1,9 @@
-let aa = ['哈哈哈','嘿嘿嘿']
-try {
-    console.log('111:',aa[2].test)
-} catch (error) {
-    console.log('9898错误了')
+let aa = 3;
+let bb = 9;
+let cc = { t1: '111', t2: '222' };
+let dd = { t3: '333', t4: '444' };
+let ee = {
+    cb: 'cbcb',
+    ...aa !== bb ? cc : dd
 }
-console.log('执行到我啦')
+console.log('ee:',ee)
