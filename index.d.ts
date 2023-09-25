@@ -23,10 +23,13 @@ interface StackRoot {
 }
 
 // 信息 常见：首页一条发布信息
-interface NewsItem {
+type NewsItem = {
     id: string,
-    title: string,
-    color: string
+    publisherName: string,
+    avatar: string,
+    imgs: string[],
+    description: string,
+    publishTime: number | string
 }
 
 interface ToastTool {

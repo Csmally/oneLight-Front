@@ -17,7 +17,7 @@ function InfoBar({ scrollY }: InfoBarProps) {
         hotAreaWidth.value = width;
     };
     // 映射信息栏头像动画样式
-    const avatorAnimatedStyle = useAnimatedStyle(() => {
+    const avatarAnimatedStyle = useAnimatedStyle(() => {
         // 头像：宽、高、半径
         const imgStyle = interpolate(scrollY.value, [0, 200], [40, 30], {
             extrapolateLeft: Extrapolation.CLAMP,
@@ -70,9 +70,9 @@ function InfoBar({ scrollY }: InfoBarProps) {
                 <Animated.View style={[styles.communityNameContainer, communityNameAnimatedStyle]}>
                     <Text style={styles.communityName} ellipsizeMode='middle' numberOfLines={1}>清华大学光华学院</Text>
                 </Animated.View>
-                <View style={[styles.settings, styles.avatorSetting]}>
+                <View style={[styles.settings, styles.avatarSetting]}>
                     <TouchableOpacity onPress={() => { console.log('9898我是个人信息'); }}>
-                        <Animated.Image style={avatorAnimatedStyle} source={{ uri: 'https://tuchuangs.com/imgs/2023/09/18/44d99b5d075ce313.jpg' }} />
+                        <Animated.Image style={avatarAnimatedStyle} source={{ uri: 'https://tuchuangs.com/imgs/2023/09/18/44d99b5d075ce313.jpg' }} />
                     </TouchableOpacity>
                 </View>
                 {/* 搜索框热区 */}
@@ -97,7 +97,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         zIndex: 3
     },
-    avatorSetting: {
+    avatarSetting: {
         alignItems: 'flex-end'
     },
     communityNameContainer: {

@@ -1,147 +1,67 @@
-const newsData = [
+const newsData: NewsItem[] = [
     {
-        title: '傻老婆，我爱你！',
-        img: [
-            require('./static/cy1.jpeg'),
-            require('./static/cy2.jpeg'),
-            require('./static/cy3.jpeg'),
-            require('./static/cy4.jpeg'),
-        ]
+        id: '1',
+        publisherName: 'CYXI',
+        avatar: 'https://tuchuangs.com/imgs/2023/09/24/767f8f6dc8ca04e4.jpg',
+        imgs: [
+            'https://tuchuangs.com/imgs/2023/09/24/d455278ce63be540.webp',
+            'https://tuchuangs.com/imgs/2023/09/24/392850b3b26e00b6.webp',
+            'https://tuchuangs.com/imgs/2023/04/23/945f7dee14fb39f4.jpeg',
+            'https://tuchuangs.com/imgs/2023/04/23/d12921d23883b1d7.jpeg',
+            'https://tuchuangs.com/imgs/2023/04/23/1bc98cb602be8e78.jpeg'
+        ],
+        description: '回家啊健身房公交卡是否更加快速的风景还能可贵飞机',
+        publishTime: '刚刚'
     },
     {
-        title: '成怡&杨璇',
-        img: [
-            require('./static/cy1.jpeg'),
-            require('./static/cy2.jpeg'),
-            require('./static/cy3.jpeg'),
-            require('./static/cy4.jpeg'),
-        ]
+        id: '2',
+        publisherName: 'x1',
+        avatar: 'https://tuchuangs.com/imgs/2023/04/23/d12921d23883b1d7.jpeg',
+        imgs: [
+            'https://tuchuangs.com/imgs/2023/04/23/945f7dee14fb39f4.jpeg',
+            'https://tuchuangs.com/imgs/2023/04/23/d12921d23883b1d7.jpeg',
+            'https://tuchuangs.com/imgs/2023/04/23/1bc98cb602be8e78.jpeg'
+        ],
+        description: '减肥黄金时代放假开始就',
+        publishTime: '15分钟前'
     },
     {
-        title: '杨璇❤️❤️❤️成怡',
-        img: [
-            require('./static/cy1.jpeg'),
-            require('./static/cy2.jpeg'),
-            require('./static/cy3.jpeg'),
-            require('./static/cy4.jpeg'),
-        ]
+        id: '3',
+        publisherName: '盖世英雄',
+        avatar: 'https://tuchuangs.com/imgs/2023/09/18/44d99b5d075ce313.jpg',
+        imgs: [
+            'https://tuchuangs.com/imgs/2023/04/23/945f7dee14fb39f4.jpeg',
+            'https://tuchuangs.com/imgs/2023/04/23/d12921d23883b1d7.jpeg',
+            'https://tuchuangs.com/imgs/2023/04/23/1bc98cb602be8e78.jpeg',
+            'https://tuchuangs.com/imgs/2023/09/24/767f8f6dc8ca04e4.jpg'
+        ],
+        description: '减肥黄金时代放假开始就',
+        publishTime: '1小时前'
     },
     {
-        title: '一辈子在一起哦～，哈哈哈哈哈哈哈哈',
-        img: [
-            require('./static/cy1.jpeg'),
-            require('./static/cy2.jpeg'),
-            require('./static/cy3.jpeg'),
-            require('./static/cy4.jpeg'),
-        ]
+        id: '4',
+        publisherName: '呆头鹅&豆',
+        avatar: 'https://tuchuangs.com/imgs/2023/09/24/9e0a6f51b9a3ceed.webp',
+        imgs: [
+            'https://tuchuangs.com/imgs/2023/04/23/945f7dee14fb39f4.jpeg',
+            'https://tuchuangs.com/imgs/2023/04/23/d12921d23883b1d7.jpeg',
+            'https://tuchuangs.com/imgs/2023/04/23/1bc98cb602be8e78.jpeg',
+            'https://tuchuangs.com/imgs/2023/09/18/44d99b5d075ce313.jpg'
+        ],
+        description: '减肥黄金时代放假开始就',
+        publishTime: '2023-09-23 13:12:00'
     },
     {
-        title: '西安，140平，20W，Q5orX4',
-        img: [
-            require('./static/cy1.jpeg'),
-            require('./static/cy2.jpeg'),
-            require('./static/cy3.jpeg'),
-            require('./static/cy4.jpeg'),
-        ]
-    },
-    {
-        title: '一家人就要整整齐齐，健健康康，快快乐乐，嘿嘿嘿～',
-        img: [
-            require('./static/cy1.jpeg'),
-            require('./static/cy2.jpeg'),
-            require('./static/cy3.jpeg'),
-            require('./static/cy4.jpeg'),
-        ]
-    },
-    {
-        title: '初三======>永远👉forever！',
-        img: [
-            require('./static/cy1.jpeg'),
-            require('./static/cy2.jpeg'),
-            require('./static/cy3.jpeg'),
-            require('./static/cy4.jpeg'),
-        ]
-    },
-    {
-        title: '爱你呦～～么么',
-        img: [
-            require('./static/cy1.jpeg'),
-            require('./static/cy2.jpeg'),
-            require('./static/cy3.jpeg'),
-            require('./static/cy4.jpeg'),
-        ]
-    },
-    {
-        title: '傻老婆，我爱你！',
-        img: [
-            require('./static/cy1.jpeg'),
-            require('./static/cy2.jpeg'),
-            require('./static/cy3.jpeg'),
-            require('./static/cy4.jpeg'),
-        ]
-    },
-    {
-        title: '成怡&杨璇',
-        img: [
-            require('./static/cy1.jpeg'),
-            require('./static/cy2.jpeg'),
-            require('./static/cy3.jpeg'),
-            require('./static/cy4.jpeg'),
-        ]
-    },
-    {
-        title: '杨璇❤️❤️❤️成怡',
-        img: [
-            require('./static/cy1.jpeg'),
-            require('./static/cy2.jpeg'),
-            require('./static/cy3.jpeg'),
-            require('./static/cy4.jpeg'),
-        ]
-    },
-    {
-        title: '一辈子在一起哦～，哈哈哈哈哈哈哈哈',
-        img: [
-            require('./static/cy1.jpeg'),
-            require('./static/cy2.jpeg'),
-            require('./static/cy3.jpeg'),
-            require('./static/cy4.jpeg'),
-        ]
-    },
-    {
-        title: '西安，140平，20W，Q5orX4',
-        img: [
-            require('./static/cy1.jpeg'),
-            require('./static/cy2.jpeg'),
-            require('./static/cy3.jpeg'),
-            require('./static/cy4.jpeg'),
-        ]
-    },
-    {
-        title: '一家人就要整整齐齐，健健康康，快快乐乐，嘿嘿嘿～',
-        img: [
-            require('./static/cy1.jpeg'),
-            require('./static/cy2.jpeg'),
-            require('./static/cy3.jpeg'),
-            require('./static/cy4.jpeg'),
-        ]
-    },
-    {
-        title: '初三======>永远👉forever！',
-        img: [
-            require('./static/cy1.jpeg'),
-            require('./static/cy2.jpeg'),
-            require('./static/cy3.jpeg'),
-            require('./static/cy4.jpeg'),
-        ]
-    },
-    {
-        title: '爱你呦～～么么',
-        img: [
-            require('./static/cy1.jpeg'),
-            require('./static/cy2.jpeg'),
-            require('./static/cy3.jpeg'),
-            require('./static/cy4.jpeg'),
-        ]
+        id: '5',
+        publisherName: 'ByteDance',
+        avatar: 'https://tuchuangs.com/imgs/2023/09/24/bd98a868e5299871.png',
+        imgs: [
+            'https://tuchuangs.com/imgs/2023/04/23/945f7dee14fb39f4.jpeg',
+            'https://tuchuangs.com/imgs/2023/04/23/d12921d23883b1d7.jpeg',
+            'https://tuchuangs.com/imgs/2023/04/23/1bc98cb602be8e78.jpeg'
+        ],
+        description: '减肥黄金时代放假开始就',
+        publishTime: '2023-09-23 18:36:28'
     },
 ];
 

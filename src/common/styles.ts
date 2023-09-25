@@ -1,4 +1,3 @@
-import { getFontSize } from "@/utils/sizeTool";
 import { Platform, StyleSheet } from "react-native";
 
 type CommonShadowParams = {
@@ -15,7 +14,7 @@ const commonStyles = {
     black: '#000000',
     black_3a: '#3a3a3a',
     grey_placeholder: '#7b7b7b',
-    topBarFontSize: getFontSize(17),
+    topBarFontSize: 18,
     pageBorderGap: 10,
 };
 
