@@ -9,7 +9,7 @@ import AnimatedHeader from './components/AnimatedHeader';
 import Animated, { useAnimatedRef, useAnimatedScrollHandler, useSharedValue } from 'react-native-reanimated';
 import News from '@/components/News';
 import newsDataMock from '@/mock/newsData';
-import LoadMore from './components/LoadMore';
+import LoadMore from '@/components/LoadMore';
 
 function HomeScreen() {
     const [isRefreshing, setIsRefreshing] = useState(false);
@@ -75,7 +75,7 @@ function HomeScreen() {
                 stickyHeaderIndices={[0]}
                 refreshControl={<RefreshControl refreshing={isRefreshing} onRefresh={tt}></RefreshControl>}
                 onEndReached={loadMoreData}
-                onEndReachedThreshold={0.8}
+                onEndReachedThreshold={0.3}
             />
             <View style={[styles.blurContainer, { height: getNavigationConsts().bottomTabsHeight }]}>
                 <BlurView style={{ flex: 1 }} blurType='xlight' blurAmount={50} />
