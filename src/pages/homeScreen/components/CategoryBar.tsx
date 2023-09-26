@@ -32,6 +32,7 @@ type CategoryBarProps = {
 }
 
 function CategoryBar({ scrollY, flatListRef }: CategoryBarProps) {
+    console.log('9898分类bar刷新');
     const [activeTabIndex, setActiveTabIndex] = useState(0);
     const changeActiveTab = useCallback((index: number) => {
         setActiveTabIndex(index);

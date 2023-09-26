@@ -12,6 +12,7 @@ type CategoryItemInfo = {
 type CategoryItemProps = {
     scrollY: SharedValue<number>,
     categoryInfo: CategoryItemInfo,
+    // eslint-disable-next-line no-unused-vars
     changeActiveTab: (index: number) => void,
     selfIndex: number,
     activeTabIndex: number,
@@ -112,7 +113,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         width: getViewSize(100),
-        height: 50,
+        height: 40
     },
     tabIcon: {
         width: getViewSize(18),
@@ -121,7 +122,8 @@ const styles = StyleSheet.create({
     },
     tabTitle: {
         fontWeight: 'bold',
-        fontFamily: 'System'
+        fontFamily: 'System',
+        lineHeight: getViewSize(18)
     },
 });
 export default memo(CategoryItem, (prevProps, nextProps) => {

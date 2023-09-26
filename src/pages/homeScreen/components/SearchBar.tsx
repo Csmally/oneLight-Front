@@ -31,11 +31,22 @@ function SearchBar({ scrollY }: SearchBarProps) {
             marginVertical: gapStyle,
         };
     });
+    // 搜索框高度动画
+    const heightAnimatedStyle = useAnimatedStyle(() => {
+        // 边距
+        const height = interpolate(scrollY.value, [0, 200], [50, 40], {
+            extrapolateLeft: Extrapolation.CLAMP,
+            extrapolateRight: Extrapolation.CLAMP,
+        });
+        return {
+            height
+        };
+    });
     return (
         <TouchableWithoutFeedback onPress={() => { console.log('9898跳转页面'); }} style={{ zIndex: 1 }}>
             <Animated.View style={[styles.container, gpaAnimatedStyle]} >
                 <Animated.View style={searchBarSpaceAnimatedStyle} />
-                <Animated.View style={styles.searchContainer}>
+                <Animated.View style={[styles.searchContainer, heightAnimatedStyle]}>
                     <Icon name="search1" size={getViewSize(25)} color={commonStyles.black_333} />
                     <Text style={styles.searchPlaceholder} >搜索更多~</Text>
                 </Animated.View>
@@ -55,7 +66,6 @@ const styles = StyleSheet.create({
         flex: 1,
         flexDirection: 'row',
         alignItems: 'center',
-        height: 50,
         paddingHorizontal: 10,
         backgroundColor: commonStyles.white,
         borderRadius: 25,

@@ -50,7 +50,7 @@ function InfoBar({ scrollY }: InfoBarProps) {
         });
         return { opacity };
     });
-    // ff
+    // 热区动画
     const hotAreaAnimatedStyle = useAnimatedStyle(() => {
         // 热区宽度
         const width = interpolate(scrollY.value, [0, 100], [0, hotAreaWidth.value], {
@@ -93,7 +93,7 @@ const styles = StyleSheet.create({
     },
     settings: {
         width: 40,
-        height: 50,
+        height: 40,
         justifyContent: 'center',
         zIndex: 3
     },
@@ -110,7 +110,7 @@ const styles = StyleSheet.create({
         fontWeight: 'bold'
     },
     hotArea: {
-        height: 50,
+        height: '100%',
         position: 'absolute',
         bottom: 0,
         right: commonStyles.pageBorderGap,

@@ -12,6 +12,7 @@ import newsDataMock from '@/mock/newsData';
 import LoadMore from '@/components/LoadMore';
 
 function HomeScreen() {
+    console.log(`9898home刷新${Platform.OS}`);
     const [isRefreshing, setIsRefreshing] = useState(false);
     const [isLoadingMore, setIsLoadingMore] = useState(false);
     const tt = () => {
@@ -22,7 +23,6 @@ function HomeScreen() {
     };
     const [newsData, setNewsData] = useState<NewsItem[]>([]);
     const getNewsData = () => {
-        console.log('9898执行');
         setIsLoadingMore(true);
         const apiData = newsDataMock.map((item, index) => ({
             ...item,
@@ -49,9 +49,14 @@ function HomeScreen() {
     const scrollHandler = useAnimatedScrollHandler((event) => {
         scrollY.value = event.contentOffset.y;
     });
-    const initTopbarHeight = getNavigationConsts().statusBarHeight + 190;
+    const initTopbarHeight = getNavigationConsts().statusBarHeight + 170;
     return (
         <View style={Platform.OS === 'ios' ? styles.pageForIos : styles.pageForAndroid} >
+            <AnimatedHeader
+                scrollY={scrollY}
+                initTopbarHeight={initTopbarHeight}
+                flatListRef={flatListRef}
+            />
             <Animated.FlatList
                 ref={ref => flatListRef.current = ref}
                 contentInsetAdjustmentBehavior='never'
@@ -63,16 +68,8 @@ function HomeScreen() {
                 onScroll={scrollHandler}
                 data={newsData}
                 renderItem={({ item }) => <News news={item} />}
-                ItemSeparatorComponent={() => <View style={{ height: 10 }}></View>}
+                ItemSeparatorComponent={() => <View style={{ height: 10 }} />}
                 ListFooterComponent={<LoadMore isLoadingMore={isLoadingMore} />}
-                ListHeaderComponent={() =>
-                    <AnimatedHeader
-                        scrollY={scrollY}
-                        initTopbarHeight={initTopbarHeight}
-                        flatListRef={flatListRef}
-                    />
-                }
-                stickyHeaderIndices={[0]}
                 refreshControl={<RefreshControl refreshing={isRefreshing} onRefresh={tt}></RefreshControl>}
                 onEndReached={loadMoreData}
                 onEndReachedThreshold={0.3}

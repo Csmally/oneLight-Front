@@ -1,3 +1,4 @@
+import { memo } from "react";
 import { BlurView } from "@react-native-community/blur";
 import CategoryBar from "./CategoryBar";
 import InfoBar from "./InfoBar";
@@ -12,6 +13,7 @@ type AnimatedHeaderProps = {
 }
 
 function AnimatedHeader({ scrollY, initTopbarHeight, flatListRef }: AnimatedHeaderProps) {
+    console.log('9898头部刷新');
     // 映射头部组件高度动画样式
     const containerAnimatedStyle = useAnimatedStyle(() => {
         // height
@@ -62,4 +64,4 @@ const styles = StyleSheet.create({
     }
 });
 
-export default AnimatedHeader;
+export default memo(AnimatedHeader);
