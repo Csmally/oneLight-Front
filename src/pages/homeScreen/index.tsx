@@ -75,7 +75,7 @@ function HomeScreen() {
                 onEndReachedThreshold={0.3}
             />
             <View style={[styles.blurContainer, { height: getNavigationConsts().bottomTabsHeight }]}>
-                <BlurView style={{ flex: 1 }} blurType='xlight' blurAmount={50} />
+                <BlurView style={{ flex: 1 }} blurType='xlight' blurAmount={32} />
             </View>
         </View>
     );

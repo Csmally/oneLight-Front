@@ -19,7 +19,7 @@ function News({ news }: NewsProps) {
             <PublisherInfo news={news} />
             <View style={styles.mainArea}>
                 {!!news.imgs && news.imgs.length > 0 && <Medias medias={news.imgs} />}
-                <Text style={styles.description}>{news.description}</Text>
+                <Text style={styles.description} numberOfLines={2}>{news.description}</Text>
                 {news.tags && news.tags.length > 0 && <Tags tags={news.tags} />}
             </View>
             <View style={styles.controllerBar}>
