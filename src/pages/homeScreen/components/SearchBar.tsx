@@ -36,7 +36,7 @@ function SearchBar({ scrollY }: SearchBarProps) {
             <Animated.View style={[styles.container, gpaAnimatedStyle]} >
                 <Animated.View style={searchBarSpaceAnimatedStyle} />
                 <Animated.View style={styles.searchContainer}>
-                    <Icon name="search1" size={getViewSize(25)} color={commonStyles.black_3a} />
+                    <Icon name="search1" size={getViewSize(25)} color={commonStyles.black_333} />
                     <Text style={styles.searchPlaceholder} >搜索更多~</Text>
                 </Animated.View>
             </Animated.View>
@@ -59,7 +59,7 @@ const styles = StyleSheet.create({
         paddingHorizontal: 10,
         backgroundColor: commonStyles.white,
         borderRadius: 25,
-        ...getCommonShadowStyle().style
+        ...getCommonShadowStyle()
     },
     searchPlaceholder: {
         marginLeft: 8,

@@ -104,7 +104,7 @@ const styles = StyleSheet.create({
         maxWidth: 150,
     },
     communityName: {
-        color: commonStyles.black,
+        color: commonStyles.black_333,
         textAlign: 'center',
         fontSize: commonStyles.topBarFontSize,
         fontWeight: 'bold'

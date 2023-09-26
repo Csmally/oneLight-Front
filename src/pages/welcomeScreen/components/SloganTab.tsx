@@ -1,3 +1,4 @@
+import { commonStyles } from '@/common/styles';
 import { getViewSize, getFontSize } from '@/utils/sizeTool';
 import { StyleSheet, View, Text, TouchableOpacity } from 'react-native';
 import { Navigation } from "react-native-navigation";
@@ -76,11 +77,11 @@ const styles = StyleSheet.create({
         width: getViewSize(150),
         height: getViewSize(46),
         borderRadius: getViewSize(23),
-        backgroundColor: '#000000',
+        backgroundColor: commonStyles.black,
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
-        shadowColor: "#000000",
+        shadowColor: commonStyles.black,
         shadowOffset: {
             width: 0,
             height: 9,
@@ -90,7 +91,7 @@ const styles = StyleSheet.create({
         elevation: 10
     },
     loginText: {
-        color: '#ffffff',
+        color: commonStyles.white,
         fontSize: getFontSize(16),
         fontWeight: 'bold'
     },

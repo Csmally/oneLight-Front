@@ -2,39 +2,31 @@ import { commonStyles } from "@/common/styles";
 import { getViewSize } from "@/utils/sizeTool";
 import { memo } from "react";
 import { StyleSheet, Text, View } from "react-native";
-import FastImage from "react-native-fast-image";
-import Icon from "react-native-vector-icons/MaterialCommunityIcons";
+import Comment from "./widget/Comment";
+import Like from "./widget/Like";
+import PublisherInfo from "./widget/PublisherInfo";
+import Medias from "./widget/Medias";
+import Tags from "./widget/Tags";
 
 type NewsProps = {
     news: NewsItem
 }
+
 function News({ news }: NewsProps) {
-    console.log('9898item刷新', news.publisherName,news.id);
+    console.log('9898item刷新', news.publisherName, news.id);
     return (
         <View style={styles.container}>
-            <View style={styles.publisherInfo}>
-                <FastImage source={{ uri: news.avatar }} style={styles.avatar} />
-                <Text style={styles.publisherName}>{news.publisherName}</Text>
-            </View>
+            <PublisherInfo news={news} />
             <View style={styles.mainArea}>
-                <View style={styles.imgContainer}>
-                    {
-                        news.imgs.map((item, index) => <FastImage key={index} source={{ uri: item }} style={styles.img} />)
-                    }
-                </View>
+                {!!news.imgs && news.imgs.length > 0 && <Medias medias={news.imgs} />}
                 <Text style={styles.description}>{news.description}</Text>
+                {news.tags && news.tags.length > 0 && <Tags tags={news.tags} />}
             </View>
             <View style={styles.controllerBar}>
                 <Text style={styles.publishTime}>{news.publishTime}</Text>
                 <View style={styles.commentLike}>
-                    <View style={styles.comment}>
-                        <Icon name="comment-processing-outline" size={25} />
-                        <Text>评论</Text>
-                    </View>
-                    <View style={styles.like}>
-                        <Icon name="lightning-bolt" size={25} />
-                        <Text>10</Text>
-                    </View>
+                    <Comment />
+                    <Like />
                 </View>
             </View>
         </View>
@@ -48,36 +40,20 @@ const styles = StyleSheet.create({
         marginHorizontal: commonStyles.pageBorderGap,
         padding: commonStyles.pageBorderGap
     },
-    publisherInfo: {
-        flexDirection: 'row',
-        alignItems: 'center'
-    },
     avatar: {
         width: 36,
         height: 36,
         borderRadius: 18
     },
-    publisherName: {
-        marginLeft: 10
-    },
     mainArea: {
-        marginVertical: 10
-    },
-    imgContainer: {
-        flexDirection: 'row',
-        flexWrap: 'wrap',
-        // justifyContent: 'space-between'
-    },
-    img: {
-        width: '32%',
-        height: 120,
-        borderRadius: 10,
-        marginBottom: 10,
-        marginRight: '1.3%'
+        // marginVertical: 10
+        marginTop: 10
     },
     description: {
-        fontSize: 18,
-        fontWeight: 'bold'
+        fontSize: 16,
+        fontWeight: 'bold',
+        color: commonStyles.black_333,
+        marginBottom: 10
     },
     controllerBar: {
         flexDirection: 'row',
@@ -85,24 +61,14 @@ const styles = StyleSheet.create({
         alignItems: 'center'
     },
     publishTime: {
-        color: '#7b7b7b'
+        color: commonStyles.grey_placeholder
     },
     commentLike: {
         flexDirection: 'row',
         alignItems: 'center'
     },
-    comment: {
-        flexDirection: 'row',
-        alignItems: 'center',
-        marginRight: 10
-    },
-    like: {
-        flexDirection: 'row',
-        alignItems: 'center'
-    }
 });
 
 export default memo(News, (prevProps, nextProps) => {
     return prevProps.news.id === nextProps.news.id;
 });
-// export default News;

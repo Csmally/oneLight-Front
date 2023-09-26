@@ -2,6 +2,7 @@ import { LayoutRoot, Navigation } from 'react-native-navigation';
 import Storage from "@/storage";
 import { Assets } from 'react-native-ui-lib';
 import { CONSTS_VALUE } from '@/interfaces/commonEnum';
+import { commonStyles } from '@/common/styles';
 
 //设置app路由
 export const setAppRouter = async (isInitApp?: boolean) => {
@@ -124,7 +125,7 @@ export const setAppRouter = async (isInitApp?: boolean) => {
                     },
                     bottomTab: {
                         textColor: '#959595',
-                        selectedTextColor: '#000000',
+                        selectedTextColor: commonStyles.black,
                         fontSize: 12,
                         animateBadge: true,
                         fontWeight: '500'

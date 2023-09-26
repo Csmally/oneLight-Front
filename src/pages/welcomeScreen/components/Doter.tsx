@@ -2,6 +2,7 @@ import { StyleSheet } from "react-native";
 import { getViewSize } from '@/utils/sizeTool';
 import Animated, { useSharedValue, useAnimatedStyle, withTiming, Easing } from 'react-native-reanimated';
 import React, { useEffect } from "react";
+import { commonStyles } from "@/common/styles";
 
 type DoterProps = {
     selfIndex: number,
@@ -31,7 +32,7 @@ function Doter({ selfIndex, activeIndex }: DoterProps) {
         if (selfIndex === activeIndex) {
             animatedWidth.value = getViewSize(6);
             animatedHeight.value = getViewSize(16);
-            animatedColor.value = '#000000';
+            animatedColor.value = commonStyles.black;
         } else {
             animatedWidth.value = getViewSize(16);
             animatedHeight.value = getViewSize(6);
@@ -41,7 +42,7 @@ function Doter({ selfIndex, activeIndex }: DoterProps) {
     return (
         <Animated.View style={[styles.dotRadius, animatedStyles]} />
     );
-};
+}
 
 const styles = StyleSheet.create({
     dotRadius: {

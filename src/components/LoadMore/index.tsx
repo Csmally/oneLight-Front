@@ -30,7 +30,7 @@ function LoadMoreAnimated() {
     }));
     return (
         <View style={styles.container}>
-            <Animated.Image source={require('./lightning.png')} style={[styles.img, animatedStyle]} />
+            <Animated.Image source={require('./static/lightning.png')} style={[styles.img, animatedStyle]} />
         </View >
     );
 }

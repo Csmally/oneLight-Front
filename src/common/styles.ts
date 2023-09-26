@@ -12,7 +12,8 @@ const commonStyles = {
     pageBgColor: '#F6F6F6',
     white: '#FFFFFF',
     black: '#000000',
-    black_3a: '#3a3a3a',
+    black_333: '#333333',
+    grey: '#cecece',
     grey_placeholder: '#7b7b7b',
     topBarFontSize: 18,
     pageBorderGap: 10,
@@ -28,7 +29,7 @@ const defaultShadowParam: CommonShadowParams = {
 
 const getCommonShadowStyle = (params?: CommonShadowParams) => {
     const shadowStyles: CommonShadowParams = { ...defaultShadowParam, ...params };
-    return StyleSheet.create({
+    const styles = StyleSheet.create({
         style: {
             ...Platform.select({
                 ios: {
@@ -47,5 +48,6 @@ const getCommonShadowStyle = (params?: CommonShadowParams) => {
             })
         }
     });
+    return styles.style;
 };
 export { commonStyles, getCommonShadowStyle };

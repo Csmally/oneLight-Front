@@ -27,9 +27,10 @@ type NewsItem = {
     id: string,
     publisherName: string,
     avatar: string,
-    imgs: string[],
+    imgs?: string[],
     description: string,
-    publishTime: number | string
+    publishTime: number | string,
+    tags?: number[]
 }
 
 interface ToastTool {

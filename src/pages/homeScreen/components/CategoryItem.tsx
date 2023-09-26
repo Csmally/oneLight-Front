@@ -1,3 +1,4 @@
+import { commonStyles } from "@/common/styles";
 import { getViewSize } from "@/utils/sizeTool";
 import { memo } from "react";
 import { Platform, StyleSheet, TouchableWithoutFeedback } from "react-native";
@@ -57,7 +58,7 @@ function CategoryItem({ categoryInfo, scrollY, changeActiveTab, selfIndex, activ
             shadowOpacity,
             shadowRadius,
             elevation: shadowWidth,
-            shadowColor: Platform.OS === 'ios' ? '#cecece' : '#000000',
+            shadowColor: Platform.OS === 'ios' ? '#cecece' : commonStyles.black_333,
         };
         const noShadowStyle = {
             shadowOpacity: 0,
@@ -74,8 +75,8 @@ function CategoryItem({ categoryInfo, scrollY, changeActiveTab, selfIndex, activ
     // 分类栏字体色变化动画(选中)
     const categoryTextColorAnimatedStyle = useAnimatedStyle(() => {
         const color = interpolateColor(scrollY.value, [0, 200], [
-            selfIndex === activeTabIndex ? '#ffffff' : '#000000',
-            selfIndex === activeTabIndex ? '#000000' : '#ffffff',
+            selfIndex === activeTabIndex ? commonStyles.white : commonStyles.black_333,
+            selfIndex === activeTabIndex ? commonStyles.black_333 : commonStyles.white,
         ]);
         return {
             color
