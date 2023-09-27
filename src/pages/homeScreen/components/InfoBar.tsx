@@ -19,17 +19,17 @@ function InfoBar({ scrollY }: InfoBarProps) {
     // 映射信息栏头像动画样式
     const avatarAnimatedStyle = useAnimatedStyle(() => {
         // 头像：宽、高、半径
-        const imgStyle = interpolate(scrollY.value, [0, 200], [40, 30], {
+        const imgStyle = interpolate(scrollY.value, [0, 90], [40, 30], {
             extrapolateLeft: Extrapolation.CLAMP,
             extrapolateRight: Extrapolation.CLAMP,
         });
         // 头像：右边距
-        const marginRight = interpolate(scrollY.value, [0, 200], [0, 10], {
+        const marginRight = interpolate(scrollY.value, [0, 90], [0, 10], {
             extrapolateLeft: Extrapolation.CLAMP,
             extrapolateRight: Extrapolation.CLAMP,
         });
         // 头像：透明度
-        const opacity = interpolate(scrollY.value, [0, 200], [1, 0.5], {
+        const opacity = interpolate(scrollY.value, [0, 90], [1, 0.5], {
             extrapolateLeft: Extrapolation.CLAMP,
             extrapolateRight: Extrapolation.CLAMP,
         });
@@ -44,7 +44,7 @@ function InfoBar({ scrollY }: InfoBarProps) {
     // 映射信息栏头像动画样式
     const communityNameAnimatedStyle = useAnimatedStyle(() => {
         // 信息栏额外paddingTop
-        const opacity = interpolate(scrollY.value, [0, 200], [1, 0], {
+        const opacity = interpolate(scrollY.value, [0, 90], [1, 0], {
             extrapolateLeft: Extrapolation.CLAMP,
             extrapolateRight: Extrapolation.CLAMP,
         });
@@ -53,7 +53,7 @@ function InfoBar({ scrollY }: InfoBarProps) {
     // 热区动画
     const hotAreaAnimatedStyle = useAnimatedStyle(() => {
         // 热区宽度
-        const width = interpolate(scrollY.value, [0, 100], [0, hotAreaWidth.value], {
+        const width = interpolate(scrollY.value, [0, 90], [0, hotAreaWidth.value], {
             extrapolateLeft: Extrapolation.CLAMP,
             extrapolateRight: Extrapolation.CLAMP,
         });

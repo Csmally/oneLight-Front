@@ -22,32 +22,32 @@ function CategoryItem({ categoryInfo, scrollY, changeActiveTab, selfIndex, activ
     // 分类栏item的容器动画（边距、阴影）
     const categoryContainerAnimatedStyle = useAnimatedStyle(() => {
         // 背景颜色
-        const backgroundColor = interpolateColor(scrollY.value, [0, 200], [
+        const backgroundColor = interpolateColor(scrollY.value, [0, 90], [
             selfIndex === activeTabIndex ? 'rgba(0, 0, 0,1)' : 'rgba(255, 255, 255,1)',
             selfIndex === activeTabIndex ? 'rgba(0, 0, 0,0)' : 'rgba(255, 255, 255,0)',
         ]);
         // 边距
-        const gapStyle = interpolate(scrollY.value, [0, 200], [10, 0], {
+        const gapStyle = interpolate(scrollY.value, [0, 90], [10, 0], {
             extrapolateLeft: Extrapolation.CLAMP,
             extrapolateRight: Extrapolation.CLAMP,
         });
         // 圆角
-        const borderRadius = interpolate(scrollY.value, [0, 200], [25, 0], {
+        const borderRadius = interpolate(scrollY.value, [0, 90], [25, 0], {
             extrapolateLeft: Extrapolation.CLAMP,
             extrapolateRight: Extrapolation.CLAMP,
         });
         // 阴影宽度 & 安卓elevation
-        const shadowWidth = interpolate(scrollY.value, [0, 200], [10, 0], {
+        const shadowWidth = interpolate(scrollY.value, [0, 90], [10, 0], {
             extrapolateLeft: Extrapolation.CLAMP,
             extrapolateRight: Extrapolation.CLAMP,
         });
         // 透明度
-        const shadowOpacity = interpolate(scrollY.value, [0, 200], [0.3, 0], {
+        const shadowOpacity = interpolate(scrollY.value, [0, 90], [0.3, 0], {
             extrapolateLeft: Extrapolation.CLAMP,
             extrapolateRight: Extrapolation.CLAMP,
         });
         // 圆角
-        const shadowRadius = interpolate(scrollY.value, [0, 200], [2, 0], {
+        const shadowRadius = interpolate(scrollY.value, [0, 90], [2, 0], {
             extrapolateLeft: Extrapolation.CLAMP,
             extrapolateRight: Extrapolation.CLAMP,
         });
@@ -75,7 +75,7 @@ function CategoryItem({ categoryInfo, scrollY, changeActiveTab, selfIndex, activ
     });
     // 分类栏字体色变化动画(选中)
     const categoryTextColorAnimatedStyle = useAnimatedStyle(() => {
-        const color = interpolateColor(scrollY.value, [0, 200], [
+        const color = interpolateColor(scrollY.value, [0, 90], [
             selfIndex === activeTabIndex ? commonStyles.white : commonStyles.black_333,
             selfIndex === activeTabIndex ? commonStyles.black_333 : commonStyles.white,
         ]);
@@ -126,6 +126,7 @@ const styles = StyleSheet.create({
         lineHeight: getViewSize(18)
     },
 });
+
 export default memo(CategoryItem, (prevProps, nextProps) => {
     return prevProps.activeTabIndex !== nextProps.selfIndex && nextProps.activeTabIndex !== nextProps.selfIndex;
 });

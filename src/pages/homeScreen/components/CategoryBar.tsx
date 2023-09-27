@@ -34,10 +34,11 @@ type CategoryBarProps = {
 function CategoryBar({ scrollY, flatListRef }: CategoryBarProps) {
     console.log('9898分类bar刷新');
     const [activeTabIndex, setActiveTabIndex] = useState(0);
-    const changeActiveTab = useCallback((index: number) => {
+    const changeActiveTab = (index: number) => {
+        if (index === activeTabIndex) return;
         setActiveTabIndex(index);
-        flatListRef.current?.scrollToOffset({ offset: 0, animated: true });
-    }, [flatListRef]);
+        flatListRef.current?.scrollToOffset({ offset: 90, animated: true });
+    };
     return (
         <Animated.ScrollView
             horizontal

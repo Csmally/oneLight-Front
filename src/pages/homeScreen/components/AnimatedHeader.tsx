@@ -17,7 +17,7 @@ function AnimatedHeader({ scrollY, initTopbarHeight, flatListRef }: AnimatedHead
     // 映射头部组件高度动画样式
     const containerAnimatedStyle = useAnimatedStyle(() => {
         // height
-        const height = interpolate(scrollY.value, [0, 200], [initTopbarHeight, initTopbarHeight - 90], {
+        const height = interpolate(scrollY.value, [0, 90], [initTopbarHeight, initTopbarHeight - 90], {
             extrapolateLeft: Extrapolation.CLAMP,
             extrapolateRight: Extrapolation.CLAMP,
         });
@@ -26,7 +26,7 @@ function AnimatedHeader({ scrollY, initTopbarHeight, flatListRef }: AnimatedHead
     // 映射头部组件高斯模糊透明度动画样式
     const blurAnimatedStyle = useAnimatedStyle(() => {
         // height
-        const opacity = interpolate(scrollY.value, [0, 100], [0, 1], {
+        const opacity = interpolate(scrollY.value, [0, 90], [0, 1], {
             extrapolateLeft: Extrapolation.CLAMP,
             extrapolateRight: Extrapolation.CLAMP,
         });
@@ -64,4 +64,4 @@ const styles = StyleSheet.create({
     }
 });
 
-export default memo(AnimatedHeader);
+export default AnimatedHeader;
