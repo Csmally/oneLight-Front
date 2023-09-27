@@ -52,7 +52,7 @@ export const setAppRouter = async (isInitApp?: boolean) => {
                         stack: {
                             children: [{
                                 component: {
-                                    name: 'ChatScreen',
+                                    name: 'MarketScreen',
                                     options: {
                                         topBar: {
                                             visible: true
@@ -73,7 +73,7 @@ export const setAppRouter = async (isInitApp?: boolean) => {
                         stack: {
                             children: [{
                                 component: {
-                                    name: 'RNUILib',
+                                    name: 'CircleScreen',
                                     options: {
                                         topBar: {
                                             visible: false

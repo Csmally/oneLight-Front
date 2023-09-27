@@ -3,10 +3,16 @@ import WelcomeScreen from './welcomeScreen';
 import LoginScreen from './loginScreen';
 import HomeScreen from './homeScreen';
 import MineScreen from './mineScreen';
-import ChatScreen from './chatScreen';
+import MarketScreen from './marketScreen';
+import ErrorScreen from './errorScreen';
+import CircleScreen from './circleScreen';
 import RNUILib from './rnUIlibTest/screens/componentScreens/BasicListScreen';
 
 export default [
+    {
+        path: 'ErrorScreen',
+        component: ErrorScreen
+    },
     {
         path: 'RNUILib',
         component: RNUILib
@@ -37,7 +43,11 @@ export default [
         component: MineScreen
     },
     {
-        path: 'ChatScreen',
-        component: ChatScreen
+        path: 'MarketScreen',
+        component: MarketScreen
+    },
+    {
+        path: 'CircleScreen',
+        component: CircleScreen
     },
 ];

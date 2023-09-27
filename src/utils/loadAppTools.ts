@@ -124,6 +124,12 @@ export const navigationEventListen = () => {
         console.log('9898name', name);
         console.log('9898params', params);
     });
+
+    Navigation.events().registerComponentDidAppearListener(({ componentId, componentName, passProps }) => {
+        console.log('9898有用--componentId', componentId);
+        console.log('9898有用--componentName', componentName);
+        console.log('9898有用--passProps', passProps);
+    });
 };
 
 //注册屏幕组件

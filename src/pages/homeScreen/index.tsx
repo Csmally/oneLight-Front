@@ -36,6 +36,7 @@ function HomeScreen() {
         getNewsData();
     };
     useEffect(() => {
+        console.log('9898有用--home组件刷新了');
         getNewsData();
         SplashScreen.hide();
     }, []);
