@@ -57,6 +57,7 @@ function HomeScreen() {
                 style={{ paddingTop: initTopbarHeight }}
                 ref={ref => flatListRef.current = ref}
                 contentInsetAdjustmentBehavior='never'
+                showsVerticalScrollIndicator={false}
                 contentContainerStyle={{
                     paddingBottom: getNavigationConsts().bottomTabsHeight
                 }}

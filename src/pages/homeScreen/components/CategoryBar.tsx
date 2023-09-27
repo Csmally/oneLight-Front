@@ -1,4 +1,4 @@
-import { useCallback, useState } from "react";
+import { useState } from "react";
 import Animated, { AnimatedRef, SharedValue } from "react-native-reanimated";
 import CategoryItem from "./CategoryItem";
 import { FlatList } from "react-native";

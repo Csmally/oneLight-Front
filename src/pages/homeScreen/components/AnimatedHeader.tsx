@@ -1,4 +1,3 @@
-import { memo } from "react";
 import { BlurView } from "@react-native-community/blur";
 import CategoryBar from "./CategoryBar";
 import InfoBar from "./InfoBar";
