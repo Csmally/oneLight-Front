@@ -1,5 +1,4 @@
 import ToastScreen from '@/components/toast';
-import TopBarWidget from '@/components/topBarWidget';
 import WelcomeScreen from './welcomeScreen';
 import LoginScreen from './loginScreen';
 import HomeScreen from './homeScreen';
@@ -11,10 +10,6 @@ export default [
     {
         path: 'RNUILib',
         component: RNUILib
-    },
-    {
-        path: 'TopBarWidget',
-        component: TopBarWidget
     },
     {
         path: 'ToastScreen',

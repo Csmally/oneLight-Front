@@ -1,4 +1,4 @@
-import { commonStyles } from '@/common/styles';
+import { commonStyles, getCommonShadowStyle } from '@/common/styles';
 import { getViewSize, getFontSize } from '@/utils/sizeTool';
 import { StyleSheet, View, Text, TouchableOpacity } from 'react-native';
 import { Navigation } from "react-native-navigation";
@@ -56,7 +56,7 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'space-between',
         alignItems: 'center',
-        paddingVertical: getViewSize(25)
+        paddingVertical: getViewSize(20)
     },
     fontStyle: {
         textAlign: 'center',
@@ -76,19 +76,12 @@ const styles = StyleSheet.create({
     loginBtn: {
         width: getViewSize(150),
         height: getViewSize(46),
-        borderRadius: getViewSize(23),
+        borderRadius: getViewSize(25),
         backgroundColor: commonStyles.black,
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
-        shadowColor: commonStyles.black,
-        shadowOffset: {
-            width: 0,
-            height: 9,
-        },
-        shadowOpacity: 0.5,
-        shadowRadius: 10,
-        elevation: 10
+        ...getCommonShadowStyle()
     },
     loginText: {
         color: commonStyles.white,

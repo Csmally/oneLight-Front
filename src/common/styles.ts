@@ -14,7 +14,7 @@ const commonStyles = {
     black: '#000000',
     black_333: '#333333',
     grey: '#cecece',
-    grey_placeholder: '#7b7b7b',
+    grey_placeholder: '#a8a8a8',
     topBarFontSize: 18,
     pageBorderGap: 10,
 };

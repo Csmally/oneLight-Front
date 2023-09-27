@@ -1,10 +1,15 @@
+import { CONSTS_VALUE } from '@/interfaces/commonEnum';
+import Storage from '@/storage';
 import { StyleSheet } from 'react-native';
-import { Text, View } from 'react-native-ui-lib';
+import { Text, View } from 'react-native';
 
 function MineScreen() {
+    const tt = () => {
+        Storage.set(CONSTS_VALUE.LOGIN_STATUS, false);
+    };
     return (
         <View style={styles.test}>
-            <Text>我的页</Text>
+            <Text onPress={tt}>我的页</Text>
         </View>
     );
 }

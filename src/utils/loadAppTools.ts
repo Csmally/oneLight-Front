@@ -23,11 +23,8 @@ export const initStorageData = () => {
 export const setDefaultNavigationStyle = () => {
     Navigation.setDefaultOptions({
         topBar: {
-            background: {
-                translucent: true,
-            },
             visible: true,
-            drawBehind: true,
+            drawBehind: false,
             animate: true,
             animateLeftButtons: true,
             animateRightButtons: true,

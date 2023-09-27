@@ -1,8 +1,6 @@
 import { useEffect, useState } from 'react';
-import { FlatList, Platform, RefreshControl, StyleSheet, View } from 'react-native';
+import { Dimensions, FlatList, Platform, RefreshControl, StyleSheet, View } from 'react-native';
 import SplashScreen from 'react-native-splash-screen';
-import Storage from '@/storage';
-import { CONSTS_VALUE } from '@/interfaces/commonEnum';
 import { getNavigationConsts } from '@/utils/loadAppTools';
 import { BlurView } from '@react-native-community/blur';
 import AnimatedHeader from './components/AnimatedHeader';
@@ -38,7 +36,6 @@ function HomeScreen() {
         getNewsData();
     };
     useEffect(() => {
-        // Storage.set(CONSTS_VALUE.LOGIN_STATUS,false);
         getNewsData();
         SplashScreen.hide();
     }, []);
@@ -51,14 +48,14 @@ function HomeScreen() {
     });
     const initTopbarHeight = getNavigationConsts().statusBarHeight + 170;
     return (
-        <View style={[Platform.OS === 'ios' ? styles.pageForIos : styles.pageForAndroid]} >
+        <View style={styles.page} >
             {/* <Animated.View style={spaceViewAnimatedStyle} /> */}
             <Animated.FlatList
-                style={{ paddingTop: initTopbarHeight }}
                 ref={ref => flatListRef.current = ref}
                 contentInsetAdjustmentBehavior='never'
                 showsVerticalScrollIndicator={false}
                 contentContainerStyle={{
+                    paddingTop: initTopbarHeight,
                     paddingBottom: getNavigationConsts().bottomTabsHeight
                 }}
                 keyExtractor={item => item.id}
@@ -86,11 +83,15 @@ function HomeScreen() {
 }
 
 const styles = StyleSheet.create({
-    pageForIos: {
-        height: Storage.getNumber(CONSTS_VALUE.WINDOW_HEIGHT)
-    },
-    pageForAndroid: {
-        flex: 1
+    page: {
+        ...Platform.select({
+            ios: {
+                height: Dimensions.get('window').height
+            },
+            android: {
+                flex: 1
+            }
+        })
     },
     header: {
         backgroundColor: 'pink',

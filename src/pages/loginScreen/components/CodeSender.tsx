@@ -1,8 +1,8 @@
 import { useEffect, useRef, useState } from "react";
-import { Text, Colors, View } from "react-native-ui-lib";
 import Icon from 'react-native-vector-icons/FontAwesome5';
 import { getFontSize, getViewSize } from '@/utils/sizeTool';
-import { StyleSheet, ActivityIndicator, TouchableWithoutFeedback } from "react-native";
+import { StyleSheet, ActivityIndicator, TouchableWithoutFeedback, Text, View } from "react-native";
+import { commonStyles } from "@/common/styles";
 
 function CodeSender() {
     const [status, setStatus] = useState(true);
@@ -64,7 +64,7 @@ const styles = StyleSheet.create({
         marginRight: getViewSize(6)
     },
     disabledColor: {
-        color: Colors.$textDisabled
+        color: commonStyles.grey_placeholder
     }
 });
 

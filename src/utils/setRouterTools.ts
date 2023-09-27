@@ -118,7 +118,7 @@ export const setAppRouter = async (isInitApp?: boolean) => {
                         // translucent: true,
                         drawBehind: true,
                         tabsAttachMode: 'together',
-                        backgroundColor: 'rgba(255, 255, 255, 0)',
+                        backgroundColor: 'transparent',
                         animate: true,
                         animateTabSelection: true,
                         titleDisplayMode: 'alwaysShow'
