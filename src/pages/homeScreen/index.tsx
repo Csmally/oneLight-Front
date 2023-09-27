@@ -19,7 +19,7 @@ function HomeScreen() {
         setIsRefreshing(true);
         setTimeout(() => {
             setIsRefreshing(false);
-        }, 3000);
+        }, 1500);
     };
     const [newsData, setNewsData] = useState<NewsItem[]>([]);
     const getNewsData = () => {
@@ -31,7 +31,7 @@ function HomeScreen() {
         setTimeout(() => {
             setNewsData([...newsData, ...apiData]);
             setIsLoadingMore(false);
-        }, 2500);
+        }, 1500);
     };
     const loadMoreData = () => {
         if (isLoadingMore) return;
@@ -51,13 +51,10 @@ function HomeScreen() {
     });
     const initTopbarHeight = getNavigationConsts().statusBarHeight + 170;
     return (
-        <View style={Platform.OS === 'ios' ? styles.pageForIos : styles.pageForAndroid} >
-            <AnimatedHeader
-                scrollY={scrollY}
-                initTopbarHeight={initTopbarHeight}
-                flatListRef={flatListRef}
-            />
+        <View style={[Platform.OS === 'ios' ? styles.pageForIos : styles.pageForAndroid]} >
+            {/* <Animated.View style={spaceViewAnimatedStyle} /> */}
             <Animated.FlatList
+                style={{ paddingTop: initTopbarHeight }}
                 ref={ref => flatListRef.current = ref}
                 contentInsetAdjustmentBehavior='never'
                 contentContainerStyle={{
@@ -74,8 +71,14 @@ function HomeScreen() {
                 onEndReached={loadMoreData}
                 onEndReachedThreshold={0.3}
             />
+            {/* 涉及blur组件需要放在下方 */}
+            <AnimatedHeader
+                scrollY={scrollY}
+                initTopbarHeight={initTopbarHeight}
+                flatListRef={flatListRef}
+            />
             <View style={[styles.blurContainer, { height: getNavigationConsts().bottomTabsHeight }]}>
-                <BlurView style={{ flex: 1 }} blurType='xlight' blurAmount={32} />
+                <BlurView style={{ flex: 1 }} blurType='xlight' blurAmount={50} />
             </View>
         </View>
     );

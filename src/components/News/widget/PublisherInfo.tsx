@@ -26,6 +26,8 @@ const styles = StyleSheet.create({
         borderRadius: 15
     },
     publisherName: {
+        fontSize: 16,
+        fontWeight: 'bold',
         marginLeft: 10,
         color: commonStyles.black_333
     },

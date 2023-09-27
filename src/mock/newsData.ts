@@ -61,6 +61,62 @@ const newsData: NewsItem[] = [
         description: '减肥黄金时代放假开始就',
         publishTime: '2023-09-23 18:36:28'
     },
+    {
+        id: '6',
+        publisherName: '呆头鹅&豆',
+        avatar: 'https://tuchuangs.com/imgs/2023/09/24/9e0a6f51b9a3ceed.webp',
+        description: '减肥黄金时代放假开始就',
+        publishTime: '2023-09-23 13:12:00',
+        tags: [3],
+        imgs: [
+            'https://tuchuangs.com/imgs/2023/04/23/945f7dee14fb39f4.jpeg',
+            'https://tuchuangs.com/imgs/2023/04/23/d12921d23883b1d7.jpeg',
+            'https://tuchuangs.com/imgs/2023/04/23/1bc98cb602be8e78.jpeg',
+            'https://tuchuangs.com/imgs/2023/09/24/767f8f6dc8ca04e4.jpg'
+        ],
+    },
+    {
+        id: '7',
+        publisherName: 'ByteDance',
+        avatar: 'https://tuchuangs.com/imgs/2023/09/24/bd98a868e5299871.png',
+        description: '减肥黄金时代放假开始就',
+        publishTime: '2023-09-23 18:36:28'
+    },
+    {
+        id: '8',
+        publisherName: '呆头鹅&豆',
+        avatar: 'https://tuchuangs.com/imgs/2023/09/24/9e0a6f51b9a3ceed.webp',
+        description: '减肥黄金时代放假开始就',
+        publishTime: '2023-09-23 13:12:00',
+        tags: [3],
+        imgs: [
+            'https://tuchuangs.com/imgs/2023/04/23/945f7dee14fb39f4.jpeg',
+            'https://tuchuangs.com/imgs/2023/04/23/d12921d23883b1d7.jpeg',
+            'https://tuchuangs.com/imgs/2023/04/23/1bc98cb602be8e78.jpeg',
+            'https://tuchuangs.com/imgs/2023/09/24/767f8f6dc8ca04e4.jpg'
+        ],
+    },
+    {
+        id: '9',
+        publisherName: 'ByteDance',
+        avatar: 'https://tuchuangs.com/imgs/2023/09/24/bd98a868e5299871.png',
+        description: '减肥黄金时代放假开始就',
+        publishTime: '2023-09-23 18:36:28'
+    },
+    {
+        id: '10',
+        publisherName: '呆头鹅&豆',
+        avatar: 'https://tuchuangs.com/imgs/2023/09/24/9e0a6f51b9a3ceed.webp',
+        description: '减肥黄金时代放假开始就',
+        publishTime: '2023-09-23 13:12:00',
+        tags: [3],
+        imgs: [
+            'https://tuchuangs.com/imgs/2023/04/23/945f7dee14fb39f4.jpeg',
+            'https://tuchuangs.com/imgs/2023/04/23/d12921d23883b1d7.jpeg',
+            'https://tuchuangs.com/imgs/2023/04/23/1bc98cb602be8e78.jpeg',
+            'https://tuchuangs.com/imgs/2023/09/24/767f8f6dc8ca04e4.jpg'
+        ],
+    }
 ];
 
 export default newsData;

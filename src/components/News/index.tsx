@@ -46,12 +46,9 @@ const styles = StyleSheet.create({
         borderRadius: 18
     },
     mainArea: {
-        // marginVertical: 10
         marginTop: 10
     },
     description: {
-        fontSize: 16,
-        fontWeight: 'bold',
         color: commonStyles.black_333,
         marginBottom: 10
     },
