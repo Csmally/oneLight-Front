@@ -55,7 +55,7 @@ export const setAppRouter = async (isInitApp?: boolean) => {
                                     name: 'MarketScreen',
                                     options: {
                                         topBar: {
-                                            visible: true
+                                            visible: false
                                         }
                                     }
                                 },
@@ -115,7 +115,7 @@ export const setAppRouter = async (isInitApp?: boolean) => {
                 options: {
                     bottomTabs: {
                         currentTabIndex: 0,
-                        // translucent: true,
+                        translucent: true,
                         drawBehind: true,
                         tabsAttachMode: 'together',
                         backgroundColor: 'transparent',

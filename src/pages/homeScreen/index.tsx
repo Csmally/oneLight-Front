@@ -2,12 +2,12 @@ import { useEffect, useState } from 'react';
 import { Dimensions, FlatList, Platform, RefreshControl, StyleSheet, View } from 'react-native';
 import SplashScreen from 'react-native-splash-screen';
 import { getNavigationConsts } from '@/utils/loadAppTools';
-import { BlurView } from '@react-native-community/blur';
 import AnimatedHeader from './components/AnimatedHeader';
 import Animated, { useAnimatedRef, useAnimatedScrollHandler, useSharedValue } from 'react-native-reanimated';
 import News from '@/components/News';
 import newsDataMock from '@/mock/newsData';
 import LoadMore from '@/components/LoadMore';
+import BlurBox from '@/components/BlurBox';
 
 function HomeScreen() {
     console.log(`9898home刷新${Platform.OS}`);
@@ -76,9 +76,7 @@ function HomeScreen() {
                 initTopbarHeight={initTopbarHeight}
                 flatListRef={flatListRef}
             />
-            <View style={[styles.blurContainer, { height: getNavigationConsts().bottomTabsHeight }]}>
-                <BlurView style={{ flex: 1 }} blurType='xlight' blurAmount={50} />
-            </View>
+            <BlurBox/>
         </View>
     );
 }
@@ -96,13 +94,6 @@ const styles = StyleSheet.create({
     },
     header: {
         backgroundColor: 'pink',
-    },
-    blurContainer: {
-        position: 'absolute',
-        bottom: 0,
-        left: 0,
-        right: 0,
-        overflow: 'hidden'
     }
 });
 
