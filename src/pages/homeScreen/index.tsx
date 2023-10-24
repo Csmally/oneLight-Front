@@ -50,7 +50,6 @@ function HomeScreen() {
     const initTopbarHeight = getNavigationConsts().statusBarHeight + 170;
     return (
         <View style={styles.page} >
-            {/* <Animated.View style={spaceViewAnimatedStyle} /> */}
             <Animated.FlatList
                 ref={ref => flatListRef.current = ref}
                 contentInsetAdjustmentBehavior='never'
