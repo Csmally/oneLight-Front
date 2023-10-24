@@ -1,7 +1,7 @@
 import { StyleSheet, View } from 'react-native';
 import { BlurView } from "@react-native-community/blur";
 import PageCounter from './components/PageCounter';
-import { useMemo, useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import OpacitySwiper from './components/OpacitySwiper';
 import SloganTab from './components/SloganTab';
 import SplashScreen from 'react-native-splash-screen';
@@ -18,15 +18,21 @@ function WelcomeScreen() {
             SplashScreen.hide();
         }, 2500);
     }, []);
-
-    const onIndexChanged = (index: number) => {
-        setActiveIndex(index);
-    };
+    useEffect(() => {
+        const timer = setTimeout(() => {
+            if (activeIndex === imgUrls.length - 1) {
+                setActiveIndex(0);
+            } else {
+                setActiveIndex(activeIndex + 1);
+            }
+        }, 5000);
+        return () => {
+            clearInterval(timer);
+        };
+    }, [activeIndex]);
     return (
         <View style={styles.page}>
-            {
-                useMemo(() => <OpacitySwiper onIndexChanged={onIndexChanged} imgUrls={imgUrls} />, [])
-            }
+            <OpacitySwiper activeIndex={activeIndex} imgUrls={imgUrls} />
             <View style={styles.container}>
                 <BlurView
                     style={styles.blurView}

@@ -23,7 +23,7 @@ function AnimatedImage({ uri, selfIndex, activeIndex }: AnimatedImageProps) {
         } else {
             animatedOpacity.value = 0;
         }
-    }, [activeIndex]);
+    }, [activeIndex, animatedOpacity, selfIndex]);
     return (
         <Animated.Image
             source={{ uri }}
@@ -46,10 +46,6 @@ const styles = StyleSheet.create({
 
 //true不更新，false更新
 const equalProps = (prevProps: AnimatedImageProps, nextProps: AnimatedImageProps) => {
-    if (prevProps.activeIndex === nextProps.selfIndex || nextProps.activeIndex === nextProps.selfIndex) {
-        return false;
-    } else {
-        return true;
-    }
+    return prevProps.activeIndex !== nextProps.selfIndex && nextProps.activeIndex !== nextProps.selfIndex;
 };
 export default React.memo(AnimatedImage, equalProps);

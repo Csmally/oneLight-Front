@@ -1,5 +1,5 @@
 import { commonStyles, getCommonShadowStyle } from '@/common/styles';
-import { getViewSize, getFontSize } from '@/utils/sizeTool';
+import { memo } from 'react';
 import { StyleSheet, View, Text, TouchableOpacity } from 'react-native';
 import { Navigation } from "react-native-navigation";
 
@@ -31,6 +31,8 @@ function SloganTab() {
             <View>
                 <Text style={[styles.fontStyle, styles.title]}>Welcome Use OneLight</Text>
                 <Text style={[styles.fontStyle, styles.title]}>这是一个专属年轻人的App</Text>
+            </View>
+            <View>
                 <Text style={[styles.fontStyle, styles.content]}>在这里，你可以</Text>
                 <Text style={[styles.fontStyle, styles.content]}>分享美食，社交，数码，时尚</Text>
                 <Text style={[styles.fontStyle, styles.content]}>
@@ -48,35 +50,30 @@ function SloganTab() {
 
 const styles = StyleSheet.create({
     container: {
-        position: 'absolute',
-        bottom: 0,
-        left: 0,
-        right: 0,
-        top: '13%',
         flex: 1,
         justifyContent: 'space-between',
         alignItems: 'center',
-        paddingVertical: getViewSize(20)
+        paddingBottom: 30,
     },
     fontStyle: {
         textAlign: 'center',
-        marginVertical: getViewSize(4)
+        marginVertical: 4
     },
     title: {
-        fontSize: getFontSize(18),
+        fontSize: 18,
         fontWeight: '600'
     },
     content: {
-        fontSize: getFontSize(15),
+        fontSize: 15,
         color: '#999999'
     },
     joinUs: {
         color: '#4597f7'
     },
     loginBtn: {
-        width: getViewSize(150),
-        height: getViewSize(46),
-        borderRadius: getViewSize(25),
+        width: 150,
+        height: 46,
+        borderRadius: 25,
         backgroundColor: commonStyles.black,
         display: 'flex',
         justifyContent: 'center',
@@ -85,9 +82,9 @@ const styles = StyleSheet.create({
     },
     loginText: {
         color: commonStyles.white,
-        fontSize: getFontSize(16),
+        fontSize: 16,
         fontWeight: 'bold'
     },
 });
 
-export default SloganTab;
+export default memo(SloganTab);

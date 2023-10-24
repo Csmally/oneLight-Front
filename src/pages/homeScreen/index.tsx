@@ -66,7 +66,7 @@ function HomeScreen() {
                 renderItem={({ item }) => <News news={item} />}
                 ItemSeparatorComponent={() => <View style={{ height: 10 }} />}
                 ListFooterComponent={<LoadMore isLoadingMore={isLoadingMore} />}
-                refreshControl={<RefreshControl refreshing={isRefreshing} onRefresh={tt}></RefreshControl>}
+                refreshControl={<RefreshControl refreshing={isRefreshing} onRefresh={tt} progressViewOffset={initTopbarHeight}></RefreshControl>}
                 onEndReached={loadMoreData}
                 onEndReachedThreshold={0.3}
             />
@@ -76,7 +76,7 @@ function HomeScreen() {
                 initTopbarHeight={initTopbarHeight}
                 flatListRef={flatListRef}
             />
-            <BlurBox/>
+            <BlurBox />
         </View>
     );
 }
