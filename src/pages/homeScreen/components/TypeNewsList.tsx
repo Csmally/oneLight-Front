@@ -1,4 +1,4 @@
-import { useContext, useState, useEffect } from "react";
+import { useContext, useState } from "react";
 import { View, FlatList, RefreshControl } from "react-native";
 import { HomePageContext } from "../utils/context";
 import Animated, { useAnimatedRef, useAnimatedScrollHandler } from "react-native-reanimated";
@@ -8,6 +8,17 @@ import News from "@/components/News";
 import LoadMore from "@/components/LoadMore";
 import newsDataMock from '@/mock/newsData';
 
+const apifunc = async () => {
+    return new Promise((res) => {
+        setTimeout(() => {
+            const data: NewsItem[] = newsDataMock.map((item, index) => ({
+                ...item,
+                id: index + '-' + (new Date()).getTime()
+            }));
+            res(data);
+        }, 1500);
+    });
+};
 
 function TypeNewsList() {
     const { scrollY, initTopbarHeight } = useContext(HomePageContext);
@@ -16,36 +27,28 @@ function TypeNewsList() {
     const scrollHandler = useAnimatedScrollHandler((event) => {
         scrollY.value = event.contentOffset.y;
     });
-    const [isRefreshing, setIsRefreshing] = useState(false);
-    const [isLoadingMore, setIsLoadingMore] = useState(false);
+    const [loadingStatus, setLoadingStatus] = useState({ isRefreshing: false, isLoadingMore: false });
     const [newsData, setNewsData] = useState<NewsItem[]>([]);
-    // const [newsData, setNewsData] = useState([]);
     // 接口查询list数据源
-    const getNewsData = () => {
-        setIsLoadingMore(true);
-        const apiData = newsDataMock.map((item, index) => ({
-            ...item,
-            id: index + '-' + (new Date()).getTime()
-        }));
-        setTimeout(() => {
-            setNewsData([...newsData, ...apiData]);
-            setIsLoadingMore(false);
-        }, 1500);
+    const getNewsData = async (type = 'loadmore') => {
+        if (loadingStatus.isLoadingMore || loadingStatus.isRefreshing) return;
+        setLoadingStatus({
+            isRefreshing: type === 'init' ? true : false,
+            isLoadingMore: type === 'loadmore' ? true : false,
+        });
+        const apiData: NewsItem[] = await apifunc() as NewsItem[];
+        setNewsData(type === 'loadmore' ? [...newsData, ...apiData] : apiData);
+        setLoadingStatus({
+            isRefreshing: false,
+            isLoadingMore: false,
+        });
     };
     const tt = () => {
-        setIsRefreshing(true);
-        setTimeout(() => {
-            setIsRefreshing(false);
-        }, 1500);
+        getNewsData('init');
     };
     const loadMoreData = () => {
-        if (isLoadingMore) return;
-        getNewsData();
+        getNewsData('loadmore');
     };
-    useEffect(() => {
-        console.log('9898有用--home组件刷新了');
-        getNewsData();
-    }, []);
     return (
         <Animated.FlatList
             ref={ref => flatListRef.current = ref}
@@ -59,13 +62,13 @@ function TypeNewsList() {
             removeClippedSubviews
             onScroll={scrollHandler}
             data={newsData}
-            ListEmptyComponent={<EmptyComponent />}
+            ListEmptyComponent={<EmptyComponent isShow={!loadingStatus.isLoadingMore && !loadingStatus.isRefreshing} />}
             renderItem={({ item }) => <News news={item} />}
             ItemSeparatorComponent={() => <View style={{ height: 10 }} />}
-            ListFooterComponent={<LoadMore isLoadingMore={isLoadingMore} />}
-            refreshControl={<RefreshControl refreshing={isRefreshing} onRefresh={tt} progressViewOffset={initTopbarHeight}></RefreshControl>}
+            ListFooterComponent={<LoadMore isLoadingMore={loadingStatus.isLoadingMore} />}
+            refreshControl={<RefreshControl refreshing={loadingStatus.isRefreshing} onRefresh={tt} progressViewOffset={initTopbarHeight}></RefreshControl>}
             onEndReached={loadMoreData}
-            onEndReachedThreshold={0.3}
+            onEndReachedThreshold={0.8}
         />
     );
 }
