@@ -8,10 +8,9 @@ import News from "@/components/News";
 import LoadMore from "@/components/LoadMore";
 import newsDataMock from '@/mock/newsData';
 
-const initTopbarHeight = getNavigationConsts().statusBarHeight + 170;
 
 function TypeNewsList() {
-    const { scrollY } = useContext(HomePageContext);
+    const { scrollY, initTopbarHeight } = useContext(HomePageContext);
     const flatListRef = useAnimatedRef<FlatList<NewsItem>>();
     // 滑动事件
     const scrollHandler = useAnimatedScrollHandler((event) => {

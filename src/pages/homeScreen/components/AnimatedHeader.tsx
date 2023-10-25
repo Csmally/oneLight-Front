@@ -4,7 +4,6 @@ import InfoBar from "./InfoBar";
 import SearchBar from "./SearchBar";
 import Animated, { AnimatedRef, Extrapolation, interpolate, useAnimatedStyle } from "react-native-reanimated";
 import { FlatList, StyleSheet, View } from "react-native";
-import { getNavigationConsts } from "@/utils/loadAppTools";
 import { useContext } from "react";
 import { HomePageContext } from "../utils/context";
 
@@ -12,11 +11,10 @@ type AnimatedHeaderProps = {
     flatListRef: AnimatedRef<FlatList<NewsItem>>
 }
 
-const initTopbarHeight = getNavigationConsts().statusBarHeight + 170;
 
 function AnimatedHeader({ flatListRef }: AnimatedHeaderProps) {
     console.log('9898头部刷新');
-    const { scrollY } = useContext(HomePageContext);
+    const { scrollY, initTopbarHeight } = useContext(HomePageContext);
     // 映射头部组件高度动画样式
     const containerAnimatedStyle = useAnimatedStyle(() => {
         // height
