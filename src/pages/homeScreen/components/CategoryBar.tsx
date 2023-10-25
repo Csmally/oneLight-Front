@@ -1,5 +1,5 @@
 import { useState } from "react";
-import Animated, { AnimatedRef, SharedValue } from "react-native-reanimated";
+import Animated, { AnimatedRef } from "react-native-reanimated";
 import CategoryItem from "./CategoryItem";
 import { FlatList } from "react-native";
 
@@ -27,11 +27,10 @@ const tabs = [
 ];
 
 type CategoryBarProps = {
-    scrollY: SharedValue<number>,
     flatListRef: AnimatedRef<FlatList<NewsItem>>
 }
 
-function CategoryBar({ scrollY, flatListRef }: CategoryBarProps) {
+function CategoryBar({ flatListRef }: CategoryBarProps) {
     console.log('9898分类bar刷新');
     const [activeTabIndex, setActiveTabIndex] = useState(0);
     const changeActiveTab = (index: number) => {
@@ -50,7 +49,6 @@ function CategoryBar({ scrollY, flatListRef }: CategoryBarProps) {
                     <CategoryItem
                         key={index}
                         categoryInfo={item}
-                        scrollY={scrollY}
                         changeActiveTab={changeActiveTab}
                         selfIndex={index}
                         activeTabIndex={activeTabIndex}

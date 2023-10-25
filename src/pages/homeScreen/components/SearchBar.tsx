@@ -1,14 +1,12 @@
 import { commonStyles, getCommonShadowStyle } from "@/common/styles";
-import { getViewSize } from "@/utils/sizeTool";
+import { useContext } from "react";
 import { Text, StyleSheet, TouchableWithoutFeedback } from "react-native";
-import Animated, { Extrapolation, SharedValue, interpolate, useAnimatedStyle } from "react-native-reanimated";
+import Animated, { Extrapolation, interpolate, useAnimatedStyle } from "react-native-reanimated";
 import Icon from 'react-native-vector-icons/AntDesign';
+import { HomePageContext } from "../utils/context";
 
-type SearchBarProps = {
-    scrollY: SharedValue<number>,
-}
-
-function SearchBar({ scrollY }: SearchBarProps) {
+function SearchBar() {
+    const { scrollY } = useContext(HomePageContext);
     // 映射搜索栏左侧占位元素宽度动画样式
     const searchBarSpaceAnimatedStyle = useAnimatedStyle(() => {
         // 占位元素宽度
@@ -47,7 +45,7 @@ function SearchBar({ scrollY }: SearchBarProps) {
             <Animated.View style={[styles.container, gpaAnimatedStyle]} >
                 <Animated.View style={searchBarSpaceAnimatedStyle} />
                 <Animated.View style={[styles.searchContainer, heightAnimatedStyle]}>
-                    <Icon name="search1" size={getViewSize(25)} color={commonStyles.black_333} />
+                    <Icon name="search1" size={25} color={commonStyles.black_333} />
                     <Text style={styles.searchPlaceholder} >搜索更多~</Text>
                 </Animated.View>
             </Animated.View>

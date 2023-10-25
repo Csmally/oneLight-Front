@@ -2,17 +2,21 @@ import { BlurView } from "@react-native-community/blur";
 import CategoryBar from "./CategoryBar";
 import InfoBar from "./InfoBar";
 import SearchBar from "./SearchBar";
-import Animated, { AnimatedRef, Extrapolation, SharedValue, interpolate, useAnimatedStyle } from "react-native-reanimated";
+import Animated, { AnimatedRef, Extrapolation, interpolate, useAnimatedStyle } from "react-native-reanimated";
 import { FlatList, StyleSheet, View } from "react-native";
+import { getNavigationConsts } from "@/utils/loadAppTools";
+import { useContext } from "react";
+import { HomePageContext } from "../utils/context";
 
 type AnimatedHeaderProps = {
-    scrollY: SharedValue<number>,
-    initTopbarHeight: number,
     flatListRef: AnimatedRef<FlatList<NewsItem>>
 }
 
-function AnimatedHeader({ scrollY, initTopbarHeight, flatListRef }: AnimatedHeaderProps) {
+const initTopbarHeight = getNavigationConsts().statusBarHeight + 170;
+
+function AnimatedHeader({ flatListRef }: AnimatedHeaderProps) {
     console.log('9898头部刷新');
+    const { scrollY } = useContext(HomePageContext);
     // 映射头部组件高度动画样式
     const containerAnimatedStyle = useAnimatedStyle(() => {
         // height
@@ -33,10 +37,10 @@ function AnimatedHeader({ scrollY, initTopbarHeight, flatListRef }: AnimatedHead
     });
     return (
         <Animated.View style={[{ position: 'absolute', top: 0, left: 0, right: 0,zIndex:2 }, containerAnimatedStyle]}>
-            <InfoBar scrollY={scrollY} />
+            <InfoBar />
             <View style={styles.barContainer}>
-                <SearchBar scrollY={scrollY} />
-                <CategoryBar scrollY={scrollY} flatListRef={flatListRef} />
+                <SearchBar />
+                <CategoryBar flatListRef={flatListRef} />
             </View>
             <Animated.View style={[styles.blurContainer, blurAnimatedStyle]}>
                 <BlurView style={{ flex: 1 }} blurType='xlight' blurAmount={50} />

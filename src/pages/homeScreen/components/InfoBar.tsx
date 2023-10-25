@@ -1,15 +1,13 @@
 import { commonStyles } from "@/common/styles";
 import { getNavigationConsts } from "@/utils/loadAppTools";
-import { getViewSize } from "@/utils/sizeTool";
+import { useContext } from "react";
 import { View, Text, StyleSheet, TouchableOpacity, TouchableWithoutFeedback, LayoutChangeEvent } from "react-native";
-import Animated, { Extrapolation, SharedValue, interpolate, useAnimatedStyle, useSharedValue } from "react-native-reanimated";
+import Animated, { Extrapolation, interpolate, useAnimatedStyle, useSharedValue } from "react-native-reanimated";
 import Icon from "react-native-vector-icons/FontAwesome5";
+import { HomePageContext } from "../utils/context";
 
-type InfoBarProps = {
-    scrollY: SharedValue<number>,
-}
-
-function InfoBar({ scrollY }: InfoBarProps) {
+function InfoBar() {
+    const { scrollY } = useContext(HomePageContext);
     // 热区宽度
     const hotAreaWidth = useSharedValue(0);
     const setHotAreaWidth = (e: LayoutChangeEvent) => {
@@ -65,7 +63,7 @@ function InfoBar({ scrollY }: InfoBarProps) {
         <View style={{ paddingTop: getNavigationConsts().statusBarHeight, zIndex: 2 }}>
             <Animated.View style={styles.container} onLayout={setHotAreaWidth} >
                 <View style={styles.settings}>
-                    <Icon name="location-arrow" onPress={() => { console.log('9898我是定位位置'); }} size={getViewSize(20)} color={commonStyles.black} />
+                    <Icon name="location-arrow" onPress={() => { console.log('9898我是定位位置'); }} size={20} color={commonStyles.black} />
                 </View>
                 <Animated.View style={[styles.communityNameContainer, communityNameAnimatedStyle]}>
                     <Text style={styles.communityName} ellipsizeMode='middle' numberOfLines={1}>清华大学光华学院</Text>

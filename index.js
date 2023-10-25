@@ -1,5 +1,5 @@
-require('react-native-ui-lib/config').setConfig({ appScheme: 'default' });
-import { loadSysStyle, screensRegister, navigationEventListen, setDefaultNavigationStyle, initStorageData } from '@/utils/loadAppTools';
+import { loadSysStyle, navigationEventListen, setDefaultNavigationStyle, initStorageData } from '@/utils/loadAppTools';
+import {screensRegister} from '@/utils/screensRegister';
 import { setAppRouter } from '@/utils/setRouterTools';
 import { ToastStore } from '@/store';
 import { Navigation } from 'react-native-navigation';

@@ -1,5 +1,4 @@
 import { commonStyles } from "@/common/styles";
-import { getViewSize } from "@/utils/sizeTool";
 import { memo } from "react";
 import { StyleSheet, Text, View } from "react-native";
 import Comment from "./widget/Comment";
@@ -36,7 +35,7 @@ function News({ news }: NewsProps) {
 const styles = StyleSheet.create({
     container: {
         backgroundColor: commonStyles.white,
-        borderRadius: getViewSize(10),
+        borderRadius: 10,
         marginHorizontal: commonStyles.pageBorderGap,
         padding: commonStyles.pageBorderGap
     },

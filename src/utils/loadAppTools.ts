@@ -1,4 +1,3 @@
-import Screens from '@/pages/screensMap';
 import { Navigation } from 'react-native-navigation';
 import { Colors, Typography, Spacings, Assets } from 'react-native-ui-lib';
 import Storage from '@/storage';
@@ -129,13 +128,6 @@ export const navigationEventListen = () => {
         console.log('9898有用--componentId', componentId);
         console.log('9898有用--componentName', componentName);
         console.log('9898有用--passProps', passProps);
-    });
-};
-
-//注册屏幕组件
-export const screensRegister = () => {
-    Screens.forEach(screenInfo => {
-        Navigation.registerComponent(screenInfo.path, () => screenInfo.component);
     });
 };
 

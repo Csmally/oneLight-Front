@@ -1,16 +1,15 @@
 import { commonStyles } from "@/common/styles";
-import { getViewSize } from "@/utils/sizeTool";
-import { memo } from "react";
+import { memo, useContext } from "react";
 import { Platform, StyleSheet, TouchableWithoutFeedback } from "react-native";
 import FastImage from "react-native-fast-image";
-import Animated, { Extrapolation, SharedValue, interpolate, interpolateColor, useAnimatedStyle } from "react-native-reanimated";
+import Animated, { Extrapolation, interpolate, interpolateColor, useAnimatedStyle } from "react-native-reanimated";
+import { HomePageContext } from "../utils/context";
 
 type CategoryItemInfo = {
     title: string,
     img: any
 }
 type CategoryItemProps = {
-    scrollY: SharedValue<number>,
     categoryInfo: CategoryItemInfo,
     // eslint-disable-next-line no-unused-vars
     changeActiveTab: (index: number) => void,
@@ -18,7 +17,8 @@ type CategoryItemProps = {
     activeTabIndex: number,
 }
 
-function CategoryItem({ categoryInfo, scrollY, changeActiveTab, selfIndex, activeTabIndex }: CategoryItemProps) {
+function CategoryItem({ categoryInfo, changeActiveTab, selfIndex, activeTabIndex }: CategoryItemProps) {
+    const { scrollY } = useContext(HomePageContext);
     // 分类栏item的容器动画（边距、阴影）
     const categoryContainerAnimatedStyle = useAnimatedStyle(() => {
         // 背景颜色
@@ -112,18 +112,18 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'center',
         alignItems: 'center',
-        width: getViewSize(100),
+        width: 100,
         height: 40
     },
     tabIcon: {
-        width: getViewSize(18),
-        height: getViewSize(18),
-        marginRight: getViewSize(5)
+        width: 18,
+        height: 18,
+        marginRight: 5
     },
     tabTitle: {
         fontWeight: 'bold',
         fontFamily: 'System',
-        lineHeight: getViewSize(18)
+        lineHeight: 18
     },
 });
 
