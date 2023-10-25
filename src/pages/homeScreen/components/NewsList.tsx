@@ -24,7 +24,7 @@ function NewsList() {
             <TabController.PageCarousel>
                 {
                     tabs.map((tab, index) => (
-                        <TabController.TabPage index={0} key={index} lazy>
+                        <TabController.TabPage index={index} key={index} lazy>
                             <TypeNewsList />
                         </TabController.TabPage>
                     ))
