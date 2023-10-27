@@ -6,16 +6,11 @@ import MineScreen from './mineScreen';
 import MarketScreen from './marketScreen';
 import ErrorScreen from './errorScreen';
 import CircleScreen from './circleScreen';
-import RNUILib from './rnUIlibTest/screens/componentScreens/BasicListScreen';
 
 export default [
     {
         path: 'ErrorScreen',
         component: ErrorScreen
-    },
-    {
-        path: 'RNUILib',
-        component: RNUILib
     },
     {
         path: 'ToastScreen',

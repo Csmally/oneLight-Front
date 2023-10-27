@@ -1,5 +1,5 @@
 import { useContext, useState } from "react";
-import { View, FlatList, RefreshControl } from "react-native";
+import { View, FlatList, RefreshControl, StyleSheet } from "react-native";
 import { HomePageContext } from "../utils/context";
 import Animated, { useAnimatedRef, useAnimatedScrollHandler } from "react-native-reanimated";
 import { getNavigationConsts } from "@/utils/loadAppTools";
@@ -7,6 +7,7 @@ import EmptyComponent from "@/components/EmptyComponent";
 import News from "@/components/News";
 import LoadMore from "@/components/LoadMore";
 import newsDataMock from '@/mock/newsData';
+import HomeHeaderActivity from "./HomeHeaderActivity";
 
 const apifunc = async () => {
     return new Promise((res) => {
@@ -54,8 +55,9 @@ function TypeNewsList() {
             ref={ref => flatListRef.current = ref}
             contentInsetAdjustmentBehavior='never'
             showsVerticalScrollIndicator={false}
+            style={styles.page}
             contentContainerStyle={{
-                paddingTop: initTopbarHeight,
+                // paddingTop: initTopbarHeight,
                 paddingBottom: getNavigationConsts().bottomTabsHeight
             }}
             keyExtractor={item => item.id}
@@ -65,6 +67,7 @@ function TypeNewsList() {
             ListEmptyComponent={<EmptyComponent isShow={!loadingStatus.isLoadingMore && !loadingStatus.isRefreshing} />}
             renderItem={({ item }) => <News news={item} />}
             ItemSeparatorComponent={() => <View style={{ height: 10 }} />}
+            ListHeaderComponent={<HomeHeaderActivity />}
             ListFooterComponent={<LoadMore isLoadingMore={loadingStatus.isLoadingMore} />}
             refreshControl={<RefreshControl refreshing={loadingStatus.isRefreshing} onRefresh={tt} progressViewOffset={initTopbarHeight}></RefreshControl>}
             onEndReached={loadMoreData}
@@ -72,5 +75,11 @@ function TypeNewsList() {
         />
     );
 }
+
+const styles = StyleSheet.create({
+    page: {
+        width: WINDOW_WIDTH
+    }
+});
 
 export default TypeNewsList;

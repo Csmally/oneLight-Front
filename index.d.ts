@@ -37,3 +37,5 @@ interface ToastTool {
     show: (params: ToastProps) => void;
 }
 declare var Toast: ToastTool;
+declare var WINDOW_WIDTH: number;
+declare var WINDOW_HEIGHT: number;

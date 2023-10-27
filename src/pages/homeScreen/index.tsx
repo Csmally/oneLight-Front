@@ -1,10 +1,10 @@
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 import { Dimensions, Platform, StyleSheet, View } from 'react-native';
 import SplashScreen from 'react-native-splash-screen';
 import AnimatedHeader from './components/AnimatedHeader';
 import { useSharedValue } from 'react-native-reanimated';
 import BlurBox from '@/components/BlurBox';
-import NewsList from './components/NewsList';
+import NewsListContainer from './components/NewsListContainer';
 import { HomePageContext } from './utils/context';
 import { getNavigationConsts } from '@/utils/loadAppTools';
 
@@ -13,15 +13,24 @@ function HomeScreen() {
     const initTopbarHeight = getNavigationConsts().statusBarHeight + 170;
     // 滑动距离
     const scrollY = useSharedValue(0);
+    // 最外层所有list列表容器ref
+    const newsListContainerRef = useRef();
+    // 分类栏容器ref
+    const categoryBarRef = useRef();
     useEffect(() => {
         SplashScreen.hide();
     }, []);
+    const providerValue = {
+        initTopbarHeight, // 顶部动画组件的高度
+        newsListContainerRef, // 最外层所有list列表容器ref
+        categoryBarRef, // 分类栏容器ref
+        scrollY, // 各个分类list列表滑动距离
+    };
     return (
-        <HomePageContext.Provider value={{ scrollY, initTopbarHeight }}>
+        <HomePageContext.Provider value={providerValue}>
             <View style={styles.page} >
-                <NewsList />
+                <NewsListContainer />
                 {/* 涉及blur组件需要放在下方 */}
-                {/* <AnimatedHeader flatListRef={flatListRef} /> */}
                 <AnimatedHeader />
                 <BlurBox />
             </View>

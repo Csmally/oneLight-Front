@@ -1,7 +1,7 @@
-import { useState } from "react";
-import Animated, { AnimatedRef } from "react-native-reanimated";
+import { forwardRef, useContext, useImperativeHandle, useState } from "react";
 import CategoryItem from "./CategoryItem";
-import { FlatList } from "react-native";
+import { HomePageContext } from "../utils/context";
+import { ScrollView } from "react-native";
 
 const tabs = [
     {
@@ -26,20 +26,18 @@ const tabs = [
     },
 ];
 
-type CategoryBarProps = {
-    flatListRef: AnimatedRef<FlatList<NewsItem>>
-}
-
-function CategoryBar({ flatListRef }: CategoryBarProps) {
+const CategoryBar = forwardRef((props, ref) => {
     console.log('9898分类bar刷新');
+    const { newsListContainerRef } = useContext(HomePageContext);
     const [activeTabIndex, setActiveTabIndex] = useState(0);
     const changeActiveTab = (index: number) => {
         if (index === activeTabIndex) return;
         setActiveTabIndex(index);
-        flatListRef.current?.scrollToOffset({ offset: 90, animated: true });
+        newsListContainerRef?.current?.scrollToIndex?.({ index });
     };
+    useImperativeHandle(ref, () => ({ changeActiveTab }));
     return (
-        <Animated.ScrollView
+        <ScrollView
             horizontal
             showsHorizontalScrollIndicator={false}
             style={{ zIndex: 2 }}
@@ -55,8 +53,10 @@ function CategoryBar({ flatListRef }: CategoryBarProps) {
                     />
                 ))
             }
-        </Animated.ScrollView >
+        </ScrollView >
     );
-}
+});
+
+CategoryBar.displayName = 'CategoryBar';
 
 export default CategoryBar;

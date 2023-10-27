@@ -14,8 +14,8 @@ export const initStorageData = () => {
     if (!loginStatus) {
         Storage.set(CONSTS_VALUE.LOGIN_STATUS, false);
     }
-    Storage.set(CONSTS_VALUE.WINDOW_WIDTH, windowWidth);
-    Storage.set(CONSTS_VALUE.WINDOW_HEIGHT, windowHeight);
+    WINDOW_WIDTH = windowWidth;
+    WINDOW_HEIGHT = windowHeight;
 };
 
 //设置导航默认样式
