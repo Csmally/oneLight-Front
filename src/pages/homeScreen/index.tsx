@@ -18,7 +18,9 @@ function HomeScreen() {
     // 分类栏容器ref
     const categoryBarRef = useRef();
     useEffect(() => {
-        SplashScreen.hide();
+        setTimeout(() => {
+            SplashScreen.hide();
+        }, 3000);
     }, []);
     const providerValue = {
         initTopbarHeight, // 顶部动画组件的高度

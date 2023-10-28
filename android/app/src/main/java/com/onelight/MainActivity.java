@@ -9,8 +9,8 @@ import com.facebook.react.defaults.DefaultReactActivityDelegate;
 public class MainActivity extends NavigationActivity {
   @Override
   protected void onCreate(Bundle savedInstanceState) {
-      SplashScreen.show(this);
       super.onCreate(savedInstanceState);
+      SplashScreen.show(this);
   }
   /**
    * Returns the instance of the {@link ReactActivityDelegate}. Here we use a util class {@link

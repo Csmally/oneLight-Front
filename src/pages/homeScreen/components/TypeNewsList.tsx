@@ -17,7 +17,7 @@ const apifunc = async () => {
                 id: index + '-' + (new Date()).getTime()
             }));
             res(data);
-        }, 1500);
+        }, 800);
     });
 };
 
@@ -64,6 +64,7 @@ function TypeNewsList() {
             removeClippedSubviews
             onScroll={scrollHandler}
             data={newsData}
+            windowSize={8}
             ListEmptyComponent={<EmptyComponent isShow={!loadingStatus.isLoadingMore && !loadingStatus.isRefreshing} />}
             renderItem={({ item }) => <News news={item} />}
             ItemSeparatorComponent={() => <View style={{ height: 10 }} />}
