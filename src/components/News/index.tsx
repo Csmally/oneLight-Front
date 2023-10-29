@@ -1,5 +1,4 @@
 import { commonStyles } from "@/common/styles";
-import { memo } from "react";
 import { StyleSheet, Text, View } from "react-native";
 import Comment from "./widget/Comment";
 import Like from "./widget/Like";
@@ -65,6 +64,4 @@ const styles = StyleSheet.create({
     },
 });
 
-export default memo(News, (prevProps, nextProps) => {
-    return prevProps.news.id === nextProps.news.id;
-});
+export default News;

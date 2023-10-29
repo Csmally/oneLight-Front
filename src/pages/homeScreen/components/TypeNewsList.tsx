@@ -1,13 +1,14 @@
 import { useContext, useState } from "react";
-import { View, FlatList, RefreshControl, StyleSheet } from "react-native";
+import { View, RefreshControl, StyleSheet } from "react-native";
 import { HomePageContext } from "../utils/context";
-import Animated, { useAnimatedRef, useAnimatedScrollHandler } from "react-native-reanimated";
+import Animated, { useAnimatedScrollHandler } from "react-native-reanimated";
 import { getNavigationConsts } from "@/utils/loadAppTools";
 import EmptyComponent from "@/components/EmptyComponent";
 import News from "@/components/News";
 import LoadMore from "@/components/LoadMore";
 import newsDataMock from '@/mock/newsData';
 import HomeHeaderActivity from "./HomeHeaderActivity";
+import { FlashList } from "@shopify/flash-list";
 
 const apifunc = async () => {
     return new Promise((res) => {
@@ -21,9 +22,11 @@ const apifunc = async () => {
     });
 };
 
+const AnimatedFlashList = Animated.createAnimatedComponent(FlashList<NewsItem>);
+
 function TypeNewsList() {
     const { scrollY, initTopbarHeight } = useContext(HomePageContext);
-    const flatListRef = useAnimatedRef<FlatList<NewsItem>>();
+    // const flatListRef = useAnimatedRef<FlatList<NewsItem>>();
     // 滑动事件
     const scrollHandler = useAnimatedScrollHandler((event) => {
         scrollY.value = event.contentOffset.y;
@@ -51,29 +54,28 @@ function TypeNewsList() {
         getNewsData('loadmore');
     };
     return (
-        <Animated.FlatList
-            ref={ref => flatListRef.current = ref}
-            contentInsetAdjustmentBehavior='never'
-            showsVerticalScrollIndicator={false}
-            style={styles.page}
-            contentContainerStyle={{
-                // paddingTop: initTopbarHeight,
-                paddingBottom: getNavigationConsts().bottomTabsHeight
-            }}
-            keyExtractor={item => item.id}
-            removeClippedSubviews
-            onScroll={scrollHandler}
-            data={newsData}
-            windowSize={8}
-            ListEmptyComponent={<EmptyComponent isShow={!loadingStatus.isLoadingMore && !loadingStatus.isRefreshing} />}
-            renderItem={({ item }) => <News news={item} />}
-            ItemSeparatorComponent={() => <View style={{ height: 10 }} />}
-            ListHeaderComponent={<HomeHeaderActivity />}
-            ListFooterComponent={<LoadMore isLoadingMore={loadingStatus.isLoadingMore} />}
-            refreshControl={<RefreshControl refreshing={loadingStatus.isRefreshing} onRefresh={tt} progressViewOffset={initTopbarHeight}></RefreshControl>}
-            onEndReached={loadMoreData}
-            onEndReachedThreshold={0.8}
-        />
+        <View style={styles.page}>
+            <AnimatedFlashList
+                // ref={ref => flatListRef.current = ref}
+                contentInsetAdjustmentBehavior='never'
+                showsVerticalScrollIndicator={false}
+                contentContainerStyle={{
+                    paddingBottom: getNavigationConsts().bottomTabsHeight
+                }}
+                estimatedItemSize={110}
+                keyExtractor={(item) => item.id}
+                onScroll={scrollHandler}
+                data={newsData}
+                ListEmptyComponent={<EmptyComponent isShow={!loadingStatus.isLoadingMore && !loadingStatus.isRefreshing} />}
+                renderItem={({ item }) => <News news={item} />}
+                ItemSeparatorComponent={() => <View style={{ height: 10 }} />}
+                ListHeaderComponent={<HomeHeaderActivity />}
+                ListFooterComponent={<LoadMore isLoadingMore={loadingStatus.isLoadingMore} />}
+                refreshControl={<RefreshControl refreshing={loadingStatus.isRefreshing} onRefresh={tt} progressViewOffset={initTopbarHeight}></RefreshControl>}
+                onEndReached={loadMoreData}
+                onEndReachedThreshold={0.8}
+            />
+        </View>
     );
 }
 
